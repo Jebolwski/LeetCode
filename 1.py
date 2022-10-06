@@ -82,8 +82,30 @@ class Solution(object):
                     break
        
         
-    
-            
+#!https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        for i in nums2:
+            nums1.append(i)
+        nums1=sorted(nums1)
         
+        if len(nums1)%2==1:
+            return nums1[(len(nums1)/2+1)-1]
+        else:
+            print(nums1)
+            num = (nums1[len(nums1)/2-1]+nums1[len(nums1)/2])/2.00
+            return num       
+        
+#!https://leetcode.com/problems/longest-palindromic-substring/submissions/
+class Solution(object):
+    def longestPalindrome(self, s):
+        result=""
+        for i in range(0,len(s)+1):
+           for j in range(i,len(s)+1):
+                string = s[i:j] 
+                if string!="" and string==string[::-1]:
+                    if len(string)>len(result):
+                        result=string
+        return result
             
         
