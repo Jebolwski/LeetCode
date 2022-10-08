@@ -108,4 +108,32 @@ class Solution(object):
                         result=string
         return result
             
+#!https://leetcode.com/problems/reverse-integer/submissions/
+class Solution(object):
+    def reverse(self, x):
+        if str(x)[0]=="-":
+            string = str(x)[1:len(str(x))][::-1]
+            if int(string)*-1<-2147483648:
+                return 0                
+            else:
+                return int(string)*-1
+        else:
+            if (int(str(x)[::-1]))>2147483647:
+                return 0
+            else:
+                return (int(str(x)[::-1]))
+
+#!https://leetcode.com/problems/roman-to-integer/submissions/
+class Solution(object):
+    def romanToInt(self, s):
+        roman = {'M': 1000, 'D': 500, 'C': 100, 'L': 50, 'X': 10, 'V': 5, 'I': 1}
+        result=0
+        for i in range(0,len(s)-1):
+            if roman[s[i]] < roman[s[i+1]]:
+                result-=roman[s[i]]
+            else:
+                result+=roman[s[i]]
+        result+=roman[s[len(s)-1]]
+        
+        return result
         
