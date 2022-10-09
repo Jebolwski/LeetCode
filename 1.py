@@ -137,3 +137,14 @@ class Solution(object):
         
         return result
         
+#!https://leetcode.com/problems/3sum/
+class Solution(object):
+    def threeSum(self, nums):
+        array=[]
+        array1=[]
+        for i in range(0,len(nums)):
+            for j in range(i,len(nums)):
+                for k in range(j,len(nums)):
+                    if nums[i]+nums[j]+nums[k]==0 and i!=j and j!=k and sorted([nums[i],nums[j],nums[k]]) not in array:
+                        array.append(sorted([nums[i],nums[j],nums[k]]))  
+        return (sorted(array))
