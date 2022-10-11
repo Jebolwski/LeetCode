@@ -10,7 +10,6 @@ class Solution(object):
                     print(i,j)
                     return result
 
-
 #!https://leetcode.com/problems/add-two-numbers/
 # Definition for singly-linked list.
 class ListNode(object):
@@ -80,7 +79,6 @@ class Solution(object):
                 if len(i)==max_len:
                     print(i)
                     break
-       
         
 #!https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/
 class Solution(object):
@@ -137,6 +135,18 @@ class Solution(object):
         
         return result
         
+
+#!https://leetcode.com/problems/longest-common-prefix/
+class Solution(object):
+    def longestCommonPrefix(self, strs):
+        prefix=strs[0]
+        
+        for i in strs:
+            while i[0:len(prefix)]!=prefix:
+                prefix=prefix[0:len(prefix)-1]
+                
+        return prefix
+        
 #!https://leetcode.com/problems/3sum/
 class Solution(object):
     def threeSum(self, nums):
@@ -148,3 +158,37 @@ class Solution(object):
                     if nums[i]+nums[j]+nums[k]==0 and i!=j and j!=k and sorted([nums[i],nums[j],nums[k]]) not in array:
                         array.append(sorted([nums[i],nums[j],nums[k]]))  
         return (sorted(array))
+
+
+#!https://leetcode.com/problems/merge-two-sorted-lists/submissions/
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def mergeTwoLists(self, list1, list2):
+        if list1==None and list2==None:
+            node = ListNode()
+            node.val=""
+            return node
+        
+        array=[]
+        a = list1
+        b = list2
+        while a!=None:
+            array.append(a.val)
+            a=a.next
+        while b!=None:
+            array.append(b.val)
+            b=b.next
+        array = list(reversed(sorted(array)))
+        newlist=ListNode()
+        resultlist = newlist
+        while len(array)>0:
+            resultlist.val=array.pop()
+            if len(array)!=0:
+                listnode = ListNode()
+                resultlist.next = listnode
+                resultlist=resultlist.next
+        return(newlist)
