@@ -1,6 +1,5 @@
 
 #!https://leetcode.com/problems/two-sum/
-
 class Solution(object):
     def twoSum(self, nums, target):
         for i in range(0,len(nums)):
@@ -192,3 +191,15 @@ class Solution(object):
                 resultlist.next = listnode
                 resultlist=resultlist.next
         return(newlist)
+
+#!https://leetcode.com/problems/plus-one/submissions/
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        array=[]
+        strin=""
+        for i in digits:
+            strin+=str(i)
+        strin=str(int(strin)+1)
+        for i in strin:
+            array.append(i)
+        return array
