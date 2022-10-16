@@ -1,4 +1,5 @@
-
+import math
+from math import sqrt
 #!https://leetcode.com/problems/two-sum/
 class Solution(object):
     def twoSum(self, nums, target):
@@ -158,7 +159,6 @@ class Solution(object):
                         array.append(sorted([nums[i],nums[j],nums[k]]))  
         return (sorted(array))
 
-
 #!https://leetcode.com/problems/merge-two-sorted-lists/submissions/
 # Definition for singly-linked list.
 class ListNode(object):
@@ -203,3 +203,48 @@ class Solution:
         for i in strin:
             array.append(i)
         return array
+
+#!https://leetcode.com/problems/divide-two-integers/submissions/
+class Solution:
+    def divide(self, dividend: int, divisor: int) -> int:
+        print(dividend)
+        
+        result = int(dividend/divisor)
+        if result>pow(2,31)-1:
+            return pow(2,31)-1 
+        elif result<pow(-2,31):
+            return pow(-2,31)
+        else:
+            return result
+
+#!https://leetcode.com/problems/sqrtx/submissions/
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        return math.floor(sqrt(x))
+
+#!https://leetcode.com/problems/valid-perfect-square/submissions/
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        if sqrt(num)!=math.floor(sqrt(num)):
+            return False
+        return True
+
+#!https://leetcode.com/problems/sum-of-square-numbers/submissions/
+class Solution:
+    def judgeSquareSum(self, c: int) -> bool:
+        if sqrt(c)==math.floor(sqrt(c)):
+            return True
+        karekok = int(sqrt(c))
+        l,r=0,int(math.sqrt(c))
+        
+        while l<=r:
+            a2=l*l
+            b2=r*r
+            if a2+b2==c:
+                return True
+            elif a2+b2<c:
+                l+=1
+            else:
+                r-=1
+            
+            
