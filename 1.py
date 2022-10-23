@@ -246,5 +246,46 @@ class Solution:
                 l+=1
             else:
                 r-=1
+
+#!https://leetcode.com/problems/permutations/submissions/
+class Solution(object):
+    def __init__(self):
+        self.res=[]
+    def permute(self, nums):
+        self.backtrack(nums,[])
+        return self.res
+    def backtrack(self,nums,path):
+        if not nums:
+            self.res.append(path)
+        for x in range(len(nums)):
+            self.backtrack(nums[:x]+nums[x+1:],path+[nums[x]])
             
-            
+#!https://leetcode.com/problems/powx-n/submissions/        
+class Solution(object):
+    def myPow(self, x, n):
+        if 0.5>x and x>-0.5 and n>10:
+            return 0.0
+        if x==1:
+            return 1
+        if x==-1 and n%2==0:
+            return 1
+        if x==-1 and n%2==1:
+            return -1
+        if n>0:
+            result=1
+            while(n>0):
+                n-=1
+                result*=x
+        else:
+            result=x**n
+        
+        return result   
+
+#!https://leetcode.com/problems/super-pow/submissions/
+class Solution(object):
+    def superPow(self, a, b):
+        b_full=""
+        for i in b:
+            b_full+=str(i)
+        b=int(b_full)
+        return pow(a,b,1337)      
