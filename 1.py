@@ -288,4 +288,14 @@ class Solution(object):
         for i in b:
             b_full+=str(i)
         b=int(b_full)
-        return pow(a,b,1337)      
+        return pow(a,b,1337)    
+
+#!https://leetcode.com/problems/number-of-1-bits/submissions/
+class Solution(object):
+    def hammingWeight(self, n):
+        number = (bin(n)[2:])
+        result = 0
+        for i in number:
+            if i=="1":
+                result+=1
+        return result  
