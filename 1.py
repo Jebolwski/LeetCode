@@ -299,3 +299,29 @@ class Solution(object):
             if i=="1":
                 result+=1
         return result  
+
+#!https://leetcode.com/problems/reverse-linked-list/submissions/
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+class Solution(object):
+    def reverseList(self, head):
+        
+        if not head:
+            node = ListNode()
+            node.val=""
+            return node
+        array = []
+        while head!=None:
+            array.append(head.val)
+            head=head.next
+        node = ListNode()
+        resultlist = node
+        while len(array)>0:
+            resultlist.val=array.pop()
+            if len(array)!=0:
+                listnode = ListNode()
+                resultlist.next = listnode
+                resultlist=resultlist.next
+        return node    
