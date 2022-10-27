@@ -325,3 +325,10 @@ class Solution(object):
                 resultlist.next = listnode
                 resultlist=resultlist.next
         return node    
+
+#!https://leetcode.com/problems/reverse-string/submissions/
+class Solution(object):
+    def reverseString(self, s):
+        a = s.reverse()
+        return a
+        
