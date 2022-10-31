@@ -351,4 +351,50 @@ class Solution:
             
         backtrack(0)
         return result
+
+#!https://leetcode.com/problems/maximum-depth-of-binary-tree/submissions/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        return 1 + max(self.maxDepth(root.right),self.maxDepth(root.left))                       
+
+#!https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/submissions/
+class Solution(object):
+    def strStr(self, haystack, needle):
+        for i in range(0,len(haystack)-len(needle)+1):
+            if haystack[i:i+len(needle)] == needle:
+                return i
+        return -1    
+
+#!https://leetcode.com/problems/repeated-substring-pattern/submissions/
+class Solution(object):
+    def repeatedSubstringPattern(self, s):
+        for i in range(1,len(s)):
+            if len(s)%i==0:
+                if str(s[:i])*(len(s)/i)==s:
+                    return True
+        return False
         
+#!https://leetcode.com/problems/repeated-string-match/submissions/
+class Solution(object):
+    def repeatedStringMatch(self, a, b):
+        count=1
+        fake_a=a
+        if a==b or b in a:
+            return 1
+        while True:
+            
+            count+=1
+            fake_a=a*count
+            if b in fake_a:
+                return count
+            if count>10000 or len(fake_a)>len(b)*8:
+                return -1
+        return -1
