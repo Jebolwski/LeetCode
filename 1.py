@@ -398,3 +398,41 @@ class Solution(object):
             if count>10000 or len(fake_a)>len(b)*8:
                 return -1
         return -1
+
+#!https://leetcode.com/problems/trapping-rain-water/
+class Solution(object):
+    def trap(self, height):
+        total=0
+        if len(height)<=2:
+            return 0
+        for i in range(0,len(height)):
+            if height[:i]:
+                left_max=max(height[:i])
+            else:
+                left_max=0
+            if height[i:len(height)]:
+                right_max=max(height[i:len(height)])
+            else:
+                right_max=0
+            if (min(left_max,right_max)-height[i])>0:
+                total+=min(left_max,right_max)-height[i]
+        return total
+
+
+#!https://leetcode.com/problems/rotate-image/submissions/
+class Solution(object):
+    def rotate(self, matrix):
+        #transpoze
+        for i in range(len(matrix)):
+            for j in range(i,len(matrix)):
+                print(i,j)
+                temp = matrix[i][j]
+                matrix[i][j]=matrix[j][i]
+                matrix[j][i]=temp
+                
+        #horizontal shift
+        for i in range(len(matrix)):
+            for j in range(len(matrix)/2):
+                temp = matrix[i][len(matrix[i])-j-1]
+                matrix[i][len(matrix[i])-j-1]=matrix[i][j]
+                matrix[i][j]=temp 
