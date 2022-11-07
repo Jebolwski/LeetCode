@@ -436,3 +436,32 @@ class Solution(object):
                 temp = matrix[i][len(matrix[i])-j-1]
                 matrix[i][len(matrix[i])-j-1]=matrix[i][j]
                 matrix[i][j]=temp 
+
+
+#!https://leetcode.com/problems/majority-element/submissions/
+class Solution(object):
+    def majorityElement(self, nums):
+        array=[]
+        for i in nums:
+            if i not in array:
+                array.append(i)
+        max_count=0        
+        for i in array:
+            if nums.count(i)>max_count:
+                max_count=nums.count(i)
+        for i in array:
+            if nums.count(i)==max_count:
+                return i
+
+#!https://leetcode.com/problems/jump-game/submissions/        
+class Solution(object):
+    def canJump(self, nums):
+        goal=len(nums) - 1
+        for i in range(len(nums)-1,-1,-1):
+            if i+nums[i]>=goal:
+                goal=i
+        if goal==0:
+            return True
+        return False
+            
+        
