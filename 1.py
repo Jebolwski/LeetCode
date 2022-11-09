@@ -463,5 +463,25 @@ class Solution(object):
         if goal==0:
             return True
         return False
-            
+
+#!https://leetcode.com/problems/single-number/submissions/     
+class Solution(object):
+    def singleNumber(self, nums):
+        res=0
+        for i in nums:
+            res= i^res
+        return res
+
+#!https://leetcode.com/problems/unique-paths/submissions/
+class Solution(object):
+    def uniquePaths(self, m, n):
+        small=min(n-1,m-1)
+        big=max(n-1,m-1)
+        smaller_fact = 1
+        top=1
+        for i in range(1,small+1):
+            smaller_fact*=i
+        for i in range(big+1,big+small+1):
+            top*=i
+        return top/smaller_fact
         
