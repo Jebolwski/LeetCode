@@ -484,4 +484,38 @@ class Solution(object):
         for i in range(big+1,big+small+1):
             top*=i
         return top/smaller_fact
+
+#!https://leetcode.com/problems/fizz-buzz/submissions/   
+class Solution(object):
+    def fizzBuzz(self, n):
+        array=[]
+        for i in range(1,n+1):
+            if i%3==0 and i%5==0:
+                array.append("FizzBuzz")
+            elif i%3==0:
+                array.append("Fizz")
+            elif i%5==0:
+                array.append("Buzz")
+            else:
+                array.append(str(i))
+        return array
+        
+
+#!https://leetcode.com/problems/valid-anagram/submissions/
+class Solution(object):
+    def isAnagram(self, s, t):
+        if len(s)!=len(t):
+            return False
+        s_array=[]
+        t_array=[]
+        for i in s:
+            s_array.append(i)
+        for i in t:
+            t_array.append(i)
+        for i in s_array:
+            if i in t_array:
+                t_array.remove(i)
+        if len(t_array)==0:
+            return True
+        return False
         
