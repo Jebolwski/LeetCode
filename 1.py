@@ -500,7 +500,6 @@ class Solution(object):
                 array.append(str(i))
         return array
         
-
 #!https://leetcode.com/problems/valid-anagram/submissions/
 class Solution(object):
     def isAnagram(self, s, t):
@@ -518,4 +517,133 @@ class Solution(object):
         if len(t_array)==0:
             return True
         return False
+        
+#!https://leetcode.com/problems/sort-colors/submissions/
+class Solution(object):
+    def sortColors(self, nums):
+        temp_index=0
+        for i in range(len(nums)):
+            min_ind=i
+            for j in range(i,len(nums)):
+                if nums[min_ind]>nums[j]:
+                    min_ind=j
+            nums[min_ind],nums[i]=nums[i],nums[min_ind]
+
+#!https://leetcode.com/problems/move-zeroes/submissions/
+class Solution(object):
+    def moveZeroes(self, nums):
+        zero_length =(nums.count(0))
+        while 0 in nums:
+            nums.remove(0)
+        for i in range(zero_length):
+            nums.append(0)
+            
+        return nums
+        
+#!https://leetcode.com/problems/apply-operations-to-an-array/submissions/
+class Solution(object):
+    def applyOperations(self, nums):
+        for i in range(len(nums)-1):
+            if nums[i]==nums[i+1]:
+                nums[i]*=2
+                nums[i+1]=0
+        zero_length =(nums.count(0))
+        while 0 in nums:
+            nums.remove(0)
+        for i in range(zero_length):
+            nums.append(0)
+            
+        return nums
+
+#!https://leetcode.com/problems/sliding-window-median/submissions/
+class Solution(object):
+    def medianSlidingWindow(self, nums, k):
+        result_array=[]
+        for i in range(len(nums)-k+1):
+            array = list(sorted(nums[i:i+k]))
+            if len(array)%2 == 0:
+                result = ((array[(len(array))/2])+(array[len(array)/2-1]))/2.0
+                result_array.append(result)
+            else:
+                result = array[int(math.floor(len(array)/2))]
+                result_array.append(result)
+        return result_array
+
+#!https://leetcode.com/problems/intersection-of-two-arrays-ii/submissions/
+class Solution(object):
+    def intersect(self, nums1, nums2):
+        array=[]
+        for i in nums1:
+            if i in nums2 and i not in array:
+                arr1=nums1.count(i)
+                arr2=nums2.count(i)
+                for j in range(min(arr1,arr2)):
+                    array.append(i)
+        return array
+        
+#!https://leetcode.com/problems/intersection-of-two-arrays/submissions/
+class Solution(object):
+    def intersection(self, nums1, nums2):
+        array=[]
+        for i in nums1:
+            if i in nums2 and i not in array:
+                array.append(i)
+        return array
+
+#!https://leetcode.com/problems/find-the-difference-of-two-arrays/submissions/
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        array=[]
+        array1=[]
+        array2=[]
+        for i in nums1:
+            if i not in nums2 and i not in array1:
+                array1.append(i)
+        for i in nums2:
+            if i not in nums1 and i not in array2:
+                array2.append(i)
+        array.append(array1)
+        array.append(array2)
+        return array
+
+#!https://leetcode.com/problems/count-common-words-with-one-occurrence/submissions/
+class Solution(object):
+    def countWords(self, words1, words2):
+        count=0
+        for i in words1:
+            if words1.count(i)==1 and words2.count(i)==1:
+                count+=1
+        return count
+
+#!https://leetcode.com/problems/uncommon-words-from-two-sentences/submissions/
+class Solution(object):
+    def uncommonFromSentences(self, s1, s2):
+        array=[]
+        s1=s1.split(" ")
+        s2=s2.split(" ")
+        for i in s1:
+            print(i,s1.count(i),s2.count(i))
+            if s1.count(i)==1 and i not in s2:
+                array.append(i)
+                
+        for i in s2:
+            print(i,s1.count(i),s2.count(i))
+            if s2.count(i)==1 and i not in s1:
+                array.append(i)
+                
+        return array
+                
+#!https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/submissions/
+class Solution(object):
+    def findMaxK(self, nums):
+        array=[]
+        for i in nums:
+            if i*-1 in nums:
+                print(i)
+                array.append(abs(i))
+        if array:
+            return max(array)        
+        return -1
+        
+        
         
