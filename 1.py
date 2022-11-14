@@ -645,5 +645,15 @@ class Solution(object):
             return max(array)        
         return -1
         
+#!https://leetcode.com/problems/contains-duplicate/submissions/   
+class Solution(object):
+    def containsDuplicate(self, nums):
+        array = set()
+        for i in nums:
+            if i in array:
+                return True
+            if i not in array:
+                array.add(i)
+        return False
         
         
