@@ -655,5 +655,20 @@ class Solution(object):
             if i not in array:
                 array.add(i)
         return False
-        
-        
+
+#!https://leetcode.com/problems/happy-number/submissions/  
+class Solution(object):
+    def isHappy(self, n):
+        n=str(n)
+        total=0
+        count=0
+        while total!=1 and count<15:
+            total=0
+            count+=1
+            for i in n:
+                i=int(i)
+                total+=i*i
+            if total==1:
+                return True
+            else:
+                n=str(total)
