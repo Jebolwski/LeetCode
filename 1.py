@@ -672,3 +672,61 @@ class Solution(object):
                 return True
             else:
                 n=str(total)
+
+#!https://leetcode.com/problems/palindrome-linked-list/submissions/
+class Solution(object):
+    def isPalindrome(self, head):
+        length = 0
+        t=head
+        while t!=None:
+            t=t.next
+            length+=1
+        if length==1:
+            return True
+        
+        if length%2==0:
+            half_length=length/2
+            temp=head
+            array_first_half=[]
+            array_second_half=[]
+            for i in range(half_length):
+                array_first_half.append(temp.val)
+                if len(array_first_half)==half_length:
+                    break
+                temp=temp.next
+            for i in range(half_length):
+                temp=temp.next
+                array_second_half.append(temp.val)
+            if array_first_half==array_second_half[::-1]:
+                return True
+            return False
+        else:
+            half_ceil=int(math.ceil(length/2))
+            temp=head
+            array_first_half=[]
+            array_second_half=[]
+            for i in range(half_ceil):
+                array_first_half.append(temp.val)
+                temp=temp.next
+            for i in range(half_ceil):
+                temp=temp.next
+                array_second_half.append(temp.val)
+            print(array_first_half,array_second_half)
+            if array_first_half==array_second_half[::-1]:
+                return True
+            return False
+        
+#!https://leetcode.com/problems/palindrome-number/submissions/
+class Solution(object):
+    def isPalindrome(self, x):
+        x=str(x)
+        if len(x)%2==0:
+            if (x[:len(x)/2]==(x[len(x)/2:])[::-1]):
+                return True
+            return False
+        else:
+            if x[:int(math.ceil(len(x)/2))+1]==(x[int(math.floor(len(x)/2)):])[::-1]:
+                return True
+            return False
+        
+        
