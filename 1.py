@@ -758,5 +758,29 @@ class Solution(object):
                 return True
             i+=1 
         return False
+
+#!https://leetcode.com/problems/pascals-triangle/submissions/
+class Solution(object):
+    def generate(self, numRows):
+        array=[[1],[1,1]]
+        if numRows==0:
+            return None
+        if numRows==1:
+            return [[1]]
+        if numRows==2:
+            return [[1],[1,1]]
+        array1=[]
+        i=1
+        while len(array)!=numRows:
+            array1=[]
+            
+            for j in range(len(array[i])-1):
+                array1.append(array[i][j]+array[i][j+1])
+            array1.insert(0,1)
+            array1.append(1)
+            array.append(array1)
+            i+=1
+        return array
+        
         
         
