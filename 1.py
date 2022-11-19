@@ -782,5 +782,37 @@ class Solution(object):
             i+=1
         return array
         
+#!https://leetcode.com/problems/odd-even-linked-list/submissions/   
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def oddEvenList(self, head):
+        if head==None:
+            return None
+        array=[]
+        temp_head=head
+        while temp_head!=None:
+            array.append(temp_head.val)
+            temp_head=temp_head.next
+        result=ListNode()
+        temp=result
+        for i in range(0,len(array),2):
+            temp.val=array[i]
+            nexttemp=ListNode()
+            temp.next=nexttemp
+            temp=temp.next
         
+        for i in range(1,len(array),2):
+            temp.val=array[i]
+            nexttemp=ListNode()
+            temp.next=nexttemp
+            temp=temp.next
+        temp=result
+        while temp.next.next!=None:
+            temp=temp.next
+        temp.next=None
+        return result
         
