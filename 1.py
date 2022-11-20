@@ -816,3 +816,16 @@ class Solution(object):
         temp.next=None
         return result
         
+#!https://leetcode.com/problems/rotate-array/submissions/
+class Solution(object):
+    def rotate(self, nums, k):
+        array=[]
+        for i in range(len(nums)):
+            array.append(i)
+        for i in range(len(nums)):
+            array[(i+k)%len(nums)]=nums[i]
+        print(array)
+        for i in range(len(array)):
+            nums[i]=array[i]
+            
+        
