@@ -880,5 +880,13 @@ class Solution(object):
                 profit+=prices[i+1]-prices[i]
             i+=1
         return profit
-            
+
+#!https://leetcode.com/problems/excel-sheet-column-number/submissions/
+class Solution(object):
+    def titleToNumber(self, s):
+        result=0
+        for c in s:
+            d=ord(c)-ord("A")+1
+            result=result*26+d
+        return result
         
