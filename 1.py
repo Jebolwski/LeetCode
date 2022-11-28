@@ -890,3 +890,36 @@ class Solution(object):
             result=result*26+d
         return result
         
+#!https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        nums.sort()
+        for i in range(k-1):
+            nums.pop()
+        return nums.pop()
+
+#!https://leetcode.com/problems/third-maximum-number/submissions/
+class Solution(object):
+    def thirdMax(self, nums):
+        nums.sort()
+        print(nums)
+        array=[]
+        for i in nums:
+            if i not in array:
+                array.append(i)
+        nums=array
+        print(nums)
+        
+        if len(nums)<3:
+            return nums.pop()
+        for i in range(2):
+            nums.pop()
+        return nums.pop()
+        
+#!https://leetcode.com/problems/maximize-sum-of-array-after-k-negations/submissions/
+class Solution(object):
+    def largestSumAfterKNegations(self, nums, k):
+        for i in range(k):
+            nums[nums.index(min(nums))]*=-1
+        return sum(nums)
+        
