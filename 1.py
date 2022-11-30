@@ -1,5 +1,8 @@
 import math
 from math import sqrt
+import heapq
+
+
 #!https://leetcode.com/problems/two-sum/
 class Solution(object):
     def twoSum(self, nums, target):
@@ -923,3 +926,15 @@ class Solution(object):
             nums[nums.index(min(nums))]*=-1
         return sum(nums)
         
+#!https://leetcode.com/problems/k-closest-points-to-origin/submissions/
+class Solution(object):
+    def kClosest(self, points, k):
+        array=[]
+        array1=[]
+        for i in points:
+            array.append([abs(i[0])*abs(i[0])+abs(i[1])*abs(i[1]),i])
+        heapq.heapify(array)
+        
+        for i in range(k):
+            array1.append(heapq.heappop(array)[1])
+        return array1
