@@ -938,3 +938,30 @@ class Solution(object):
         for i in range(k):
             array1.append(heapq.heappop(array)[1])
         return array1
+
+#!https://leetcode.com/problems/find-the-kth-largest-integer-in-the-array/submissions/
+class Solution(object):
+    def kthLargestNumber(self, nums, k):
+        for i in range(len(nums)):
+            nums[i]=int(nums[i])
+        nums.sort()
+        for i in range(k-1):
+            nums.pop()
+        return str(nums.pop())
+
+#!https://leetcode.com/problems/reverse-words-in-a-string-iii/submissions/
+class Solution(object):
+    def reverseWords(self, s):
+        array=s.split(" ")
+        for i in range(len(array)/2):
+            array[i],array[len(array)-i-1]=array[len(array)-i-1],array[i]    
+        print(array)   
+        string=""
+        for i in array:
+            string=string+i+" "
+        string = string[:len(string)-1]
+        return string[::-1]
+    
+    
+        
+        
