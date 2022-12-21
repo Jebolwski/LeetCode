@@ -973,8 +973,39 @@ class Solution(object):
                 if s[i][j]=="*":
                     count+=1
         return count
+
+#!https://leetcode.com/problems/longest-palindromic-substring/submissions/
+class Solution(object):
+    def longestPalindrome(self, s):
         
-    
-    
-        
-        
+        result=""
+        resultLen=0
+        for i in range(len(s)):
+            l,r=i,i
+            while l>=0 and r<len(s) and s[l]==s[r]:
+                if r-l+1>resultLen:
+                    resultLen=r-l+1
+                    result=s[l:r+1]
+                r+=1
+                l-=1
+
+            l,r=i,i+1
+            while l>=0 and r<len(s) and s[l]==s[r]:
+                if r-l+1>resultLen:
+                    resultLen=r-l+1
+                    result=s[l:r+1]
+                r+=1
+                l-=1
+        print(result,resultLen)
+        return result
+
+#!https://leetcode.com/problems/search-insert-position/submissions/863224959/        
+class Solution(object):
+    def searchInsert(self, nums, target):
+        if target in nums:
+            print(nums.index(target))
+            return nums.index(target)
+        else:
+            nums.append(target)
+            nums.sort()
+            return nums.index(target)
