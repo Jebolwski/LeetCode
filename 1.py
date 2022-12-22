@@ -1009,3 +1009,27 @@ class Solution(object):
             nums.append(target)
             nums.sort()
             return nums.index(target)
+
+#!https://leetcode.com/problems/valid-parentheses/submissions/863765870/
+class Solution(object):
+    def isValid(self, s):
+        if len(s)%2==1:
+            return False
+        if s[0]==")" or s[0]=="}" or s[0]=="]":
+            return False
+        if s.count("(")!=s.count(")") or s.count("[")!=s.count("]") or s.count("{")!=s.count("}"):
+            return False
+        stack=[]
+        for c in s:
+            if c=="(" or c=="{" or c=="[":
+                stack.append(c)
+            if stack and c==")" and stack[len(stack)-1]=="(":
+                stack.pop()
+            if stack and c=="]" and stack[len(stack)-1]=="[":
+                stack.pop()
+            if stack and c=="}" and stack[len(stack)-1]=="{":
+                stack.pop()
+        if len(stack)==0:
+            return True
+        return False
+
