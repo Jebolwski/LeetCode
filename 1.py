@@ -1033,3 +1033,78 @@ class Solution(object):
             return True
         return False
 
+#!https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/864326897/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+    def deleteNode(self, node):
+        node.val=node.next.val
+        node.next=node.next.next
+
+#!https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    string=""
+    def Helper(self,root):
+        if not root:
+            return string
+        self.string+=str(root.val)+" "
+        self.Helper(root.right)
+        self.Helper(root.left)
+    def kthSmallest(self, root, k):
+        self.Helper(root)
+        array = self.string.split(" ")
+        array.pop()
+        for i in range(len(array)):
+            array[i]=int(array[i])
+        array = sorted(array)
+        
+        print(array)
+        return (array[k-1])
+
+#!https://leetcode.com/problems/binary-tree-inorder-traversal/submissions/864651552/
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def inorderTraversal(self, root):
+        stack=[]
+        result=[]
+        if not root:
+            return result
+        
+        temp = root
+
+        while temp!=None or len(stack)!=0:
+            while temp!=None:
+                stack.append(temp)
+                temp=temp.left
+            
+            temp=stack.pop()
+            result.append(temp.val)
+            temp=temp.right
+        
+        return result
+
+class Solution:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res=[]
+        def inorder(root):
+            if not root:
+                return
+            inorder(root.left)
+            res.append(root.val)
+            inorder(root.right)
+        inorder(root) 
+        return res
