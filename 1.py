@@ -1130,3 +1130,74 @@ class Solution:
             node.right=Helper(nums,mid+1,right)
             return node
         return Helper(nums,0,len(nums)-1)
+
+#!https://leetcode.com/problems/same-tree/submissions/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if (p and not q) or (q and not p):
+            return False
+        
+        if (p and p.left) and (q and not q.left):
+            return False
+        array_p=[]
+        array_q=[]
+        def Helper(array,node):
+            if not node:
+                return None
+            Helper(array,node.left)
+            if node.left and node.right:
+                array.append([node.val,node.left.val,node.right.val])
+            if node.left and not node.right:
+                array.append([node.val,node.left.val])
+            if not node.left and not node.right:
+                array.append([node.val])
+            Helper(array,node.right)
+        Helper(array_p,p)
+        Helper(array_q,q)
+        if len(array_p)!=len(array_q):
+            return False
+        for i in range(len(array_p)):
+            if array_p[i]!=array_q[i]:
+                return False
+        return True
+
+#!https://leetcode.com/problems/symmetric-tree/submissions/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        array1=[]
+        array2=[]
+        def Helper(array,node):
+            if not node:
+                return None
+            Helper(array,node.left)
+            if node.left and node.right:
+                array.append([node.val,node.left.val,node.right.val])
+            if node.left and not node.right:
+                array.append([node.val,node.left.val,None])
+            if not node.left and node.right:
+                array.append([node.val,None,node.right.val])
+            if not node.left and not node.right:
+                array.append([node.val,None,None])
+            Helper(array,node.right)
+        Helper(array1,root.right)
+        Helper(array2,root.left)
+        print(array1)
+        print(array2[::-1])
+        for i in range(len(array2)):
+            array2[i][1],array2[i][2]=array2[i][2],array2[i][1]
+        print(array2[::-1])
+        if array1==array2[::-1]:
+            return True
+        return False
