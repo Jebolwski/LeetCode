@@ -1219,3 +1219,32 @@ class Solution:
         self.invertTree(root.right)
         self.invertTree(root.left)
         return root
+
+#!https://leetcode.com/problems/binary-tree-paths/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        string=""
+        array=[]
+        
+        def dfs(string,array,node):
+            if not node:
+                return None
+            string = string + str(node.val) + "->"
+            if node.left:
+                dfs(string,array,node.left)
+            
+            if not node.left and not node.right:
+                array.append(string[:len(string)-2])
+                string=""
+
+            if node.right:
+                dfs(string,array,node.right)
+
+        dfs(string,array,root)
+        return array
