@@ -1248,3 +1248,125 @@ class Solution:
 
         dfs(string,array,root)
         return array
+
+#!https://leetcode.com/problems/increasing-order-search-tree/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def increasingBST(self, root: TreeNode) -> TreeNode:
+        array=[]
+        if root and not root.left and not root.right:
+            return root
+        def Helper(node):
+            if not node:
+                return None
+            Helper(node.left)
+            array.append(node.val)
+            Helper(node.right)
+        Helper(root)
+        tree = TreeNode()
+        temp=tree
+        for i in range(len(array)-1):
+            temp.val=array[i]
+            temp.right=TreeNode(array[i+1])
+            temp.left=None
+            temp=temp.right
+        return tree
+
+
+#!https://leetcode.com/problems/merge-k-sorted-lists/
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        array=[]
+        for i in lists:
+            temp=i
+            while temp:
+                array.append(temp.val)
+                temp=temp.next
+        array=sorted(array)
+        array.reverse()
+        liste = ListNode()
+        temp=liste
+        if len(array)==0:
+            return None
+        while len(array)>0:
+            temp.val=array.pop()
+            if len(array)>0:
+                temp.next=ListNode()
+                temp=temp.next
+            else:
+                break 
+        print(liste)
+        return liste 
+
+#!https://leetcode.com/problems/swap-nodes-in-pairs/
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        array=[]
+        temp=head
+        while temp:
+            array.append(temp.val)
+            temp=temp.next
+            
+        if len(array)==0:
+            return None
+
+        for i in range(0,len(array)-1,2):
+            array[i],array[i+1]=array[i+1],array[i]
+
+        array.reverse()
+        liste = ListNode()
+        temp = liste
+        while len(array)>0:
+            temp.val=array.pop()
+            if len(array)>0:
+                temp.next=ListNode()
+                temp=temp.next
+            else:
+                break 
+        head=liste
+        return head
+
+#!https://leetcode.com/problems/detect-capital/
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        if len(word)==1:
+            return True
+        if word.upper()==word:
+            return True
+        if word.lower()==word:
+            return True
+        if word[0].upper()==word[0] and word[1:].lower()==word[1:]:
+            return True
+        return False
+
+#!https://leetcode.com/problems/capitalize-the-title/
+class Solution:
+    def capitalizeTitle(self, title: str) -> str:
+        title = title.split(" ")
+        string=""
+        for word in title:
+            wordd=""
+            if len(word)<=2:
+                pass
+                wordd+=word.lower()
+            else:
+                wordd+=word[0].upper()
+                wordd+=word[1:].lower()
+            string+=wordd + " "
+        
+        return string[:len(string)-1]
