@@ -10,7 +10,6 @@ class Solution(object):
             for j in range(i+1,len(nums)):
                 if nums[i]+nums[j]==target:
                     result = [i,j]
-                    print(i,j)
                     return result
 
 #!https://leetcode.com/problems/add-two-numbers/
@@ -36,7 +35,6 @@ class Solution(object):
         num1=int(num1[::-1])
         num2=int(num2[::-1])
         total_num = num1+num2
-        print(total_num)
         carrier = l3
         reverse_total_num = str(total_num)[::-1]
 
@@ -80,7 +78,6 @@ class Solution(object):
             return max_len
             for i in array:
                 if len(i)==max_len:
-                    print(i)
                     break
         
 #!https://leetcode.com/problems/median-of-two-sorted-arrays/submissions/
@@ -93,7 +90,6 @@ class Solution(object):
         if len(nums1)%2==1:
             return nums1[(len(nums1)/2+1)-1]
         else:
-            print(nums1)
             num = (nums1[len(nums1)/2-1]+nums1[len(nums1)/2])/2.00
             return num       
         
@@ -210,7 +206,6 @@ class Solution:
 #!https://leetcode.com/problems/divide-two-integers/submissions/
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        print(dividend)
         
         result = int(dividend/divisor)
         if result>pow(2,31)-1:
@@ -1370,3 +1365,44 @@ class Solution:
             string+=wordd + " "
         
         return string[:len(string)-1]
+
+#!https://leetcode.com/problems/to-lower-case/
+class Solution:
+    def toLowerCase(self, s: str) -> str:
+        return s.lower()
+
+#!https://leetcode.com/problems/simplify-path/submissions/870384909/
+class Solution(object):
+    def simplifyPath(self, path):
+        if path=="/.":
+            return "/"
+        while "//" in path:
+            path=path.replace("//","/")
+        while "/./" in path:
+            path=path.replace("/./","/")
+
+        array = path.split("/")
+        for i in array:
+            if i=="":
+                array.remove(i)
+
+        if path=="/../":
+            return "/"
+        stack=[]
+        for i in array:
+            if i=="..":
+                if len(stack)>0:
+                    stack.pop()
+            else:
+                stack.append(i)
+        
+        string=""
+        for i in stack:
+            string+="/"+i
+        
+        
+        if string[len(string)-2:]=="/.":
+            string = string[:len(string)-2]
+        if string=="":
+            return "/"
+        return string
