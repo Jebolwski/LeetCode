@@ -1406,3 +1406,61 @@ class Solution(object):
         if string=="":
             return "/"
         return string
+
+#!https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/submissions/871223497/
+from collections import Counter
+
+class Solution(object):
+    def minimumRounds(self, tasks):
+        dicti = Counter(tasks)
+        # for i in tasks:
+        #     if i not in dicti:
+        #         dicti[i]=tasks.count(i)
+        count=0
+        print(dicti)
+        for i in dicti:
+            if dicti[i]==1:
+                return -1
+            while dicti[i]!=0 and dicti[i]!=1:
+                count+=1
+                if dicti[i]%2==0 and dicti[i]%3==0:
+                    dicti[i]-=3
+                elif dicti[i]%2==0:
+                    dicti[i]-=2
+                else:
+                    dicti[i]-=3
+        print(dicti)
+        return count
+
+#!https://leetcode.com/problems/odd-string-difference/
+class Solution(object):
+    def oddString(self, words):
+        letter_count = {'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16, 'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25}
+        difference=[]
+        array_b=[]
+        for st in words:
+            array=[]
+            array_b.append(st)
+            for i in range(len(st)-1):
+                array.append(letter_count[st[i+1]] - letter_count[st[i]])
+            difference.append(array)
+        print(difference)
+        index=0
+        for i in range(len(difference)):
+            if difference.count(difference[i])==1:
+                index=i
+                break
+        return array_b[i]
+
+#!https://leetcode.com/problems/counting-bits/
+class Solution(object):
+    def countBits(self, n):
+        array=[]
+        for i in range(n+1):
+            binary=format(i,'b')
+            count=0
+            for i in binary:
+                count+=int(i)
+            array.append(count)
+        return array
+#?----------
