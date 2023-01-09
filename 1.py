@@ -1463,4 +1463,54 @@ class Solution(object):
                 count+=int(i)
             array.append(count)
         return array
+
+#!https://leetcode.com/problems/group-anagrams/
+class Solution(object):
+    def groupAnagrams(self, strs):
+        dicti=defaultdict(list)
+        for s in strs:
+            count=[0]*26
+            for c in s:
+                count[ord(c)-ord("a")]+=1
+            dicti[tuple(count)].append(s)
+        return dicti.values()
+
+#!https://leetcode.com/problems/binary-tree-preorder-traversal/        
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        array=[]
+        def helper(node):
+            if not node:
+                return None
+            array.append(node.val)
+            helper(node.left)
+            helper(node.right)
+        helper(root)
+        return array
+
+#!https://leetcode.com/problems/binary-tree-postorder-traversal/submissions/874626446/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        array=[]
+        def helper(node):
+            if not node:
+                return None
+            array.append(node.val)
+            helper(node.right)
+            helper(node.left)
+        helper(root)
+        return array[::-1]
+
 #?----------
