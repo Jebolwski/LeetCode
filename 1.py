@@ -1513,4 +1513,22 @@ class Solution:
         helper(root)
         return array[::-1]
 
+#!https://leetcode.com/problems/maximum-ice-cream-bars/
+class Solution(object):
+    def maxIceCream(self, costs, coins):
+        costs=sorted(costs)
+        for i in range(len(costs)):
+            temp=costs[i]
+            costs[i]=coins-costs[i]
+            coins-=temp
+        if costs[0]<0:
+            return 0
+        for i in range(len(costs)-1):
+            if costs[i+1]==0:
+                return i+2
+            if costs[i+1]<0:
+                return i+1
+        return len(costs)
+                        
+
 #?----------
