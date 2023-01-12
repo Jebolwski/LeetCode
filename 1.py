@@ -1537,4 +1537,35 @@ class Solution(object):
         if (int(dicti[coordinates[0]])+int(coordinates[1]))%2==0:
             return False
         return True
+
+#!https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+class Solution(object):
+    def maxProfit(self, prices):
+        if sorted(prices)==prices[::-1]:
+            return 0
+        if len(prices)==2:
+            if prices[1]>prices[0]:
+                return prices[1]-prices[0]
+            else:
+                return 0
+        i=len(prices)-1
+        while prices[i]<=prices[i-1]:
+            i-=1
+            prices.pop()
+        if len(prices)<=1:
+            return 0
+
+        array=[]
+        profit=0
+        for i in range(len(prices)-1):
+            profit+=prices[i+1]-prices[i]
+            if profit<0:
+                profit=0
+            array.append(profit)
+        return max(array)
 #?----------
+        
+        
+        
+        
+        
