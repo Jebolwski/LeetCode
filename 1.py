@@ -1563,6 +1563,52 @@ class Solution(object):
                 profit=0
             array.append(profit)
         return max(array)
+
+#!https://leetcode.com/problems/reverse-vowels-of-a-string/
+class Solution(object):
+    def reverseVowels(self, s):
+        vowels=['a','e','i','o','u','A','E','I','O','U']
+        array=[]
+        string=""
+        for i in range(len(s)):
+            if s[i] in vowels:
+                array.append(s[i])
+                string+="*"
+            else:
+                string+=s[i]
+        print(string)
+        result=""
+        for i in range(len(string)):
+            if string[i]=="*":
+                print(i%len(array))
+                result+=array.pop()
+            else:
+                result+=string[i]
+        return result
+
+#!https://leetcode.com/problems/word-pattern/
+class Solution(object):
+    def wordPattern(self, pattern, s):
+        dicti={}
+        arr=s.split(" ")
+        if len(arr)!=len(pattern):
+            return False
+        for i in range(len(pattern)):
+            if pattern[i] not in dicti:
+                dicti[pattern[i]]=arr[i]
+            else:
+                liste = list(dicti.values())
+                for j in liste:
+                    if liste.count(j)>1:
+                        return False
+                if dicti[pattern[i]]!=arr[i]:
+                    return False
+        liste = list(dicti.values())
+        for j in liste:
+            if liste.count(j)>1:
+                return False
+                
+        return True
 #?----------
         
         
