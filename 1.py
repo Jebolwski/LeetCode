@@ -1609,6 +1609,28 @@ class Solution(object):
                 return False
                 
         return True
+
+#!https://leetcode.com/problems/isomorphic-strings/
+class Solution(object):
+    def isIsomorphic(self, s, t):
+        if len(s)!=len(t):
+            return False
+        dicti={}
+        result=""
+        for i in range(len(s)):
+            if t[i] in dicti:
+                result+=dicti[t[i]]
+            else:
+                dicti[t[i]]=s[i]
+                result+=dicti[t[i]]
+        liste=list(dicti.values())
+
+        for i in liste:
+            if liste.count(i)>1:
+                return False
+        if result==s:
+            return True
+        return False
 #?----------
         
         
