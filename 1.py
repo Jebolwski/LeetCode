@@ -1631,6 +1631,27 @@ class Solution(object):
         if result==s:
             return True
         return False
+
+#!https://leetcode.com/problems/arranging-coins/
+class Solution(object):
+    def arrangeCoins(self, n):
+        count=0
+        i=1
+        while n-i>=0:
+            n=n-i
+            i+=1
+            count+=1
+        return count
+
+#!https://leetcode.com/problems/find-all-duplicates-in-an-array/
+class Solution(object):
+    def findDuplicates(self, nums):
+        array=[]
+        nums=sorted(nums)
+        for i in range(len(nums)-1):
+            if nums[i]==nums[i+1] and nums[i] not in array:
+                array.append(nums[i]) 
+        return array
 #?----------
         
         
