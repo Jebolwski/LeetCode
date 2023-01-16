@@ -1652,6 +1652,23 @@ class Solution(object):
             if nums[i]==nums[i+1] and nums[i] not in array:
                 array.append(nums[i]) 
         return array
+
+#!https://leetcode.com/problems/insert-interval/
+class Solution(object):
+    def insert(self, intervals, newInterval):
+        res=[]
+        for i in intervals:
+            #not overlapping
+            if i[0]>newInterval[1]:
+                res.append(newInterval)
+                return res + intervals[intervals.index(i):]
+            elif i[1]<newInterval[0]:
+                res.append(i)
+            else:
+                #creating new interval
+                newInterval=[min(i[0],newInterval[0]),max(i[1],newInterval[1])]
+        res.append(newInterval)
+        return res          
 #?----------
         
         
