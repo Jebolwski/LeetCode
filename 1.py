@@ -1669,6 +1669,40 @@ class Solution(object):
                 newInterval=[min(i[0],newInterval[0]),max(i[1],newInterval[1])]
         res.append(newInterval)
         return res          
+
+#!https://leetcode.com/problems/flip-string-to-monotone-increasing/
+class Solution(object):
+    def minFlipsMonoIncr(self, s):
+        ltr=[]
+        rtl=[]
+        for i in range(len(s)):
+            if s[i]=='1':
+                if len(ltr)==0:
+                    ltr.append(1)
+                else:
+                    ltr.append(ltr[len(ltr)-1]+1)
+            else:
+                if len(ltr)>0:
+                    temp=ltr[len(ltr)-1]
+                    ltr.append(temp)
+                else:
+                    ltr.append(0)
+        for i in range(len(s)-1,-1,-1):
+            if s[i]=='0':
+                if len(rtl)==0:
+                    rtl.append(1)
+                else:
+                    rtl.append(rtl[len(rtl)-1]+1)
+            else:
+                if len(rtl)>0:
+                    temp=rtl[len(rtl)-1]
+                    rtl.append(temp)
+                else:
+                    rtl.append(0)
+        res_arr=[]
+        for i in range(len(ltr)):
+            res_arr.append(ltr[i]+rtl[len(rtl)-i-1])
+        return min(res_arr)-1
 #?----------
         
         
