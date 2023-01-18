@@ -1703,6 +1703,19 @@ class Solution(object):
         for i in range(len(ltr)):
             res_arr.append(ltr[i]+rtl[len(rtl)-i-1])
         return min(res_arr)-1
+
+#!https://leetcode.com/problems/add-digits/
+class Solution(object):
+    def addDigits(self, num):
+        if num==0:
+            return 0
+        temp=num
+        while len(str(temp))>1:
+            total=0
+            for i in str(temp):
+                total+=int(i)
+            temp=total
+        return temp
 #?----------
         
         
