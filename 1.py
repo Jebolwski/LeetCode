@@ -1735,6 +1735,52 @@ class Solution(object):
         
         backtrack(0,0,"")
         return arr
+
+#!https://leetcode.com/problems/palindrome-partitioning/
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        if len(s)==1:
+            return [[s]]
+        arr=[]
+        c_arr=[]
+        def backtrack(i):
+            if i>=len(s):
+                arr.append(c_arr.copy())
+                return
+            for j in range(i,len(s)):
+                temp=s[i:j+1]
+                if temp==temp[::-1]:
+                    c_arr.append(temp)
+                    backtrack(j+1)
+                    c_arr.pop()
+        backtrack(0)
+        return arr
+    
+#!https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        temp=head
+        if not head:
+            return ListNode("")
+        arr=[]
+        while temp:
+            if temp.val not in arr:
+                arr.append(temp.val)
+            temp=temp.next
+        arr=arr[::-1]
+        node = ListNode()
+        temp=node
+        while len(arr)>0:
+            temp.val=arr.pop()
+            if len(arr)>0:
+                temp.next=ListNode()
+                temp=temp.next
+        return node
 #?----------
         
         
