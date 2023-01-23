@@ -1781,6 +1781,68 @@ class Solution:
                 temp.next=ListNode()
                 temp=temp.next
         return node
+    
+#!https://leetcode.com/problems/find-the-town-judge/
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        if n==2 and len(trust)==1:
+            return trust[0][1]
+        if n==1 and trust==[]:
+            return 1
+        kutup={}
+        for i in trust:
+            if i[1] not in kutup:
+                kutup[i[1]]=1
+            else:
+                kutup[i[1]]+=1
+        def helper(a):
+            for i in trust:
+                if i[0]==a:
+                    return False
+            return True
+        for i in kutup:
+            if kutup[i]==n-1 and helper(i):
+                return i
+        return -1
+
+#!https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices)==1:
+            return 0
+        kp={}
+        def helper(i,canbuy):
+            if i>=len(prices):
+                return 0
+            if (i,canbuy) in kp:
+                return kp[(i,canbuy)] 
+            if canbuy:
+                buy=helper(i+1,not canbuy)-prices[i]
+                cooldown=helper(i+1,canbuy)
+                kp[(i,canbuy)]=max(buy,cooldown)
+            else:
+                sell=helper(i+2,not canbuy)+prices[i]
+                cooldown=helper(i+1,canbuy)
+                kp[(i,canbuy)]=max(sell,cooldown)
+            return kp[(i,canbuy)]
+        print(kp)
+        return helper(0,True)
+
+#!https://leetcode.com/problems/matrix-diagonal-sum/  
+class Solution:
+    def diagonalSum(self, mat: List[List[int]]) -> int:
+        if len(mat)==1:
+            return mat[0][0]
+        total_ltr=0
+        total_rtl=0
+        for i in range(len(mat)):
+            total_ltr+=mat[i][i]
+        for j in range(len(mat)-1,-1,-1):
+            total_rtl+=mat[len(mat)-j-1][j]
+        ind=math.floor(len(mat)/2)
+        if len(mat)%2==0:
+            return total_ltr+total_rtl
+        return total_ltr+total_rtl-mat[ind][ind]
 #?----------
         
         
