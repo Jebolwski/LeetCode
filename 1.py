@@ -1843,6 +1843,88 @@ class Solution:
         if len(mat)%2==0:
             return total_ltr+total_rtl
         return total_ltr+total_rtl-mat[ind][ind]
+
+#!https://leetcode.com/problems/linked-list-cycle/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def hasCycle(self, head):
+        if not head or not head.next:
+            return False
+        ft=head
+        sw=head
+        while ft and ft.next:
+            ft=ft.next.next
+            sw=sw.next
+            if sw==ft:
+                return True
+        return False
+        
+#!https://leetcode.com/problems/longest-palindrome/
+class Solution(object):
+    def longestPalindrome(self, s):
+        if len(s)==1:
+            return 1
+        dp={}
+        for i in s:
+            if i in dp:
+                dp[i]+=1
+            else:
+                dp[i]=1
+        out=0
+        for i in dp.values():
+            out+=int(i/2)*2
+            if out%2==0 and i%2==1:
+                out+=1
+        return out
+    
+#!https://leetcode.com/problems/path-sum/
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def hasPathSum(self, root, targetSum):
+        def helper(node,total):
+            if not node:
+                return False
+            total+=node.val    
+            if not node.right and not node.left:
+                return total == targetSum
+            return (helper(node.left,total) or helper(node.right,total))
+        return helper(root,0) 
+
+#!https://leetcode.com/problems/sum-root-to-leaf-numbers/
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def sumNumbers(self, root):
+        array=[]
+        def helper(node,string):
+            if not node:
+                return 0
+            if not node.left and not node.right:
+                array.append(string+str(node.val))
+                return -1
+            string = string+str(node.val)
+            helper(node.right,string)
+            helper(node.left,string)
+        helper(root,"")
+        print(array)
+        total=0
+        for i in array:
+            total+=int(i)
+        return total       
 #?----------
         
         
