@@ -1924,7 +1924,48 @@ class Solution(object):
         total=0
         for i in array:
             total+=int(i)
-        return total       
+        return total    
+
+#!https://leetcode.com/problems/remove-element/
+class Solution(object):
+    def removeElement(self, nums, val):
+        while val in nums:
+            for i in range(len(nums)):
+                if nums[i]==val:
+                    nums.remove(nums[i])
+                    break   
+
+#!https://leetcode.com/problems/remove-linked-list-elements/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def removeElements(self, head, val):
+        arr=[]
+        if not head:
+            return ListNode("")
+        node=head
+        while node:
+            arr.append(node.val)
+            node=node.next
+        while val in arr:
+            for i in range(len(arr)):
+                if arr[i]==val:
+                    arr.remove(arr[i])
+                    break
+        arr=arr[::-1]
+        nnode=ListNode()
+        node=nnode
+        while len(arr)>0:
+            node.val=arr.pop()
+            if len(arr)>0:
+                node.next=ListNode()
+                node=node.next
+        if not nnode.next and nnode.val==0:
+            nnode.val=""
+        return nnode
 #?----------
         
         
