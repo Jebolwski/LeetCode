@@ -423,7 +423,6 @@ class Solution(object):
         #transpoze
         for i in range(len(matrix)):
             for j in range(i,len(matrix)):
-                print(i,j)
                 temp = matrix[i][j]
                 matrix[i][j]=matrix[j][i]
                 matrix[j][i]=temp
@@ -620,12 +619,10 @@ class Solution(object):
         s1=s1.split(" ")
         s2=s2.split(" ")
         for i in s1:
-            print(i,s1.count(i),s2.count(i))
             if s1.count(i)==1 and i not in s2:
                 array.append(i)
                 
         for i in s2:
-            print(i,s1.count(i),s2.count(i))
             if s2.count(i)==1 and i not in s1:
                 array.append(i)
                 
@@ -637,7 +634,6 @@ class Solution(object):
         array=[]
         for i in nums:
             if i*-1 in nums:
-                print(i)
                 array.append(abs(i))
         if array:
             return max(array)        
@@ -709,7 +705,6 @@ class Solution(object):
             for i in range(half_ceil):
                 temp=temp.next
                 array_second_half.append(temp.val)
-            print(array_first_half,array_second_half)
             if array_first_half==array_second_half[::-1]:
                 return True
             return False
@@ -822,7 +817,6 @@ class Solution(object):
             array.append(i)
         for i in range(len(nums)):
             array[(i+k)%len(nums)]=nums[i]
-        print(array)
         for i in range(len(array)):
             nums[i]=array[i]
 
@@ -900,13 +894,11 @@ class Solution(object):
 class Solution(object):
     def thirdMax(self, nums):
         nums.sort()
-        print(nums)
         array=[]
         for i in nums:
             if i not in array:
                 array.append(i)
         nums=array
-        print(nums)
         
         if len(nums)<3:
             return nums.pop()
@@ -950,7 +942,6 @@ class Solution(object):
         array=s.split(" ")
         for i in range(len(array)/2):
             array[i],array[len(array)-i-1]=array[len(array)-i-1],array[i]    
-        print(array)   
         string=""
         for i in array:
             string=string+i+" "
@@ -961,7 +952,6 @@ class Solution(object):
 class Solution(object):
     def countAsterisks(self, s):
         s=s.split("|")
-        print(s)
         count=0
         for i in range(0,len(s),2):
             for j in range(len(s[i])):
@@ -991,14 +981,12 @@ class Solution(object):
                     result=s[l:r+1]
                 r+=1
                 l-=1
-        print(result,resultLen)
         return result
 
 #!https://leetcode.com/problems/search-insert-position/submissions/863224959/        
 class Solution(object):
     def searchInsert(self, nums, target):
         if target in nums:
-            print(nums.index(target))
             return nums.index(target)
         else:
             nums.append(target)
@@ -1062,7 +1050,6 @@ class Solution(object):
             array[i]=int(array[i])
         array = sorted(array)
         
-        print(array)
         return (array[k-1])
 
 #!https://leetcode.com/problems/binary-tree-inorder-traversal/submissions/864651552/
@@ -1188,11 +1175,8 @@ class Solution:
             Helper(array,node.right)
         Helper(array1,root.right)
         Helper(array2,root.left)
-        print(array1)
-        print(array2[::-1])
         for i in range(len(array2)):
             array2[i][1],array2[i][2]=array2[i][2],array2[i][1]
-        print(array2[::-1])
         if array1==array2[::-1]:
             return True
         return False
@@ -1300,7 +1284,6 @@ class Solution:
                 temp=temp.next
             else:
                 break 
-        print(liste)
         return liste 
 
 #!https://leetcode.com/problems/swap-nodes-in-pairs/
@@ -1417,7 +1400,6 @@ class Solution(object):
         #     if i not in dicti:
         #         dicti[i]=tasks.count(i)
         count=0
-        print(dicti)
         for i in dicti:
             if dicti[i]==1:
                 return -1
@@ -1429,7 +1411,6 @@ class Solution(object):
                     dicti[i]-=2
                 else:
                     dicti[i]-=3
-        print(dicti)
         return count
 
 #!https://leetcode.com/problems/odd-string-difference/
@@ -1444,7 +1425,6 @@ class Solution(object):
             for i in range(len(st)-1):
                 array.append(letter_count[st[i+1]] - letter_count[st[i]])
             difference.append(array)
-        print(difference)
         index=0
         for i in range(len(difference)):
             if difference.count(difference[i])==1:
@@ -1576,11 +1556,9 @@ class Solution(object):
                 string+="*"
             else:
                 string+=s[i]
-        print(string)
         result=""
         for i in range(len(string)):
             if string[i]=="*":
-                print(i%len(array))
                 result+=array.pop()
             else:
                 result+=string[i]
@@ -1825,7 +1803,6 @@ class Solution:
                 cooldown=helper(i+1,canbuy)
                 kp[(i,canbuy)]=max(sell,cooldown)
             return kp[(i,canbuy)]
-        print(kp)
         return helper(0,True)
 
 #!https://leetcode.com/problems/matrix-diagonal-sum/  
@@ -1920,7 +1897,6 @@ class Solution(object):
             helper(node.right,string)
             helper(node.left,string)
         helper(root,"")
-        print(array)
         total=0
         for i in array:
             total+=int(i)
@@ -1966,6 +1942,36 @@ class Solution(object):
         if not nnode.next and nnode.val==0:
             nnode.val=""
         return nnode
+
+#!https://leetcode.com/problems/length-of-last-word/
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        s=s.strip()
+        arr=s.split(" ")
+        return len(arr[len(arr)-1])
+    
+#!https://leetcode.com/problems/merge-sorted-array/
+class Solution(object):
+    def merge(self, nums1, m, nums2, n):
+        arr=[]
+        if n==0:
+            return nums1
+        if m==0 and n==1:
+            nums1[0]=nums2[0]
+            return nums1
+        for i in range(m):
+            arr.append(nums1[i])
+        for j in range(n):
+            arr.append(nums2[j])
+        arr=sorted(arr)
+        for i in range(len(nums1)):
+            nums1[i]=arr[i]
+
+class Solution:
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        for i in range(len(nums)):
+            nums[i]=nums[i]*nums[i]
+        return sorted(nums)
 #?----------
         
         
