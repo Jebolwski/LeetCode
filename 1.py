@@ -1972,6 +1972,54 @@ class Solution:
         for i in range(len(nums)):
             nums[i]=nums[i]*nums[i]
         return sorted(nums)
+
+#!https://leetcode.com/problems/minimum-depth-of-binary-tree/
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        arr=[]
+        if not root:
+            return 0
+        def helper(node,count=1):
+            if not node.right and not node.left:
+                arr.append(count)
+                return count 
+            if node.left:
+                helper(node.left,count+1)
+            if node.right:
+                helper(node.right,count+1)
+
+        helper(root)
+        return min(arr)
+
+#!https://leetcode.com/problems/binary-tree-level-order-traversal/ 
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def levelOrder(self, root):
+        arr=[]
+        if not root:
+            return []
+        if not root.left and not root.right:
+            return [[root.val]]
+        d=defaultdict(list)
+        def helper(node,level=1):
+            if not node:
+                return 
+            d[level].append(node.val)
+            helper(node.left,level+1)
+            helper(node.right,level+1)
+        helper(root)
+        return (d.values())
 #?----------
         
         
