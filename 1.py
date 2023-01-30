@@ -2020,6 +2020,97 @@ class Solution(object):
             helper(node.right,level+1)
         helper(root)
         return (d.values())
+
+#!https://leetcode.com/problems/n-th-tribonacci-number/
+class Solution(object):
+    def tribonacci(self, n):
+        memo={}
+        def helper(n):
+            if  n==1 or n==2:
+                return 1
+            elif n==0:
+                return 0
+            else:
+                if n in memo:
+                    return memo[n]
+                else:
+                    res=helper(n-1)+helper(n-2)+helper(n-3)
+                    memo[n]=res
+                    return res
+        return (helper(n))
+    
+#!https://leetcode.com/problems/fibonacci-number/
+class Solution(object):
+    def fib(self, n):
+        memo={}
+        def helper(n):
+            if n<=1:
+                return n
+            else:
+                if n in memo:
+                    return memo[n]
+                else:
+                    memo[n]=helper(n-1)+helper(n-2)
+                    return memo[n]
+        return helper(n)
+    
+#!https://leetcode.com/problems/alphabet-board-path/
+class Solution(object):
+    def alphabetBoardPath(self, target):
+        def findindex(char):
+            arr=[["a","b","c","d","e"],["f","g","h","i","j"],["k","l","m","n","o"],["p","q","r","s","t"],["u","v","w","x","y"],["z"]]
+            for i in range(len(arr)):
+                for j in range(len(arr[i])):
+                    if arr[i][j]==char:
+                        return [i,j]
+        res=""
+        position=[0,0]
+        for i in target:
+                
+            goto = findindex(i)
+            y=position[0]-goto[0]
+            x=position[1]-goto[1]
+            if i=="z":
+                total=""
+                for j in range(abs(y)):
+                    if y<0:
+                        total+="D"
+                    else:
+                        total+="U"
+                for j in range(abs(x)):
+                    if x<0:
+                        total+="R"
+                    else:
+                        total+="L"
+                arr=list(total)
+                if "L" in arr:
+                    for i in range(len(total)):
+                        if arr[i]=="D" and arr[i+1]=="L":
+                            arr.pop(i)
+                            break
+                    arr.append("D")
+                total=""
+                for i in arr:
+                    total+=i
+                position=goto
+                total+="!"
+                res+=total
+            else:
+                for j in range(abs(y)):
+                    if y<0:
+                        res+="D"
+                    else:
+                        res+="U"
+                for j in range(abs(x)):
+                    if x<0:
+                        res+="R"
+                    else:
+                        res+="L"
+                res+="!"
+                position=goto
+                
+        return res
+        
 #?----------
         
         
