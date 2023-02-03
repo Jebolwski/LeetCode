@@ -64,6 +64,51 @@ class Solution:
         if messi==tot:
             return True
         return False
+
+#!https://leetcode.com/problems/add-strings/
+class Solution(object):
+    def addStrings(self, num1, num2):
+        return str(int(num1)+int(num2))
+
+#!https://leetcode.com/problems/add-to-array-form-of-integer/  
+class Solution(object):
+    def addToArrayForm(self, num, k):
+        ks=str(k)
+        if len(ks)<len(num):
+            while len(ks)!=len(num):
+                ks="0"+ks
+        numb=""
+        for i in num:
+            numb+=str(i)
+        numb=int(numb)
+        result=int(ks)+numb
+        total=[]
+        for i in str(result):
+            total.append(int(i))
+        return total
+            
+#!https://leetcode.com/problems/add-binary/
+class Solution(object):
+    def addBinary(self, a, b):
+        def getDecimal(binary):
+            total=0
+            for i in range(len(binary)-1,-1,-1):
+                if int(binary[i])==1:
+                    total+=pow(2,len(binary)-1-i)
+            return total
+        
+        def makeBinary(x):
+            string=""
+            for i in bin(x):
+                string+=i
+            return string[2:]
+        a=getDecimal(a)
+        b=getDecimal(b)
+        return makeBinary(a+b)
+        
+        
+        
+            
         
     
 #?------------------
