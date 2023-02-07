@@ -1,4 +1,4 @@
-
+import collections
 #!https://leetcode.com/problems/find-the-difference/
 class Solution(object):
     def findTheDifference(self, s, t):
@@ -106,9 +106,79 @@ class Solution(object):
         b=getDecimal(b)
         return makeBinary(a+b)
         
+#!https://leetcode.com/problems/valid-palindrome/
+class Solution(object):
+    def isPalindrome(self, s):
+        s=s.lower()
+        arr=['1','2','3','4','5','6','7','8','9','0','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        string=""
+        for i in s:
+            if i in arr:
+                string+=i
+        print(string)
+        if string==string[::-1]:
+            return True
+        return False
+
+#!https://leetcode.com/problems/guess-number-higher-or-lower/
+# The guess API is already defined for you.
+# @param num, your guess
+# @return -1 if num is higher than the picked number
+#          1 if num is lower than the picked number
+#          otherwise return 0
+# def guess(num):
+
+class Solution(object):
+    def guessNumber(self, n):
+        l,r=1,n
+        while True:
+            m=(l+r)//2
+            res=guess(m)
+            if res==1:
+                l=m+1
+            elif res==-1:
+                r=m-1
+            else:
+                return m
+
+#!https://leetcode.com/problems/shuffle-the-array/submissions/892524765/        
+class Solution(object):
+    def shuffle(self, nums, n):
+        arr1=nums[:n][::-1]
+        arr2=nums[n:][::-1]
+        res=[]
+        for i in range(n):
+            res.append(arr1.pop())
+            res.append(arr2.pop())
+        return res
+    
+#!https://leetcode.com/problems/excel-sheet-column-title/
+class Solution(object):
+    dicty={i:chr(65+i) for i in range(26)}
+    def convertToTitle(self, columnNumber: int) -> str:
+        i=0
+        while True:
+            if columnNumber-26**i<0:
+                i-=1
+                break
+            columnNumber-=26**i
+            i+=1
+        res=""
+        for j in range(i,-1,-1):
+            res=res+self.dicty[columnNumber//(26**j)]
+            columnNumber-=26**j*(columnNumber//(26**j))
+        return res
         
-        
-            
-        
+#!https://leetcode.com/problems/first-unique-character-in-a-string/
+class Solution:
+    def firstUniqChar(self, s: str) -> int:
+        arr=[]
+        coll=collections.Counter(s)
+        for i in coll:
+            arr.append([i,coll[i]])
+        for i in arr:
+            if i[1]==1:
+                return s.index(i[0])
+        return -1
     
 #?------------------
