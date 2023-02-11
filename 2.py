@@ -181,4 +181,74 @@ class Solution:
                 return s.index(i[0])
         return -1
     
+#!https://leetcode.com/problems/self-dividing-numbers/
+class Solution:
+    def selfDividingNumbers(self, left: int, right: int) -> List[int]:
+        arr=[]
+        for i in range(left,right+1):
+            if '0' not in str(i):
+                if len(str(i))==1:
+                    arr.append(i)
+                else:
+                    for digit in str(i):
+                        digit=int(digit)
+                        if i%digit!=0:
+                            break
+                    if str(digit)==str(i)[len(str(i))-1] and i%digit==0:
+                        arr.append(i)
+        return arr
+
+#!https://leetcode.com/problems/valid-palindrome-ii/   
+class Solution(object):
+    def validPalindrome(self, s):
+        i, j = 0, len(s) - 1
+        
+        while i < j:
+            if s[i] == s[j]:
+                i += 1
+                j -= 1
+            else:
+                return self.validPalindromeUtil(s, i + 1, j) or self.validPalindromeUtil(s, i, j - 1)
+        return True
+    
+    def validPalindromeUtil(self, s, i, j):
+        while i < j:
+            if s[i] == s[j]:
+                i += 1
+                j -= 1
+            else:
+                return False
+        
+        return True
+
+#!https://leetcode.com/problems/height-checker/
+class Solution(object):
+    def heightChecker(self, heights):
+        expected=sorted(heights)
+        count=0
+        for i in range(len(heights)):
+            if heights[i]!=expected[i]:
+                count+=1
+        return count 
+
+#!https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/
+class Solution(object):
+    def countNegatives(self, grid):
+        count=0
+        for i in grid:
+            for j in i:
+                if j<0:
+                    count+=1
+        return count
+
+#!https://leetcode.com/problems/maximum-count-of-positive-integer-and-negative-integer/   
+class Solution(object):
+    def maximumCount(self, nums):
+        n,p=0,0
+        for i in nums:
+            if i<0:
+                n+=1
+            elif i>0:
+                p+=1
+        return max(n,p)
 #?------------------
