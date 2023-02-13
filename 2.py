@@ -251,4 +251,36 @@ class Solution(object):
             elif i>0:
                 p+=1
         return max(n,p)
+
+#!https://leetcode.com/problems/student-attendance-record-i/ 
+class Solution(object):
+    def checkRecord(self, s):
+        #Absent Check
+        def absentCheck(arr):
+            if arr.count('A')<2:
+                return True
+            return False
+
+        #Late Check
+        def lateCheck(arr):
+            for i in range(len(arr)-2):
+                if arr[i]=='L' and arr[i+1]=='L' and arr[i+2]=='L':
+                    return False
+            return True
+        arr=list(s)
+        if absentCheck(arr) and lateCheck(arr):
+            return True
+        return False
+
+
+#!https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/
+class Solution(object):
+    def countOdds(self, low, high):
+        if low%2==1 and high%2==1:
+            return (high-low)/2+1
+        elif low%2==0 and high%2==0:
+            return (high-low)/2
+        else:
+            return int(math.floor((high-low)/2)+1)
+
 #?------------------
