@@ -283,4 +283,52 @@ class Solution(object):
         else:
             return int(math.floor((high-low)/2)+1)
 
+#!https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        count=0
+        temp=head
+        while temp:
+            temp=temp.next
+            count+=1
+        if count==n:
+            return head.next
+
+        if count==1:
+            return ListNode("")
+        if count<=n:
+            return head
+        if count==2:
+            if n==2:
+                return ListNode(head.next.val)
+            if n==1:
+                return ListNode(head.val)
+        if count==3:
+            if n==1:
+                node=ListNode(head.val)
+                node.next=ListNode(head.next.val)
+                return node
+            if n==2:
+                node=ListNode(head.val)
+                node.next=ListNode(head.next.next.val)
+                return node
+            if n==3:
+                node=ListNode(head.next.val)
+                node.next=ListNode(head.next.next.val)
+                return node
+        index = count-n-1
+        i=0
+        temp=head
+        while temp.next:
+            if i==index:
+                temp.next=temp.next.next
+                break
+            temp=temp.next
+            i+=1
+        return head
 #?------------------
