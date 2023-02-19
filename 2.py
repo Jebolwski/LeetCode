@@ -331,4 +331,190 @@ class Solution(object):
             temp=temp.next
             i+=1
         return head
+    
+#!https://leetcode.com/problems/maximum-subarray/
+class Solution(object):
+    def maxSubArray(self, nums):
+        max_sum,cur_sum=-100000,0
+        for i in nums:
+            cur_sum=max(cur_sum+i,i)
+            max_sum=max(max_sum,cur_sum)
+        return max_sum
+
+#!https://leetcode.com/problems/search-in-rotated-sorted-array/
+class Solution(object):
+    def search(self, nums, target):
+
+        for i in range(len(nums)):
+            if nums[i]==target:
+                return i
+        return -1
+
+#!https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+class Solution(object):
+    def searchRange(self, nums, target):
+        r,l=len(nums)-1,0
+        arr=[-1,-1]
+        while r>=l:
+            print(l,r,nums[l],nums[r])
+            if nums[l]==target:
+                arr[0]=l
+            if nums[r]==target:
+                arr[1]=r
+            if arr[1]==-1:
+                r-=1
+            if arr[0]==-1:
+                l+=1
+            if arr[0]!=-1 and arr[1]!=-1:
+                break
+        return arr
+
+#!https://leetcode.com/problems/reverse-linked-list-ii/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def reverseBetween(self, head, left, right):
+        left=left-1
+        right=right-1
+        if left==right:
+            return head
+        arr=[]
+        def helper(node):
+            if not node:
+                return
+            arr.append(node.val)
+            helper(node.next)
+        helper(head)
+        total=arr[:left]+arr[left:right+1][::-1]+arr[right+1:]
+        total=total[::-1]
+        node=ListNode()
+        temp=node
+        while len(total)>0:
+            temp.val=total.pop()
+            if len(total)>0:
+                temp.next=ListNode()
+                temp=temp.next
+        return (node)
+
+#!https://leetcode.com/problems/minimum-distance-between-bst-nodes/
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def minDiffInBST(self, root):
+        arr=[]
+        def helper(node):
+            if not node:
+                return
+            helper(node.left)
+            arr.append(node.val)
+            helper(node.right)
+        helper(root)
+        m=100000
+        for i in range(len(arr)):
+            for j in range(i+1,len(arr)):
+                if abs(arr[i]-arr[j])<m:
+                    m=abs(arr[i]-arr[j])
+        return m
+
+#!https://leetcode.com/problems/rotate-list/
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        arr=[]
+        if head==None:
+            return ListNode('')
+        def helper(head):
+            if not head:
+                return
+            arr.append(head.val)
+            helper(head.next)
+        helper(head)
+        k=k%len(arr)
+        i=0
+        while i<k:
+            arr=arr[len(arr)-1:]+arr[:len(arr)-1]
+            i+=1
+        arr=arr[::-1]
+        node=ListNode()
+        temp=node
+        while len(arr)>0:
+            temp.val=arr.pop()
+            if len(arr)>0:
+                temp.next=ListNode()
+                temp=temp.next
+        return (node)
+
+#!https://leetcode.com/problems/reorder-list/
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        arr=[]
+        def helper(head):
+            if not head:
+                return
+            arr.append(head.val)
+            helper(head.next)
+        helper(head)
+        print(arr)
+        l,r=0,len(arr)-1
+        res=[]
+        while r>=l:
+            res.append(arr[l])
+            res.append(arr[r])
+            r-=1
+            l+=1
+        if len(arr)%2==1:
+            res=res[:len(res)-1]
+        print(res)
+        res=res[::-1]
+        temp=head
+        while len(res)>0:
+            temp.val=res.pop()
+            if len(res)>0:
+                temp.next=ListNode()
+                temp=temp.next
+
+#!https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        arr=[]
+        def helper(head):
+            if not head:
+                return
+            arr.append(head.val)
+            helper(head.next)
+        helper(head)
+        if len(arr)==1:
+            return ListNode("")
+        midindex=math.floor(len(arr)/2)
+        arr.pop(midindex)
+        arr=arr[::-1]
+        node=ListNode()
+        temp=node
+        while len(arr)>0:
+            temp.val=arr.pop()
+            if len(arr)>0:
+                temp.next=ListNode()
+                temp=temp.next
+        return node
 #?------------------
