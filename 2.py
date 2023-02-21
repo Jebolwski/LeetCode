@@ -517,4 +517,89 @@ class Solution:
                 temp.next=ListNode()
                 temp=temp.next
         return node
+
+#!https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def deleteDuplicates(self, head):
+        arr=[]
+
+        def helper(head):
+            if not head:
+                return
+            arr.append(head.val)
+            helper(head.next)
+        helper(head)
+        res=[]
+        for i in arr:
+            if arr.count(i)==1:
+                res.append(i)
+        if res==[0]:
+            return ListNode(0)
+        node=ListNode()
+        temp=node
+        res=res[::-1]
+        while len(res)>0:
+            temp.val=res.pop()
+            if len(res)>0:
+                temp.next=ListNode()
+                temp=temp.next
+        if node.val==0 and not node.next and res==[]:
+            return ListNode('')
+        return node
+
+#!https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def flatten(self, root):
+        arr=[]
+        def linkedtoarr(root):
+            if not root:
+                return
+            arr.append(root.val)
+            linkedtoarr(root.left)
+            linkedtoarr(root.right)
+        linkedtoarr(root)
+        arr=arr[::-1]
+        node=root
+        temp=node
+        while len(arr)>0:
+            temp.val=arr.pop()
+            if len(arr)>0:
+                temp.right=TreeNode()
+                temp.left=None
+                temp=temp.right
+
+#!https://leetcode.com/problems/single-element-in-a-sorted-array/
+class Solution(object):
+    def singleNonDuplicate(self, nums):
+        col = collections.Counter(nums)
+        for i in col:
+            if col[i]==1:
+                return i
+
+#!https://leetcode.com/problems/reverse-string-ii/
+class Solution(object):
+    def reverseStr(self, s, k):
+        i=0
+        string=""
+        while i<len(s):
+            if i+k*2>len(s) and len(s)-i>k:
+                temp=s[i:i+k][::-1]+s[i+k:len(s)]
+                string+=temp
+                i=len(s)
+            else:
+                temp=s[i:i+k][::-1]+s[i+k:i+k*2]
+                string+=temp
+                i=i+2*k
+        return string
 #?------------------
