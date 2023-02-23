@@ -602,4 +602,95 @@ class Solution(object):
                 string+=temp
                 i=i+2*k
         return string
+    
+#!https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+class Solution(object):
+    def shipWithinDays(self, weights, days):
+        def helper(weights,days,goal):
+            j=0
+            for i in range(days):
+                total=0
+                while True:
+                    if j<len(weights) and total+weights[j]<=goal:
+                        total+=weights[j]
+                        j+=1
+                    else:
+                        break
+            if j==len(weights):
+                return True
+            return False
+        i=max(weights)
+        maxi=sum(weights)
+        res=maxi
+        while maxi>=i:
+            mid=(i+maxi)//2
+            if helper(weights,days,mid):
+                res=min(mid,res)
+                maxi=mid - 1
+            else:
+                i=mid + 1
+        return res
+
+#!https://leetcode.com/problems/partition-list/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def partition(self, head, x):
+        arr=[]
+
+        def helper(head):
+            if not head:
+                return
+            arr.append(head.val)
+            helper(head.next)
+        helper(head)
+        smaller=[]
+        bigger=[]
+        for i in arr:
+            if i<x:
+                smaller.append(i)
+            else:
+                bigger.append(i)
+        res=smaller+bigger
+        res=res[::-1]
+        real=ListNode()
+        node=real
+        while len(res)>0:
+            node.val=res.pop()
+            if len(res)>0:
+                node.next=ListNode()
+                node=node.next
+        if not real.next and real.val==0:
+            real.val=""
+            return real
+        return real
+
+#!https://leetcode.com/problems/sort-list/
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def sortList(self, head):
+        temp=head
+        array=[]
+        while temp!=None:
+            array.append(temp.val)
+            temp=temp.next
+        array.sort()
+        array=array[::-1]
+        node = ListNode()
+        tmp = node
+        while len(array)>0:
+            tmp.val=array.pop()
+            if len(array)>0:
+                tmp.next=ListNode()
+                tmp=tmp.next
+        if not node.next and node.val==0:
+            return ListNode('')
+        return node
 #?------------------
