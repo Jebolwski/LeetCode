@@ -713,5 +713,48 @@ class MyHashSet(object):
     def contains(self, key):
         if key in self.arr:
             return True
-        return False        
+        return False    
+
+#!https://leetcode.com/problems/min-stack/submissions/
+class MinStack(object):
+
+    def __init__(self):
+        self.arr=[]
+
+    def push(self, val):
+        self.arr.append(val)
+        
+
+    def pop(self):
+        self.arr.pop()
+
+
+    def top(self):
+        return self.arr[len(self.arr)-1]        
+
+    def getMin(self):
+        return min(self.arr)
+          
+#!https://leetcode.com/problems/implement-queue-using-stacks/
+class MyQueue(object):
+
+    def __init__(self):
+        self.arr=[]
+
+    def push(self, x):
+        self.arr.insert(0,x)
+        
+
+    def pop(self):
+        return self.arr.pop()        
+
+    def peek(self):
+        return self.arr[len(self.arr)-1]
+
+
+    def empty(self):
+        if len(self.arr)>0:
+            return False
+        return True        
+
 #?------------------
