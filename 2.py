@@ -757,4 +757,37 @@ class MyQueue(object):
             return False
         return True        
 
+#!https://leetcode.com/problems/implement-stack-using-queues/
+class MyStack(object):
+    array=[]
+    def __init__(self):
+        self.stack = []
+
+    def push(self, x):
+        self.stack.append(x)       
+
+    def pop(self):
+        return self.stack.pop() 
+
+
+    def top(self):
+        return self.stack[len(self.stack)-1]        
+
+    def empty(self):
+        return len(self.stack)==0
+
+#!https://leetcode.com/problems/ugly-number/   
+class Solution(object):
+    def isUgly(self, n):
+        if n<=0:
+            return False
+        for i in [2,3,5]:
+            while n%i==0:
+                n = n // i
+
+        return n==1
+
+        
+        
+
 #?------------------
