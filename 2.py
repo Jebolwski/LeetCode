@@ -1,4 +1,10 @@
 import collections
+
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
 #!https://leetcode.com/problems/find-the-difference/
 class Solution(object):
     def findTheDifference(self, s, t):
@@ -121,13 +127,6 @@ class Solution(object):
         return False
 
 #!https://leetcode.com/problems/guess-number-higher-or-lower/
-# The guess API is already defined for you.
-# @param num, your guess
-# @return -1 if num is higher than the picked number
-#          1 if num is lower than the picked number
-#          otherwise return 0
-# def guess(num):
-
 class Solution(object):
     def guessNumber(self, n):
         l,r=1,n
@@ -272,7 +271,6 @@ class Solution(object):
             return True
         return False
 
-
 #!https://leetcode.com/problems/count-odd-numbers-in-an-interval-range/
 class Solution(object):
     def countOdds(self, low, high):
@@ -284,11 +282,6 @@ class Solution(object):
             return int(math.floor((high-low)/2)+1)
 
 #!https://leetcode.com/problems/remove-nth-node-from-end-of-list/
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
     def removeNthFromEnd(self, head, n):
         count=0
@@ -370,11 +363,6 @@ class Solution(object):
         return arr
 
 #!https://leetcode.com/problems/reverse-linked-list-ii/
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
     def reverseBetween(self, head, left, right):
         left=left-1
@@ -400,12 +388,6 @@ class Solution(object):
         return (node)
 
 #!https://leetcode.com/problems/minimum-distance-between-bst-nodes/
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution(object):
     def minDiffInBST(self, root):
         arr=[]
@@ -424,11 +406,6 @@ class Solution(object):
         return m
 
 #!https://leetcode.com/problems/rotate-list/
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
     def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
         arr=[]
@@ -456,11 +433,6 @@ class Solution:
         return (node)
 
 #!https://leetcode.com/problems/reorder-list/
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
         arr=[]
@@ -490,11 +462,6 @@ class Solution:
                 temp=temp.next
 
 #!https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution:
     def deleteMiddle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         arr=[]
@@ -519,11 +486,6 @@ class Solution:
         return node
 
 #!https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
     def deleteDuplicates(self, head):
         arr=[]
@@ -553,12 +515,6 @@ class Solution(object):
         return node
 
 #!https://leetcode.com/problems/flatten-binary-tree-to-linked-list/
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution(object):
     def flatten(self, root):
         arr=[]
@@ -632,11 +588,6 @@ class Solution(object):
         return res
 
 #!https://leetcode.com/problems/partition-list/
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
     def partition(self, head, x):
         arr=[]
@@ -669,11 +620,6 @@ class Solution(object):
         return real
 
 #!https://leetcode.com/problems/sort-list/
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
     def sortList(self, head):
         temp=head
@@ -787,7 +733,50 @@ class Solution(object):
 
         return n==1
 
-        
-        
+#!https://leetcode.com/problems/reverse-nodes-in-k-group/
+class Solution(object):
+    def reverseKGroup(self, head, k):
+        arr=[]
+        def helper(head):
+            if not head:
+                return
+            arr.append(head.val)
+            helper(head.next)
+        helper(head)
 
+        i=0
+        res=[]
+        while i + k <= len(arr):
+            res+=arr[i:i+k][::-1]
+            i=i+k
+        res+=arr[i:]
+        res=res[::-1]
+        
+        temp=ListNode()
+        node=temp
+        while len(res)>0:
+            node.val=res.pop()
+            if len(res)>0:
+                node.next=ListNode()
+                node=node.next
+        return (temp)
+
+#!https://leetcode.com/problems/sort-an-array/
+class Solution(object):
+    def sortArray(self, nums):
+        return sorted(nums)
+
+#!https://leetcode.com/problems/first-bad-version/
+class Solution(object):
+    def firstBadVersion(self, n):
+        l,r=0,n
+        result=0
+        while l<=r:
+            m = int((r+l)/2)
+            if isBadVersion(m):
+                result = m
+                r = m - 1
+            else:
+                l = m + 1
+        return result
 #?------------------
