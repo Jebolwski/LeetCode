@@ -779,4 +779,38 @@ class Solution(object):
             else:
                 l = m + 1
         return result
+
+#!https://leetcode.com/problems/range-sum-query-immutable/
+class NumArray(object):
+
+    def __init__(self, nums):
+        self.nums=nums
+
+    def sumRange(self, left, right):
+        return sum(self.nums[left:right+1])
+
+#!https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
+class Solution(object):
+    def removeDuplicates(self, nums):
+        same=True
+        arr=[]
+        for i in nums:
+            if i not in arr:
+                arr.append(i)
+        for i in arr:
+            if nums.count(i)>2:
+                for j in range(nums.count(i) - 2):
+                    nums.remove(i)
+                    nums.append('_')
+        for i in range(len(nums)-1,-1,-1):
+            if nums[i]!='_':
+                return i+1
+
+#!https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+class Solution(object):
+    def search(self, nums, target):
+        if target in nums:
+            return True
+        return False
+
 #?------------------
