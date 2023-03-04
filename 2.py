@@ -813,4 +813,30 @@ class Solution(object):
             return True
         return False
 
+
+#!https://leetcode.com/problems/duplicate-zeros/
+class Solution(object):
+    def duplicateZeros(self, arr):
+        array=[]
+        for i in arr:
+            array.append(i)
+            if i==0:
+                array.append(0) 
+        print(array)
+        for i in range(len(arr)):
+            arr[i] = array[i]
+
+#!https://leetcode.com/problems/crawler-log-folder/
+class Solution(object):
+    def minOperations(self, logs):
+        stack=[]
+        for i in logs:
+            if i == "../":
+                if len(stack)>0:
+                    stack.pop()
+            else:
+                if i != "./":
+                    stack.append(i)
+        return len(stack)
+
 #?------------------
