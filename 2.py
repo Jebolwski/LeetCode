@@ -839,4 +839,62 @@ class Solution(object):
                     stack.append(i)
         return len(stack)
 
+#!https://leetcode.com/problems/kth-missing-positive-number/
+class Solution:
+    def findKthPositive(self, arr: List[int], k: int) -> int:
+        count=0
+        num=1
+        while count!=k:
+            if num not in arr:
+                count+=1
+            num+=1
+        return num-1
+
+#!https://leetcode.com/problems/last-stone-weight/
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        while len(stones)>1:
+            max1=max(stones)
+            stones.remove(max(stones))
+            max2=max(stones)
+            stones.remove(max(stones))
+            if max1-max2!=0:
+                stones.append(abs(max1-max2))
+        if len(stones)==0:
+            return 0
+        return stones[0]
+
+#!https://leetcode.com/problems/majority-element-ii/       
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        size = len(nums)/3
+        arr=[]
+        dp = collections.Counter(nums)
+        for i in dp:
+            if dp[i]>size:
+                arr.append(i)
+        return arr
+
+#!https://leetcode.com/problems/most-frequent-even-element/
+class Solution:
+    def mostFrequentEven(self, nums: List[int]) -> int:
+        arr=[]
+        for i in nums:
+            if i%2==0:
+                arr.append(i)
+        if len(arr)==0:
+            return -1
+        print(arr)
+        maksi=0
+        maksi_res=0
+        dp=collections.Counter(arr)
+        for i in dp:
+            if dp[i]>maksi:
+                maksi=dp[i]
+                maksi_res=i
+            elif dp[i]==maksi and i<maksi_res:
+                maksi=dp[i]
+                maksi_res=i
+        return maksi_res
+
 #?------------------
