@@ -897,4 +897,58 @@ class Solution:
                 maksi_res=i
         return maksi_res
 
+#!https://leetcode.com/problems/linked-list-random-node/  
+import random
+class Solution:
+
+    def __init__(self, head: Optional[ListNode]):
+        self.arr=[]
+        while head:
+            self.arr.append(head.val)
+            head=head.next
+
+
+    def getRandom(self) -> int:
+        rand = random.randint(0,len(self.arr)-1)
+        return self.arr[rand]
+
+#!https://leetcode.com/problems/ransom-note/
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        arr=[]
+        for i in magazine:
+            arr.append(i)
+        for i in ransomNote:
+            if i not in arr:
+                return False
+            else:
+                arr.remove(i)
+        return True
+
+#!https://leetcode.com/problems/baseball-game/
+class Solution:
+    def calPoints(self, operations: List[str]) -> int:
+        arr=[]
+        for i in operations:
+            if i=="C":
+                arr.pop()
+            elif i=="D":
+                arr.append(arr[len(arr)-1]*2)
+            elif i=="+":
+                arr.append(sum(arr[len(arr)-2:len(arr)]))
+            else:
+                arr.append(int(i))
+        return sum(arr)
+
+#!https://leetcode.com/problems/binary-number-with-alternating-bits/  
+class Solution:
+    def hasAlternatingBits(self, n: int) -> bool:
+        def dtb(n):
+            return bin(n).replace("0b", "")
+        res=dtb(n)
+        for i in range(len(res)-1):
+            if res[i]==res[i+1]:
+                return False
+        return True
+
 #?------------------
