@@ -951,4 +951,91 @@ class Solution:
                 return False
         return True
 
+#!https://leetcode.com/problems/design-hashmap/
+class MyHashMap:
+
+    def __init__(self):
+        self.dp={}
+
+    def put(self, key: int, value: int) -> None:
+        self.dp[key]=value
+
+    def get(self, key: int) -> int:
+        if key in self.dp:
+            return self.dp[key]
+        return -1
+
+    def remove(self, key: int) -> None:
+        if key in self.dp:
+            del self.dp[key]
+
+
+#!https://leetcode.com/problems/design-linked-list/
+class MyLinkedList:
+
+    def __init__(self):
+        self.arr=[]
+
+    def get(self, index: int) -> int:
+        if index<len(self.arr):
+            return self.arr[index]
+        return -1
+    def addAtHead(self, val: int) -> None:
+        self.arr.insert(0,val)
+
+    def addAtTail(self, val: int) -> None:
+        self.arr.append(val)
+
+    def addAtIndex(self, index: int, val: int) -> None:
+        if index<=len(self.arr):
+            self.arr.insert(index,val)
+
+    def deleteAtIndex(self, index: int) -> None:
+        if index<len(self.arr):
+            self.arr.pop(index)
+
+#!https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+class Solution(object):
+    def findMin(self, nums):
+        return min(nums)
+    
+#!https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/
+class Solution(object):
+    def findMin(self, nums):
+        return min(nums)
+
+#!https://leetcode.com/problems/missing-number/ 
+class Solution(object):
+    def missingNumber(self, nums):
+        arr=list(range(0,max(nums)+1))
+        for i in nums:
+            arr.remove(i)
+        if len(arr)>0:
+            return arr[0]
+        return max(nums)+1
+    
+#!https://leetcode.com/problems/find-pivot-index/
+class Solution(object):
+    def pivotIndex(self, nums):
+        for i in range(len(nums)):
+            if sum(nums[:i])==sum(nums[i+1:]):
+                return i
+        return -1
+
+#!https://leetcode.com/problems/is-subsequence/   
+class Solution(object):
+    def isSubsequence(self, s, t):
+        if len(s)==0:
+            return True
+        arr = list(s)[::-1]
+        for i in t:
+            print(arr)
+            if i==arr[-1]:
+                arr.pop()
+            if len(arr)==0:
+                return True
+        if len(arr)>0:
+            return False
+        return True
+
 #?------------------
