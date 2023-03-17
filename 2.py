@@ -1038,4 +1038,24 @@ class Solution(object):
             return False
         return True
 
+#!https://leetcode.com/problems/implement-trie-prefix-tree/
+class Trie(object):
+
+    def __init__(self):
+        self.arr=[]
+
+    def insert(self, word):
+        self.arr.append(word)        
+
+    def search(self, word):
+        if word in self.arr:
+            return True
+        return False        
+
+    def startsWith(self, prefix):
+        for i in range(len(self.arr)):
+            if (len(self.arr)>0) and (prefix in self.arr[i]) and (self.arr[i].index(prefix)==0):
+                return True
+        return False
+
 #?------------------
