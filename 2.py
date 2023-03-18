@@ -1058,4 +1058,17 @@ class Trie(object):
                 return True
         return False
 
+#!https://leetcode.com/problems/sum-of-left-leaves/
+class Solution(object):
+    def sumOfLeftLeaves(self, root):
+        arr=[0]
+        def helper(node):
+            if not node:
+                return
+            if node.left and not node.left.left and not node.left.right:
+                arr[0]+=node.left.val
+            helper(node.left)
+            helper(node.right)
+        helper(root)
+        return arr[0]
 #?------------------
