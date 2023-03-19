@@ -1071,4 +1071,21 @@ class Solution(object):
             helper(node.right)
         helper(root)
         return arr[0]
+
+#!https://leetcode.com/problems/robot-return-to-origin/
+class Solution(object):
+    def judgeCircle(self, moves):
+        l,t=0,0
+        for i in moves:
+            if i=="U":
+                t-=1
+            elif i=="D":
+                t+=1
+            elif i=="L":
+                l-=1
+            else:
+                l+=1
+        if l==0 and t==0:
+            return True
+        return False
 #?------------------
