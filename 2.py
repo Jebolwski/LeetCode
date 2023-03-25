@@ -1100,4 +1100,22 @@ class Solution(object):
             else:
                 odd.append(i)
         return even+odd
+
+#!https://leetcode.com/problems/merge-in-between-linked-lists/ 
+class Solution(object):
+    def mergeInBetween(self, list1, a, b, list2):
+        #get list2s end
+        list2end = list2
+        while list2end.next:
+            list2end=list2end.next
+        temp=list1
+        for i in range(a-1):
+            temp=temp.next
+        end=list1
+        for i in range(b):
+            end=end.next
+        temp.next=list2
+        list2end.next=end.next
+        return list1
+    
 #?------------------
