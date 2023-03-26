@@ -1118,4 +1118,51 @@ class Solution(object):
         list2end.next=end.next
         return list1
     
+#!https://leetcode.com/problems/keyboard-row/
+class Solution(object):
+    def findWords(self, words):
+        one=list("qwertyuiop")
+        two=list("asdfghjkl")
+        three=list("zxcvbnm")
+        print(one,two,three)
+        arr=[]
+        for a in words:
+            i=a.lower()
+            flag1=True
+            flag2=True
+            flag3=True
+            #check one
+            for j in i:
+                if j not in one:
+                    flag1=False
+            #check two
+            for j in i:
+                if j not in two:
+                    flag2=False
+            #check three
+            for j in i:
+                if j not in three:
+                    flag3=False
+            print(i,flag1,flag2,flag3)
+            if flag1 or flag2 or flag3:
+                arr.append(a)
+        return arr
+
+#!https://leetcode.com/problems/divide-array-into-equal-pairs/
+class Solution(object):
+    def divideArray(self, nums):
+        leng=len(nums)/2
+        arr=[]
+        for x in range(10):
+            for i in nums:
+                if nums.count(i)==1:
+                    return False
+                if nums.count(i)%2==0:
+                    for j in range(nums.count(i)):
+                        nums.remove(i)
+            if len(nums)==0:
+                return True
+            elif len(nums)==2 and nums[0]==nums[1]:
+                return True
+        
 #?------------------
