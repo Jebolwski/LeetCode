@@ -1164,5 +1164,37 @@ class Solution(object):
                 return True
             elif len(nums)==2 and nums[0]==nums[1]:
                 return True
+            
+#!https://leetcode.com/problems/binary-search/
+class Solution(object):
+    def search(self, nums, target):
+        l,r=0,len(nums)
+        while r>=l:
+            mid=(r+l)//2
+            if mid<len(nums):
+                if nums[mid]==target:
+                    return mid
+                elif nums[mid]>target:
+                    r=mid-1
+                else:
+                    l=mid+1
+            else:
+                return -1
+        return -1
         
+#!https://leetcode.com/problems/partition-labels/
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        dp={}
+        for i,c in enumerate(s):
+            dp[c]=i
+        res=[]
+        size,end=0,0
+        for i,c in enumerate(s):
+            size+=1
+            end=max(end,dp[c])
+            if i==end:
+                res.append(size)
+                size=0
+        return (res)
 #?------------------
