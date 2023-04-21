@@ -12,3 +12,15 @@ Array.prototype.last = function () {
   }
   return -1;
 };
+
+//!https://leetcode.com/problems/convert-object-to-json-string/submissions/937317485/
+var jsonStringify = function (object) {
+  return JSON.stringify(object);
+};
+
+//!https://leetcode.com/problems/filter-elements-from-array/
+var filter = function (arr, fn) {
+  return arr.filter((n, i) => {
+    return fn(n, i);
+  });
+};
