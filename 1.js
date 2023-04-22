@@ -24,3 +24,15 @@ var filter = function (arr, fn) {
     return fn(n, i);
   });
 };
+
+//!https://leetcode.com/problems/function-composition/
+var compose = function (functions) {
+  return function (x) {
+    functions = functions.reverse();
+    functions.forEach((func) => {
+      x = func(x);
+      console.log(x);
+    });
+    return x;
+  };
+};
