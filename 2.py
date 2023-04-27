@@ -1405,4 +1405,23 @@ class Solution(object):
                 stack.append(i)
         return "".join(stack)
 
+#!https://leetcode.com/problems/sum-of-digits-of-string-after-convert/
+
+
+class Solution(object):
+    def getLucky(self, s, k):
+        def addDigits(string):
+            res = 0
+            for i in string:
+                res += int(i)
+            return res
+        res = ""
+        for i in s.lower():
+            res += str(ord(i)-96)
+        print(res)
+        for i in range(k):
+            res = addDigits(str(res))
+
+        return int(res)
+
 # ?------------------
