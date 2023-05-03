@@ -1424,4 +1424,86 @@ class Solution(object):
 
         return int(res)
 
+#!https://leetcode.com/problems/average-salary-excluding-the-minimum-and-maximum-salary/
+
+
+class Solution:
+    def average(self, salary: List[int]) -> float:
+        mini = min(salary)
+        maksi = max(salary)
+        while mini in salary:
+            salary.remove(mini)
+        while maksi in salary:
+            salary.remove(maksi)
+
+        return sum(salary)/len(salary)
+
+#!https://leetcode.com/problems/number-of-unequal-triplets-in-array/
+
+
+class Solution:
+    def unequalTriplets(self, nums: List[int]) -> int:
+        dp = collections.Counter(nums)
+        if len(dp) < 3:
+            return 0
+        elif len(dp) == 3:
+            i = 1
+            for j in dp:
+                i *= dp[j]
+            return i
+        else:
+            count = 0
+            for i in range(len(nums)-2):
+                for j in range(i+1, len(nums)-1):
+                    for k in range(j+1, len(nums)):
+                        if nums[i] != nums[j] and nums[j] != nums[k] and nums[i] != nums[k]:
+                            count += 1
+            return count
+
+#!https://leetcode.com/problems/sign-of-the-product-of-an-array/
+
+
+class Solution:
+    def arraySign(self, nums: List[int]) -> int:
+        x = 1
+        for i in nums:
+            x *= i
+        if x == 0:
+            return 0
+        elif x > 0:
+            return 1
+        else:
+            return -1
+
+#!https://leetcode.com/problems/find-the-difference-of-two-arrays/
+
+
+class Solution(object):
+    def findDifference(self, nums1, nums2):
+        arr1 = []
+        arr2 = []
+        for i in nums1:
+            if i not in nums2 and i not in arr1:
+                arr1.append(i)
+        for i in nums2:
+            if i not in nums1 and i not in arr2:
+                arr2.append(i)
+        return [arr1, arr2]
+
+#!https://leetcode.com/problems/intersection-of-multiple-arrays/
+
+
+class Solution(object):
+    def intersection(self, nums):
+        arr = nums[0]
+        arr1 = []
+        for i in arr:
+            for j in range(1, len(nums)):
+                if i not in nums[j]:
+                    arr1.append(i)
+        for i in arr1:
+            if i in arr:
+                arr.remove(i)
+        return sorted(arr)
+
 # ?------------------
