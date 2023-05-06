@@ -1506,4 +1506,169 @@ class Solution(object):
                 arr.remove(i)
         return sorted(arr)
 
+#!https://leetcode.com/problems/the-k-weakest-rows-in-a-matrix/
+class Solution(object):
+    def kWeakestRows(self, mat, k):
+        arr=[]
+        matto=[i for i in mat]
+        while len(arr)<k:
+            mini = 1000
+            ind=-1
+            for i in range(len(mat)):
+                if mat[i].count(1)<mini:
+                    mini=mat[i].count(1)
+                    ind=i
+            indekso=matto.index(mat[ind])
+            if indekso in arr:
+                while indekso in arr:
+                    indekso=matto.index(mat[ind],indekso+1)
+            else:
+                indekso=matto.index(mat[ind])
+            mat.pop(ind)
+            arr.append(indekso)
+        return (arr) 
+    
+#!https://leetcode.com/problems/check-if-n-and-its-double-exist/
+class Solution(object):
+    def checkIfExist(self, arr):
+        for i in range(len(arr)):
+            if arr[i]*2 in arr and arr.index(arr[i]*2)!=i:
+                return True
+        return False 
+    
+#!https://leetcode.com/problems/keep-multiplying-found-values-by-two/
+class Solution(object):
+    def findFinalValue(self, nums, original):
+        while original in nums:
+            original*=2
+        return original
+    
+#!https://leetcode.com/problems/largest-number-at-least-twice-of-others/
+class Solution(object):
+    def dominantIndex(self, nums):
+        for a in range(len(nums)):
+            arr=[nums[i]*2 if i!=a else nums[i] for i in range(len(nums))]
+            if nums[a]==max(arr):
+                return a
+        return -1
+    
+#!https://leetcode.com/problems/shortest-completing-word/
+class Solution(object):
+    def shortestCompletingWord(self, licensePlate, words):
+        arr=[]
+        licensePlate=licensePlate.lower()
+        licensePlate=licensePlate.replace(" ","")
+
+        for i in licensePlate:
+            if not i.isdigit():
+                arr.append(i)
+        arr2=[]
+        for i in arr:
+            if i not in arr2:
+                arr2.append(i)
+        res=[]
+        for i in words:
+            for j in arr2:
+                if j in i and i.count(j)>=arr.count(j):
+                    if j==arr2[-1]:
+                        res.append(i)
+                else:
+                    break
+        piyon=res[0]
+        for i in res:
+            if len(i)<len(piyon):
+                piyon=i
+        return piyon
+    
+#!https://leetcode.com/problems/minimum-number-of-steps-to-make-two-strings-anagram/
+class Solution(object):
+    def minSteps(self, s, t):
+        sa=collections.Counter(s)
+        ta=collections.Counter(t)
+        res = (sa-ta)
+        total=0
+        for i in res:
+            total+=res[i]
+        return total
+    
+#!https://leetcode.com/problems/largest-number-after-digit-swaps-by-parity/
+class Solution(object):
+    def largestInteger(self, num):
+        num=list(str(num))
+        for i in range(len(num)):
+            for j in range(i+1,len(num)):
+                ii=int(num[i])
+                jj=int(num[j])
+                if ii%2==0 and jj%2==0 and jj>ii:
+                    num[i],num[j]=num[j],num[i]
+                elif ii%2==1 and jj%2==1 and jj>ii:
+                    num[i],num[j]=num[j],num[i]
+        return int("".join(num))
+    
+#!https://leetcode.com/problems/sort-array-by-parity-ii/
+class Solution(object):
+    def sortArrayByParityII(self, nums):
+        evens=[]
+        odds=[]
+        for i in nums:
+            if i%2==0:
+                evens.append(i)
+            else:
+                odds.append(i)
+        arr=[]
+        odds=odds[::-1]
+        evens=evens[::-1]
+        for i in range(len(nums)):
+            if i%2==0:
+                arr.append(evens.pop())
+            else:
+                arr.append(odds.pop())
+        return arr
+
+#!https://leetcode.com/problems/sort-even-and-odd-indices-independently/
+class Solution(object):
+    def sortEvenOdd(self, nums):
+        evens=[]
+        odds=[]
+        for i in range(len(nums)):
+            if i%2==0:
+                evens.append(nums[i])
+            else:
+                odds.append(nums[i])
+        odds=sorted(odds)[::-1]
+        evens=sorted(evens)
+        odds=odds[::-1]
+        evens=evens[::-1]
+        arr=[]
+        for i in range(len(nums)):
+            if i%2==0:
+                arr.append(evens.pop())
+            else:
+                arr.append(odds.pop())
+        return arr  
+
+#!https://leetcode.com/problems/minimum-absolute-difference-in-bst/   
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def getMinimumDifference(self, root):
+        arr=[]
+        def helper(node):
+            if not node:
+                return
+            arr.append(node.val)
+            helper(node.left)
+            helper(node.right)
+        helper(root)
+        arr=sorted(arr)
+        mini=1000000000000000
+        for i in range(len(arr)):
+            for j in range(i+1,len(arr)):
+                if arr[j]-arr[i]<mini:
+                    mini=arr[j]-arr[i]
+        return mini
 # ?------------------
