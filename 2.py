@@ -1671,4 +1671,26 @@ class Solution(object):
                 if arr[j]-arr[i]<mini:
                     mini=arr[j]-arr[i]
         return mini
+    
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def pairSum(self, head):
+        arr = []
+
+        def helper(node):
+            if not node:
+                return
+            arr.append(node.val)
+            helper(node.next)
+        helper(head)
+        maksi = 0
+        for i in range(len(arr)-1, (len(arr)/2)-1, -1):
+            if arr[len(arr)-1-i]+arr[i] > maksi:
+                maksi = arr[len(arr)-1-i]+arr[i]
+        return maksi
 # ?------------------
