@@ -1743,4 +1743,20 @@ class Solution(object):
             if str1[i] != str2[i]:
                 count += 1
         return count
+
+#!https://leetcode.com/problems/kth-largest-element-in-a-stream/
+
+
+class KthLargest(object):
+
+    def __init__(self, k, nums):
+        self.arr = nums
+        self.k = k
+
+    def add(self, val):
+        self.arr.append(val)
+        self.arr = sorted(self.arr)
+        return self.arr[len(self.arr)-self.k]
+
+
 # ?------------------
