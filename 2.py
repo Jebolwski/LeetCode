@@ -1758,5 +1758,29 @@ class KthLargest(object):
         self.arr = sorted(self.arr)
         return self.arr[len(self.arr)-self.k]
 
+#!https://leetcode.com/problems/monotonic-array/
+class Solution(object):
+    def isMonotonic(self, nums):
+        if sorted(nums)==nums or sorted(nums)==nums[::-1]:
+            return True
+        return False
+    
+
+#!https://leetcode.com/problems/range-sum-of-bst/
+class Solution(object):
+    def rangeSumBST(self, root, low, high):
+        arr=[]
+        def helper(node):
+            if not node:
+                return
+            arr.append(node.val)
+            if node.left:
+                helper(node.left)
+            if node.right:
+                helper(node.right)
+        helper(root)
+        print(arr)
+        array=[i for i in arr if low<=i<=high]
+        return sum(array)
 
 # ?------------------
