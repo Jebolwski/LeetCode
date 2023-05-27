@@ -1783,4 +1783,19 @@ class Solution(object):
         array=[i for i in arr if low<=i<=high]
         return sum(array)
 
+#!https://leetcode.com/problems/next-greater-element-i/
+class Solution(object):
+    def nextGreaterElement(self, nums1, nums2):
+        arr=[]
+        for i in nums1:
+            indeks = nums2.index(i)
+            arr2 = nums2[indeks+1:]
+            if len(arr2)>0 and max(arr2)>i:
+                for j in arr2:
+                    if j>i:
+                        arr.append(j)
+                        break
+            else:
+                arr.append(-1)
+        return arr
 # ?------------------
