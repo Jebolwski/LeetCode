@@ -1806,4 +1806,33 @@ class Solution(object):
         arr1 = list(range(1,len(nums)+1))
         res = []   
         return set(arr1) - set(arr)
+
+#!https://leetcode.com/problems/design-parking-system/
+class ParkingSystem(object):
+
+    def __init__(self, big, medium, small):
+        self.big=[]
+        self.medium=[]
+        self.small=[]
+        self.bign=big
+        self.mediumn=medium
+        self.smalln=small
+        
+
+    def addCar(self, carType):
+        if carType==1:
+            if len(self.big)<self.bign:
+                self.big.append(1)
+                return True
+            return False
+        elif carType==2:
+            if len(self.medium)<self.mediumn:
+                self.medium.append(1)
+                return True
+            return False
+        elif carType==3:
+            if len(self.small)<self.smalln:
+                self.small.append(1)
+                return True
+            return False
 # ?------------------
