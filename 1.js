@@ -51,3 +51,35 @@ var map = function (arr, fn) {
   });
   return res;
 };
+
+//!https://leetcode.com/problems/counter-ii/
+var createCounter = function (init) {
+  let num = init;
+
+  function increment() {
+    num = num + 1;
+    return num;
+  }
+
+  function reset() {
+    num = init;
+    return num;
+  }
+
+  function decrement() {
+    num = num - 1;
+    return num;
+  }
+  return { increment, reset, decrement };
+};
+
+//!https://leetcode.com/problems/allow-one-function-call/
+var once = function (fn) {
+  let ans = true;
+  return function (...args) {
+    if (ans) {
+      ans = false;
+      return fn(...args);
+    }
+  };
+};

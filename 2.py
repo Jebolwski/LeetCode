@@ -1835,4 +1835,32 @@ class ParkingSystem(object):
                 self.small.append(1)
                 return True
             return False
+
+#!https://leetcode.com/problems/max-consecutive-ones/     
+class Solution(object):
+    def findMaxConsecutiveOnes(self, nums):
+        count=0
+        arr=[]
+        for i in range(len(nums)):
+            if nums[i]==1:
+                count+=1
+                if i==len(nums)-1:
+                    arr.append(count)
+            else:
+                arr.append(count)
+                count=0
+        return max(arr)
+    
+
+#!https://leetcode.com/problems/construct-the-rectangle/
+class Solution(object):
+    def constructRectangle(self, area):
+        if area==1:
+            return [1,1]
+        n=area
+        result = []
+        for i in range(1, n//2 + 1):
+            if n % i == 0:
+                result.append([i,n/i])
+        return result[len(result)//2][::-1]
 # ?------------------
