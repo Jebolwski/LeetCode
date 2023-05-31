@@ -1863,4 +1863,28 @@ class Solution(object):
             if n % i == 0:
                 result.append([i,n/i])
         return result[len(result)//2][::-1]
+    
+#!https://leetcode.com/problems/number-complement/
+class Solution(object):
+    def findComplement(self, num):
+        string=""
+        for i in str(bin(num)[2:]):
+            if i=='0':
+                string+='1'
+            else:
+                string+='0'
+        return int(string, 2)
+    
+#!https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/
+class Solution(object):
+    def numSteps(self, s):
+        s=int(s,2)
+        count=0
+        while s!=1:
+            if s%2==0:
+                s/=2
+            else:
+                s+=1
+            count+=1
+        return count
 # ?------------------
