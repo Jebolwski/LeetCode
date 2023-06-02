@@ -1888,6 +1888,54 @@ class Solution(object):
             count+=1
         return count
 
+#!https://leetcode.com/problems/find-mode-in-binary-search-tree/
+class Solution(object):
+    def findMode(self, root):
+        arr=[]
+        def helper(node):
+            if not node:
+                return 
+            arr.append(node.val)
+            if node.left:
+                helper(node.left)
+            if node.right:
+                helper(node.right)
+        helper(root)
+        def most_frequent(List):
+            counter = 0
+            num = List[0]
 
+            for i in List:
+                curr_frequency = List.count(i)
+                if(curr_frequency> counter):
+                    counter = curr_frequency
+                    num = i
+
+            return num
+        most = most_frequent(arr)
+        res=[]
+        for i in arr:
+            if arr.count(i)==arr.count(most) and i not in res:
+                res.append(i)
+        return res
         
+#!https://leetcode.com/problems/relative-ranks/
+class Solution(object):
+    def findRelativeRanks(self, score):
+        arr = sorted(score)[::-1]
+        res=[]
+        for i in range(len(arr)):
+            if i==0:
+                res.append(["Gold Medal",arr[i]])
+            elif i==1:
+                res.append(["Silver Medal",arr[i]])
+            elif i==2:
+                res.append(["Bronze Medal",arr[i]])
+            else:
+                res.append([str(i+1),arr[i]])
+        output=len(score)*[0]
+        for i in res:
+            index = score.index(i[1])
+            output[index]=i[0]
+        return output
 # ?------------------
