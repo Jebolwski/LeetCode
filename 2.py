@@ -1666,14 +1666,6 @@ class Solution(object):
         return arr
 
 #!https://leetcode.com/problems/minimum-absolute-difference-in-bst/
-# Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
-
 class Solution(object):
     def getMinimumDifference(self, root):
         arr = []
@@ -1694,11 +1686,6 @@ class Solution(object):
         return mini
 
 
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 class Solution(object):
     def pairSum(self, head):
         arr = []
@@ -1938,4 +1925,37 @@ class Solution(object):
             index = score.index(i[1])
             output[index]=i[0]
         return output
+    
+#!https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
+class Solution(object):
+    def countPrimeSetBits(self, left, right):
+        def is_prime(n):
+            if n==1:
+                return False
+            for i in range(2,n):
+              if (n%i) == 0:
+                return False
+            return True
+        count=0
+        for i in range(left,right+1):
+            bitli=bin(i)
+            num=bitli[2:].count('1')
+            if is_prime(num):
+                count+=1
+        return count
+    
+#!https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+class Solution(object):
+    def maxDepth(self, root):
+        arr=[]
+        def helper(node,depth=0):
+            if not node:
+                return depth
+            arr.append(depth)
+            for i in node.children:
+                helper(i,depth+1)
+        helper(root)
+        if len(arr)>0:
+            return max(arr)+1
+        return 0
 # ?------------------
