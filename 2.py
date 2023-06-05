@@ -1666,6 +1666,8 @@ class Solution(object):
         return arr
 
 #!https://leetcode.com/problems/minimum-absolute-difference-in-bst/
+
+
 class Solution(object):
     def getMinimumDifference(self, root):
         arr = []
@@ -1746,17 +1748,20 @@ class KthLargest(object):
         return self.arr[len(self.arr)-self.k]
 
 #!https://leetcode.com/problems/monotonic-array/
+
+
 class Solution(object):
     def isMonotonic(self, nums):
-        if sorted(nums)==nums or sorted(nums)==nums[::-1]:
+        if sorted(nums) == nums or sorted(nums) == nums[::-1]:
             return True
         return False
-    
+
 
 #!https://leetcode.com/problems/range-sum-of-bst/
 class Solution(object):
     def rangeSumBST(self, root, low, high):
-        arr=[]
+        arr = []
+
         def helper(node):
             if not node:
                 return
@@ -1767,19 +1772,21 @@ class Solution(object):
                 helper(node.right)
         helper(root)
         print(arr)
-        array=[i for i in arr if low<=i<=high]
+        array = [i for i in arr if low <= i <= high]
         return sum(array)
 
 #!https://leetcode.com/problems/next-greater-element-i/
+
+
 class Solution(object):
     def nextGreaterElement(self, nums1, nums2):
-        arr=[]
+        arr = []
         for i in nums1:
             indeks = nums2.index(i)
             arr2 = nums2[indeks+1:]
-            if len(arr2)>0 and max(arr2)>i:
+            if len(arr2) > 0 and max(arr2) > i:
                 for j in arr2:
-                    if j>i:
+                    if j > i:
                         arr.append(j)
                         break
             else:
@@ -1787,175 +1794,217 @@ class Solution(object):
         return arr
 
 #!https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+
+
 class Solution(object):
     def findDisappearedNumbers(self, nums):
         arr = list(collections.Counter(nums).keys())
-        arr1 = list(range(1,len(nums)+1))
-        res = []   
+        arr1 = list(range(1, len(nums)+1))
+        res = []
         return set(arr1) - set(arr)
 
 #!https://leetcode.com/problems/design-parking-system/
+
+
 class ParkingSystem(object):
 
     def __init__(self, big, medium, small):
-        self.big=[]
-        self.medium=[]
-        self.small=[]
-        self.bign=big
-        self.mediumn=medium
-        self.smalln=small
-        
+        self.big = []
+        self.medium = []
+        self.small = []
+        self.bign = big
+        self.mediumn = medium
+        self.smalln = small
 
     def addCar(self, carType):
-        if carType==1:
-            if len(self.big)<self.bign:
+        if carType == 1:
+            if len(self.big) < self.bign:
                 self.big.append(1)
                 return True
             return False
-        elif carType==2:
-            if len(self.medium)<self.mediumn:
+        elif carType == 2:
+            if len(self.medium) < self.mediumn:
                 self.medium.append(1)
                 return True
             return False
-        elif carType==3:
-            if len(self.small)<self.smalln:
+        elif carType == 3:
+            if len(self.small) < self.smalln:
                 self.small.append(1)
                 return True
             return False
 
-#!https://leetcode.com/problems/max-consecutive-ones/     
+#!https://leetcode.com/problems/max-consecutive-ones/
+
+
 class Solution(object):
     def findMaxConsecutiveOnes(self, nums):
-        count=0
-        arr=[]
+        count = 0
+        arr = []
         for i in range(len(nums)):
-            if nums[i]==1:
-                count+=1
-                if i==len(nums)-1:
+            if nums[i] == 1:
+                count += 1
+                if i == len(nums)-1:
                     arr.append(count)
             else:
                 arr.append(count)
-                count=0
+                count = 0
         return max(arr)
-    
+
 
 #!https://leetcode.com/problems/construct-the-rectangle/
 class Solution(object):
     def constructRectangle(self, area):
-        if area==1:
-            return [1,1]
-        n=area
+        if area == 1:
+            return [1, 1]
+        n = area
         result = []
         for i in range(1, n//2 + 1):
             if n % i == 0:
-                result.append([i,n/i])
+                result.append([i, n/i])
         return result[len(result)//2][::-1]
-    
+
 #!https://leetcode.com/problems/number-complement/
+
+
 class Solution(object):
     def findComplement(self, num):
-        string=""
+        string = ""
         for i in str(bin(num)[2:]):
-            if i=='0':
-                string+='1'
+            if i == '0':
+                string += '1'
             else:
-                string+='0'
+                string += '0'
         return int(string, 2)
-    
+
 #!https://leetcode.com/problems/number-of-steps-to-reduce-a-number-in-binary-representation-to-one/
+
+
 class Solution(object):
     def numSteps(self, s):
-        s=int(s,2)
-        count=0
-        while s!=1:
-            if s%2==0:
-                s/=2
+        s = int(s, 2)
+        count = 0
+        while s != 1:
+            if s % 2 == 0:
+                s /= 2
             else:
-                s+=1
-            count+=1
+                s += 1
+            count += 1
         return count
 
 #!https://leetcode.com/problems/find-mode-in-binary-search-tree/
+
+
 class Solution(object):
     def findMode(self, root):
-        arr=[]
+        arr = []
+
         def helper(node):
             if not node:
-                return 
+                return
             arr.append(node.val)
             if node.left:
                 helper(node.left)
             if node.right:
                 helper(node.right)
         helper(root)
+
         def most_frequent(List):
             counter = 0
             num = List[0]
 
             for i in List:
                 curr_frequency = List.count(i)
-                if(curr_frequency> counter):
+                if(curr_frequency > counter):
                     counter = curr_frequency
                     num = i
 
             return num
         most = most_frequent(arr)
-        res=[]
+        res = []
         for i in arr:
-            if arr.count(i)==arr.count(most) and i not in res:
+            if arr.count(i) == arr.count(most) and i not in res:
                 res.append(i)
         return res
-        
+
 #!https://leetcode.com/problems/relative-ranks/
+
+
 class Solution(object):
     def findRelativeRanks(self, score):
         arr = sorted(score)[::-1]
-        res=[]
+        res = []
         for i in range(len(arr)):
-            if i==0:
-                res.append(["Gold Medal",arr[i]])
-            elif i==1:
-                res.append(["Silver Medal",arr[i]])
-            elif i==2:
-                res.append(["Bronze Medal",arr[i]])
+            if i == 0:
+                res.append(["Gold Medal", arr[i]])
+            elif i == 1:
+                res.append(["Silver Medal", arr[i]])
+            elif i == 2:
+                res.append(["Bronze Medal", arr[i]])
             else:
-                res.append([str(i+1),arr[i]])
-        output=len(score)*[0]
+                res.append([str(i+1), arr[i]])
+        output = len(score)*[0]
         for i in res:
             index = score.index(i[1])
-            output[index]=i[0]
+            output[index] = i[0]
         return output
-    
+
 #!https://leetcode.com/problems/prime-number-of-set-bits-in-binary-representation/
+
+
 class Solution(object):
     def countPrimeSetBits(self, left, right):
         def is_prime(n):
-            if n==1:
+            if n == 1:
                 return False
-            for i in range(2,n):
-              if (n%i) == 0:
-                return False
+            for i in range(2, n):
+                if (n % i) == 0:
+                    return False
             return True
-        count=0
-        for i in range(left,right+1):
-            bitli=bin(i)
-            num=bitli[2:].count('1')
+        count = 0
+        for i in range(left, right+1):
+            bitli = bin(i)
+            num = bitli[2:].count('1')
             if is_prime(num):
-                count+=1
+                count += 1
         return count
-    
+
 #!https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+
+
 class Solution(object):
     def maxDepth(self, root):
-        arr=[]
-        def helper(node,depth=0):
+        arr = []
+
+        def helper(node, depth=0):
             if not node:
                 return depth
             arr.append(depth)
             for i in node.children:
-                helper(i,depth+1)
+                helper(i, depth+1)
         helper(root)
-        if len(arr)>0:
+        if len(arr) > 0:
             return max(arr)+1
         return 0
+
+#!https://leetcode.com/problems/flipping-an-image/
+
+
+class Solution(object):
+    def flipAndInvertImage(self, image):
+        for i in range(len(image)):
+            image[i] = image[i][::-1]
+            for j in range(len(image[i])):
+                image[i][j] = 0 if image[i][j] == 1 else 1
+        return image
+
+#!https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
+
+
+class Solution(object):
+    def findNumbers(self, nums):
+        c = 0
+        for i in nums:
+            if len(str(i)) % 2 == 0:
+                c += 1
+        return c
 # ?------------------
