@@ -2007,4 +2007,15 @@ class Solution(object):
             if len(str(i)) % 2 == 0:
                 c += 1
         return c
+
+#!https://leetcode.com/problems/array-partition/
+
+
+class Solution(object):
+    def arrayPairSum(self, nums):
+        nums = sorted(nums)
+        total = 0
+        for i in range(len(nums)/2):
+            total += min(nums.pop(), nums.pop())
+        return total
 # ?------------------
