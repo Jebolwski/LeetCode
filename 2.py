@@ -2018,4 +2018,27 @@ class Solution(object):
         for i in range(len(nums)/2):
             total += min(nums.pop(), nums.pop())
         return total
+
+#!https://leetcode.com/problems/minimum-index-sum-of-two-lists/
+
+
+class Solution(object):
+    def findRestaurant(self, list1, list2):
+        arr = []
+        for i in range(len(list1)):
+            if list1[i] in list2:
+                arr.append([list1[i], i+list2.index(list1[i])])
+        arr.sort(key=lambda x: x[1])
+        print(arr)
+        if len(arr) == 1:
+            return [arr[0][0]]
+        else:
+            res = []
+            for i in range(len(arr)-1):
+                res.append(arr[i][0])
+                if arr[i][1] != arr[i+1][1]:
+                    break
+            if arr[-1][1] == arr[0][1]:
+                res.append(arr[-1][0])
+            return res
 # ?------------------
