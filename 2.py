@@ -2041,4 +2041,29 @@ class Solution(object):
             if arr[-1][1] == arr[0][1]:
                 res.append(arr[-1][0])
             return res
+
+#!https://leetcode.com/problems/shortest-distance-to-a-character/
+
+
+class Solution(object):
+    def shortestToChar(self, s, c):
+        arr = []
+        for i in range(len(s)):
+            if s[i] == c:
+                arr.append(0)
+            else:
+                left = 100000
+                right = 100000
+                if i != len(s):
+                    try:
+                        right = s.index(c, i, len(s))-i
+                    except:
+                        pass
+                if i != 0:
+                    try:
+                        left = i-s.rindex(c, 0, i)
+                    except:
+                        pass
+                arr.append(min(right, left))
+        return arr
 # ?------------------
