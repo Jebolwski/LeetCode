@@ -2066,4 +2066,41 @@ class Solution(object):
                         pass
                 arr.append(min(right, left))
         return arr
+
+#!https://leetcode.com/problems/buddy-strings/
+
+
+class Solution(object):
+    def buddyStrings(self, s, goal):
+        def harfFarki(s, goal):
+            count = 0
+            for i in range(len(min(s, goal))):
+                if s[i] != goal[i]:
+                    count += 1
+            return count
+        gol = collections.Counter(goal)
+        sol = collections.Counter(s)
+        if harfFarki(s, goal) == 0 and s == goal and len(sol.keys()) == len(s):
+            return False
+        if sol == gol and harfFarki(s, goal) <= 2:
+            return True
+        return False
+
+#!https://leetcode.com/problems/check-if-one-string-swap-can-make-strings-equal/
+
+
+class Solution(object):
+    def areAlmostEqual(self, s, goal):
+        def harfFarki(s, goal):
+            count = 0
+            for i in range(len(min(s, goal))):
+                if s[i] != goal[i]:
+                    count += 1
+            return count
+        gol = collections.Counter(goal)
+        sol = collections.Counter(s)
+        if sol == gol and harfFarki(s, goal) <= 2:
+            return True
+        return False
+
 # ?------------------
