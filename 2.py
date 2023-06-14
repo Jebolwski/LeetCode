@@ -2103,4 +2103,44 @@ class Solution(object):
             return True
         return False
 
+
+#!https://leetcode.com/problems/backspace-string-compare/
+class Solution(object):
+    def backspaceCompare(self, s, t):
+        stack1 = []
+        stack2 = []
+        for i in s:
+            if i != "#":
+                stack1.append(i)
+            else:
+                if len(stack1) > 0:
+                    stack1.pop()
+
+        for i in t:
+            if i != "#":
+                stack2.append(i)
+            else:
+                if len(stack2) > 0:
+                    stack2.pop()
+
+        return stack1 == stack2
+
+#!https://leetcode.com/problems/decode-the-message/
+
+
+class Solution(object):
+    def decodeMessage(self, key, message):
+        arr = []
+        alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        for i in key:
+            if i not in arr and i != " ":
+                arr.append(i)
+        string = ""
+        for i in message:
+            if i == " ":
+                string += " "
+            else:
+                string += alphabet[arr.index(i)]
+        return string
 # ?------------------
