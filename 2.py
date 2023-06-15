@@ -2143,4 +2143,58 @@ class Solution(object):
             else:
                 string += alphabet[arr.index(i)]
         return string
+
+#!https://leetcode.com/problems/mean-of-array-after-removing-some-elements/
+
+
+class Solution(object):
+    def trimMean(self, arr):
+        number = int(0.05*len(arr))
+        for i in range(number):
+            arr.remove(max(arr))
+            arr.remove(min(arr))
+
+        return sum(arr)/float(len(arr))
+
+#!https://leetcode.com/problems/relative-sort-array/
+
+
+class Solution(object):
+    def relativeSortArray(self, arr1, arr2):
+        arr = []
+        for i in arr2:
+            while i in arr1:
+                arr1.remove(i)
+                arr.append(i)
+        arr += sorted(arr1)
+        return arr
+
+#!https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
+
+
+class Solution(object):
+    def findSpecialInteger(self, arr):
+        x = float(len(arr)/4)
+        for i in arr:
+            if arr.count(i) > x:
+                return i
+
+#!https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/
+
+
+class Solution(object):
+    def countKDifference(self, nums, k):
+        count = 0
+        for i in range(len(nums)-1):
+            for j in range(i+1, len(nums)):
+                if abs(nums[i]-nums[j]) == k:
+                    count += 1
+        return count
+
+#!https://leetcode.com/problems/defanging-an-ip-address/
+
+
+class Solution(object):
+    def defangIPaddr(self, address):
+        return address.replace(".", "[.]")
 # ?------------------
