@@ -2197,4 +2197,68 @@ class Solution(object):
 class Solution(object):
     def defangIPaddr(self, address):
         return address.replace(".", "[.]")
+
+#!https://leetcode.com/problems/transpose-matrix/
+
+
+class Solution(object):
+    def transpose(self, matrix):
+        m, n = len(matrix), len(matrix[0])
+        arr = [[0] * m for i in range(n)]
+        print(arr)
+        for i in range(m):
+            for j in range(n):
+                arr[j][i] = matrix[i][j]
+        return arr
+
+#!https://leetcode.com/problems/maximum-average-subarray-i/
+
+
+class Solution(object):
+    def findMaxAverage(self, nums, k):
+        s = sum(nums[0: k])
+        ma = s
+        for i in range(0, len(nums) - k):
+            s = s + nums[i + k] - nums[i]
+            ma = max(ma, s)
+        return ma / float(k)
+
+#!https://leetcode.com/problems/single-number-ii/
+
+
+class Solution(object):
+    def singleNumber(self, nums):
+        pd = collections.Counter(nums)
+        for i in pd.keys():
+            if pd[i] == 1:
+                return i
+
+#!https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
+
+
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        zeros = []
+        if nums.count(0) == len(nums):
+            return 0
+        for i in range(len(nums)):
+            if nums[i] == 0:
+                zeros.append(i)
+        if nums.count(1) == len(nums):
+            return len(nums) - 1
+        arr = []
+        for i in zeros:
+            zersos = nums.copy()
+            zersos.pop(i)
+            arr.append(zersos)
+        longest = 0
+        for i in arr:
+            string = ""
+            for j in i:
+                string += str(j)
+            arro = string.split("0")
+            for a in arro:
+                if len(a) > longest:
+                    longest = len(a)
+        return longest
 # ?------------------
