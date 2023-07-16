@@ -2261,4 +2261,18 @@ class Solution:
                 if len(a) > longest:
                     longest = len(a)
         return longest
+
+#!https://leetcode.com/problems/search-in-a-binary-search-tree/
+
+
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        node = root
+        while node != None:
+            if val == node.val:
+                return node
+            if val > node.val:
+                node = node.right
+            else:
+                node = node.left
 # ?------------------
