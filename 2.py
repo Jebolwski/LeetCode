@@ -2275,4 +2275,28 @@ class Solution:
                 node = node.right
             else:
                 node = node.left
+
+#!https://leetcode.com/problems/add-two-numbers-ii/
+
+
+class Solution:
+    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+        def generate(l1):
+            string = ""
+            while l1 != None:
+                string += str(l1.val)
+                l1 = l1.next
+            return string
+        arr = []
+        for i in str(int(generate(l1))+int(generate(l2))):
+            arr.append(i)
+        arr = arr[::-1]
+        root = ListNode()
+        node = root
+        while len(arr) > 0:
+            node.val = arr.pop()
+            if len(arr) > 0:
+                node.next = ListNode()
+                node = node.next
+        return root
 # ?------------------
