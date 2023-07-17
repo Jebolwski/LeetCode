@@ -2299,4 +2299,45 @@ class Solution:
                 node.next = ListNode()
                 node = node.next
         return root
+
+#!https://leetcode.com/problems/valid-mountain-array/
+
+
+class Solution:
+    def validMountainArray(self, arr: List[int]) -> bool:
+        fall = False
+        if len(arr) <= 2:
+            return False
+        for i in range(len(arr)-1):
+            if arr[i] == arr[i+1]:
+                return False
+            if fall and arr[i] <= arr[i+1]:
+                return False
+            if arr[i] > arr[i+1]:
+                fall = True
+            if i == 0 and fall:
+                return False
+        return fall
+
+#!https://leetcode.com/problems/di-string-match/
+
+
+class Solution:
+    def diStringMatch(self, s: str) -> List[int]:
+        per = []
+        lower = 0
+        upper = len(s)
+        for i in s:
+            if i == 'I':
+                per.append(lower)
+                lower += 1
+            else:
+                per.append(upper)
+                upper -= 1
+        if s[len(s)-1] == 'I':
+            per.append(upper)
+        else:
+            per.append(lower)
+        return per
+
 # ?------------------
