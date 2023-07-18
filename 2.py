@@ -2340,4 +2340,50 @@ class Solution:
             per.append(lower)
         return per
 
+#!https://leetcode.com/problems/rotate-string/submissions/
+
+
+class Solution:
+    def rotateString(self, s: str, goal: str) -> bool:
+        def shift(word):
+            return word[-1]+word[:len(word)-1]
+        word = s
+        for i in range(len(s)):
+            word = shift(word)
+            if word == goal:
+                return True
+        return False
+
+#!https://leetcode.com/problems/find-the-k-beauty-of-a-number/
+
+
+class Solution(object):
+    def divisorSubstrings(self, num, k):
+        string = str(num)
+        count = 0
+        for i in range(len(string)):
+            for j in range(i+1, len(string)+1):
+                if j-i == k and int(string[i:j]) != 0 and num % int(string[i:j]) == 0:
+                    count += 1
+        return count
+
+#!https://leetcode.com/problems/most-common-word/
+
+
+class Solution(object):
+    def mostCommonWord(self, paragraph, banned):
+        paragraph = paragraph.lower()
+        paragraph = paragraph.replace(",", " ").replace("!", " ").replace(
+            ".", " ").replace(";", " ").replace("?", " ").replace("?", " ").replace("'", " ")
+        arr = paragraph.split()
+        counter = collections.Counter(arr)
+        arr = []
+        for i in counter:
+            arr.append([i, counter[i]])
+        arr = sorted(arr, key=lambda x: x[1], reverse=True)
+        print(arr)
+        for i in arr:
+            if i[0] not in banned:
+                return i[0]
+
 # ?------------------
