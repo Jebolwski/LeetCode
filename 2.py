@@ -2386,4 +2386,38 @@ class Solution(object):
             if i[0] not in banned:
                 return i[0]
 
+#!https://leetcode.com/problems/n-ary-tree-preorder-traversal/
+
+
+class Solution(object):
+    def preorder(self, root):
+        if root == None:
+            return []
+        arr = [root.val]
+
+        def helper(node):
+            if node.children:
+                for i in node.children:
+                    arr.append(i.val)
+                    helper(i)
+        helper(root)
+        return arr
+
+#!https://leetcode.com/problems/n-ary-tree-postorder-traversal/
+
+
+class Solution(object):
+    def postorder(self, root):
+        if root == None:
+            return []
+        arr = []
+
+        def helper(node):
+            if node.children:
+                for i in node.children:
+                    helper(i)
+                    arr.append(i.val)
+        helper(root)
+        arr.append(root.val)
+        return arr
 # ?------------------
