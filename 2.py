@@ -2420,4 +2420,34 @@ class Solution(object):
         helper(root)
         arr.append(root.val)
         return arr
+
+#!https://leetcode.com/problems/complement-of-base-10-integer/
+
+
+class Solution(object):
+    def bitwiseComplement(self, n):
+        n = str(bin(n)[2:]).replace('1', '2')
+        n = n.replace('0', '1')
+        n = n.replace('2', '0')
+        print(n)
+        total = 0
+        for i in range(len(n)):
+            total += int(n[len(n)-i-1]) * pow(2, i)
+        return total
+
+#!https://leetcode.com/problems/sum-of-all-subset-xor-totals/submissions/
+
+
+class Solution(object):
+    def subsetXORSum(self, nums):
+        arr = []
+        for n in range(len(nums) + 1):
+            arr += list(combinations(nums, n))
+        total = 0
+        for i in arr:
+            x = 0
+            for j in i:
+                x ^= j
+            total += x
+        return total
 # ?------------------
