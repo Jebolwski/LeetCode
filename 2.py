@@ -2450,4 +2450,14 @@ class Solution(object):
                 x ^= j
             total += x
         return total
+
+#!https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/
+
+
+class Solution(object):
+    def smallerNumbersThanCurrent(self, nums):
+        arr = []
+        for i in range(len(nums)):
+            arr.append(len(filter(lambda score: score < nums[i], nums)))
+        return arr
 # ?------------------
