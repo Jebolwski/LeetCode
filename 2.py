@@ -2460,4 +2460,81 @@ class Solution(object):
         for i in range(len(nums)):
             arr.append(len(filter(lambda score: score < nums[i], nums)))
         return arr
+
+#!https://leetcode.com/problems/univalued-binary-tree/
+
+
+class Solution(object):
+    def isUnivalTree(self, root):
+        arr = []
+
+        def helper(node):
+            if not node:
+                return
+            arr.append(node.val)
+            if node.left:
+                helper(node.left)
+            if node.right:
+                helper(node.right)
+        helper(root)
+        if arr.count(arr[0]) == len(arr):
+            return True
+        return False
+
+#!https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+
+
+class Solution(object):
+    def repeatedNTimes(self, nums):
+        for i in collections.Counter(nums).keys():
+            if nums.count(i) == len(nums)/2:
+                return i
+
+#!https://leetcode.com/problems/unique-number-of-occurrences/
+
+
+class Solution(object):
+    def uniqueOccurrences(self, arr):
+        res = []
+        for i in collections.Counter(arr).keys():
+            print(res)
+            if arr.count(i) in res:
+                return False
+            res.append(arr.count(i))
+        return True
+
+
+#!https://leetcode.com/problems/rank-transform-of-an-array/
+
+class Solution(object):
+    def arrayRankTransform(self, arr):
+        sorted_list = sorted(list(set(arr)))
+        x = 1
+        temp = {}
+        for i in sorted_list:
+            temp[i] = x
+            x += 1
+        for i in range(len(arr)):
+            arr[i] = temp[arr[i]]
+        return arr
+
+#!https://leetcode.com/problems/day-of-the-year/
+
+
+class Solution(object):
+    def dayOfYear(self, date):
+        date = date.split("-")
+        dp = {1: 31, 2: 28, 3: 31, 4: 30, 5: 31, 6: 30,
+              7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 30}
+        y = int(date[0])
+        if (y % 400) == 0 or ((y % 4 == 0) and (y % 100 != 0)):
+            dp[2] = 29
+
+        def addMonthDays(month):
+            total = 0
+            for i in range(1, month):
+                total += dp[i]
+            return total
+
+        return (addMonthDays(int(date[1]))+int(date[2]))
 # ?------------------
