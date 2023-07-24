@@ -2537,4 +2537,46 @@ class Solution(object):
             return total
 
         return (addMonthDays(int(date[1]))+int(date[2]))
+
+#!https://leetcode.com/problems/three-consecutive-odds/
+
+
+class Solution(object):
+    def threeConsecutiveOdds(self, arr):
+        def three(arr):
+            if arr[0] % 2 == 1 and arr[1] % 2 == 1 and arr[2] % 2 == 1:
+                return True
+            return False
+        if len(arr) == 3:
+            return three(arr)
+        for i in range(len(arr)-2):
+            if three(arr[i:i+3]):
+                return True
+        return False
+
+#!https://leetcode.com/problems/lemonade-change/
+
+
+class Solution(object):
+    def lemonadeChange(self, bills):
+        stack = []
+        for i in bills:
+            if i == 10:
+                if stack.count(5) >= 1:
+                    stack.remove(5)
+                else:
+                    return False
+            elif i == 20:
+                if stack.count(10) >= 1 and stack.count(5) >= 1:
+                    stack.remove(10)
+                    stack.remove(5)
+                elif stack.count(5) >= 3:
+                    stack.remove(5)
+                    stack.remove(5)
+                    stack.remove(5)
+                else:
+                    return False
+            stack.append(i)
+        return True
+
 # ?------------------
