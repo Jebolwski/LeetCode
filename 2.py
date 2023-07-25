@@ -2579,4 +2579,40 @@ class Solution(object):
             stack.append(i)
         return True
 
+#!https://leetcode.com/problems/greatest-english-letter-in-upper-and-lower-case/
+
+
+class Solution(object):
+    def greatestLetter(self, s):
+        alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        collect = collections.Counter(s.lower())
+        a = collect.keys()
+        arr = []
+        for i in a:
+            if i in s and i.upper() in s:
+                arr.append([i, alphabet.index(i)])
+        arr = sorted(arr, key=lambda x: x[1], reverse=True)
+        if len(arr) > 0:
+            return arr[0][0].upper()
+        else:
+            return ""
+
+#!https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/
+
+
+class Solution(object):
+    def freqAlphabets(self, s):
+        dp = {'a': '1', 'b': '2', 'c': '3', 'd': '4',
+              'e': '5', 'f': '6', 'g': '7', 'h': '8', 'i': '9'}
+        dp1 = {'j': '10#', 'k': '11#', 'l': '12#', 'm': '13#', 'n': '14#', 'o': '15#', 'p': '16#', 'q': '17#',
+               'r': '18#', 's': '19#', 't': '20#', 'u': '21#', 'v': '22#', 'w': '23#', 'x': '24#', 'y': '25#', 'z': '26#'}
+        for i in dp1:
+            if dp1[i] in s:
+                s = s.replace(dp1[i], i)
+        for i in dp:
+            if dp[i] in s:
+                s = s.replace(dp[i], i)
+        return s
+
 # ?------------------
