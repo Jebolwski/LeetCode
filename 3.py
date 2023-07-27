@@ -39,3 +39,19 @@ class Solution(object):
             if i % 3 == 0 or i % 5 == 0 or i % 7 == 0:
                 total += i
         return total
+
+#!https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
+
+
+class Solution(object):
+    def isPrefixOfWord(self, sentence, searchWord):
+        sentence = sentence.split(" ")
+        index = -1
+        for i in sentence:
+            if searchWord in i:
+                if i.index(searchWord) == 0:
+                    index = sentence.index(i)
+                    break
+        if index == -1:
+            return -1
+        return index+1
