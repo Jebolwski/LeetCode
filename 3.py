@@ -145,3 +145,57 @@ class Solution(object):
                 num1 = num1-num2
             count += 1
         return 0
+
+#!https://leetcode.com/problems/reformat-date/
+
+
+class Solution(object):
+    def reformatDate(self, date):
+        arr = date.split(" ")
+        dayy = arr[0]
+        dp = {"Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06",
+              "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"}
+        day = dayy[:len(dayy)-2]
+        month = dp[arr[1]]
+        year = arr[2]
+        dp1 = {"1": "01", "2": "02", "3": "03", "4": "04",
+               "5": "05", "6": "06", "7": "07", "8": "08", "9": "09"}
+        if day == "1" or day == "2" or day == "3" or day == "4" or day == "5" or day == "6" or day == "7" or day == "8" or day == "9":
+            day = dp1[day]
+        string = year
+        string += "-"
+        string += month
+        string += "-"
+        string += day
+        return (string)
+
+#!https://leetcode.com/problems/distance-between-bus-stops/
+
+
+class Solution(object):
+    def distanceBetweenBusStops(self, distance, start, destination):
+        if start > destination:
+            start, destination = destination, start
+        way1 = sum(distance[start:destination])
+        if start == 0:
+            way2 = sum(distance[destination:])
+        else:
+            way2 = sum(distance[:start])+sum(distance[destination:])
+        return min(way1, way2)
+
+#!https://leetcode.com/problems/unique-morse-code-words/
+class Solution(object):
+    def uniqueMorseRepresentations(self, words):
+        alphabet = {"a": ".-", "b": "-...", "c": "-.-.", "d": "-..", "e": ".", "f": "..-.", "g": "--.", "h": "....", "i": "..", "j": ".---", "k": "-.-", "l": ".-..", "m": "--",
+                    "n": "-.", "o": "---", "p": ".--.", "q": "--.-", "r": ".-.", "s": "...", "t": "-", "u": "..-", "v": "...-", "w": ".--", "x": "-..-", "y": "-.--", "z": "--.."}
+        arr = []
+        for word in words:
+            string = ""
+            for i in word:
+                string += alphabet[i]
+            arr.append(string)
+        arr1 = []
+        for i in arr:
+            if i not in arr1:
+                arr1.append(i)
+        return len(arr1)
