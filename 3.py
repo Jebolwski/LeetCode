@@ -199,3 +199,30 @@ class Solution(object):
             if i not in arr1:
                 arr1.append(i)
         return len(arr1)
+
+#!https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
+class Solution(object):
+    def sumRootToLeaf(self, root):
+        arr=[]
+        def helper(node,string):
+            if not node.left and not node.right:
+                string+=str(node.val)
+                arr.append(string)
+                return
+            string+=str(node.val)
+            if node.left:
+                helper(node.left,string)
+            if node.right:
+                helper(node.right,string)
+        helper(root,"")
+        return sum([int(i,2) for i in arr])
+    
+#!https://leetcode.com/problems/occurrences-after-bigram/
+class Solution(object):
+    def findOcurrences(self, text, first, second):
+        arr = text.split(" ")
+        res = []
+        for i in range(len(arr)-2):
+            if arr[i]==first and arr[i+1]==second:
+                res.append(arr[i+2])
+        return res
