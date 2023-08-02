@@ -226,3 +226,23 @@ class Solution(object):
             if arr[i]==first and arr[i+1]==second:
                 res.append(arr[i+2])
         return res
+
+
+#!https://leetcode.com/problems/combinations/
+class Solution(object):
+    def combine(self, n, k):
+        array = [i for i in range(1,n+1)]
+        return combinations(array,k)
+        
+#!https://leetcode.com/problems/sort-integers-by-the-number-of-1-bits/
+class Solution(object):
+    def sortByBits(self, arr):
+        arr = sorted(arr)
+        res = []
+        for i in arr:
+            res.append([i,bin(i)[2:].count('1')])
+        res = sorted(res, key=lambda x: x[1])
+        outp = []
+        for i in res:
+            outp.append(i[0])
+        return outp
