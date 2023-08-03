@@ -246,3 +246,26 @@ class Solution(object):
         for i in res:
             outp.append(i[0])
         return outp
+
+#!https://leetcode.com/problems/sort-array-by-increasing-frequency
+class Solution:
+    def frequencySort(self, nums: List[int]) -> List[int]:
+        nums = sorted(nums)[::-1]
+        return (sorted(nums, key=lambda x: nums.count(x)))
+    
+#!https://leetcode.com/problems/largest-substring-between-two-equal-characters/
+class Solution:
+    def maxLengthBetweenEqualCharacters(self, s: str) -> int:
+        flag=False
+        arr=[]
+        dp=collections.Counter(s)
+        for i in dp.keys():
+            if dp[i]>=2:
+                arr.append(i)
+        res=[]
+        for i in arr:
+            res.append(s.rindex(i)-s.index(i)-1)
+
+        if len(res)>0:
+            return max(res)
+        return -1
