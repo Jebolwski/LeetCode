@@ -269,3 +269,32 @@ class Solution:
         if len(res)>0:
             return max(res)
         return -1
+
+#!https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/  
+class Solution:
+    def arrayStringsAreEqual(self, word1: List[str], word2: List[str]) -> bool:
+        s1=""
+        for i in word1:
+            s1+=i
+        s2=""
+        for i in word2:
+            s2+=i
+        return s1==s2
+    
+#!https://leetcode.com/problems/count-the-number-of-consistent-strings/
+def compare(list1,list2):
+        for j in list1:
+            if j not in list2:
+                return False
+        return True 
+        count=0
+        allowed_list = sorted(list(allowed))
+        for i in words:
+            list_i = sorted(list(i))
+            arr=[]
+            for i in list_i:
+                if i not in arr:
+                    arr.append(i)
+            if compare(arr,allowed_list):
+                count+=1
+        return count
