@@ -298,3 +298,66 @@ def compare(list1,list2):
             if compare(arr,allowed_list):
                 count+=1
         return count
+
+#!https://leetcode.com/problems/defuse-the-bomb/
+class Solution:
+    def decrypt(self, code: List[int], k: int) -> List[int]:
+        temp = [i for i in code]
+        if k==0:
+            return [0]*len(code)
+        if k>0:
+            for i in range(len(code)):
+                total=0
+                for j in range(1,k+1):
+                    total+=temp[(i+j)%len(code)]
+                code[i]=total
+        else:
+            for i in range(len(code)):
+                total=0
+                for j in range(1,abs(k)+1):
+                    total+=temp[(i-j)%len(code)]
+                code[i]=total
+        return code
+    
+#!https://leetcode.com/problems/truncate-sentence/
+class Solution:
+    def truncateSentence(self, s: str, k: int) -> str:
+        arr = s.split(" ")
+        return " ".join(arr[:k])
+
+#!https://leetcode.com/problems/find-center-of-star-graph/
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+        if edges[0][0]==edges[1][0] or edges[0][0]==edges[1][1]:
+            return edges[0][0]
+        else:
+            return edges[0][1]
+
+#!https://leetcode.com/problems/destination-city/ 
+class Solution:
+    def destCity(self, paths: List[List[str]]) -> str:
+        arr=[]
+        for i in paths:
+            for j in i:
+                arr.append(j)
+        ones=[]
+        for i in arr:
+            if arr.count(i)==1:
+                ones.append(i)
+        for i in ones:
+            for j in paths:
+                if j[1]==i:
+                    return i
+                
+#!https://leetcode.com/problems/check-if-all-1s-are-at-least-length-k-places-away/
+class Solution:
+    def kLengthApart(self, nums: List[int], k: int) -> bool:
+        arr=[]
+        for i in range(len(nums)):
+            if nums[i]==1:
+                arr.append(i)
+        
+        for i in range(len(arr)-1):
+            if arr[i]+k>=arr[i+1]:
+                return False
+        return True
