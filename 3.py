@@ -361,3 +361,26 @@ class Solution:
             if arr[i]+k>=arr[i+1]:
                 return False
         return True
+    
+#!https://leetcode.com/problems/search-a-2d-matrix/
+class Solution(object):
+    def searchMatrix(self, matrix, target):
+        for i in matrix:
+            for j in i:
+                if target==j:
+                    return True
+        return False
+    
+#!https://leetcode.com/problems/richest-customer-wealth/
+class Solution(object):
+    def maximumWealth(self, accounts):
+        for i in range(len(accounts)):
+            accounts[i]=sum(accounts[i])
+        return max(accounts)
+
+#!https://leetcode.com/problems/goal-parser-interpretation/ 
+class Solution(object):
+    def interpret(self, command):
+        command = command.replace("()","o")
+        command = command.replace("(al)","al")
+        return (command)
