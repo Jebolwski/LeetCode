@@ -384,3 +384,11 @@ class Solution(object):
         command = command.replace("()","o")
         command = command.replace("(al)","al")
         return (command)
+
+#!https://leetcode.com/problems/create-target-array-in-the-given-order/  
+class Solution(object):
+    def createTargetArray(self, nums, index):
+        target=[]
+        for i in range(len(nums)):
+            target.insert(index[i],nums[i])
+        return target
