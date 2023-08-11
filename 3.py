@@ -392,3 +392,51 @@ class Solution(object):
         for i in range(len(nums)):
             target.insert(index[i],nums[i])
         return target
+
+#!https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/  
+class Solution(object):
+    def maxDepth(self, s):
+        stack=[]
+        x=0
+        for i in s:
+            if i=="(":
+                stack.append(i)
+            elif i==")":
+                stack.pop()
+            if len(stack)>x:
+                x = len(stack)    
+        return x
+
+#!https://leetcode.com/problems/count-of-matches-in-tournament/  
+class Solution(object):
+    def numberOfMatches(self, n):
+        if n==1:
+            return 0
+        elif n==2:
+            return 1
+        elif n==4:
+            return 3
+        elif n==8:
+            return 7
+        elif n==16:
+            return 15
+        elif n==32:
+            return 31
+        elif n==64:
+            return 63
+        elif n==128:
+            return 127
+        teams = n
+        match = 0
+        while teams>0:
+            if teams==1:
+                return int(match + teams)
+            if teams % 2 == 1:
+                match += math.floor(teams / 2)
+                teams = math.ceil(teams / 2)
+            else:
+                match += teams / 2
+                teams = teams / 2
+        return match
+            
+            
