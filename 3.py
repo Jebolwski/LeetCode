@@ -439,4 +439,16 @@ class Solution(object):
                 teams = teams / 2
         return match
             
+
+#!https://leetcode.com/problems/divide-a-string-into-groups-of-size-k/
+class Solution(object):
+    def divideString(self, s, k, fill):
+        arr = []
+        for i in range(0,len(s),k):
+            if len(s[i:i+k])==k:
+                arr.append(s[i:i+k])
+            else:
+                string = s[i:i+k]+fill*(k - len(s[i:i+k]))
+                arr.append(string)
+        return arr
             
