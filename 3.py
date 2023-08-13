@@ -452,3 +452,20 @@ class Solution(object):
                 arr.append(string)
         return arr
             
+#!https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/
+class Solution(object):
+    def maxProduct(self, nums):
+        maxi=0
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if (nums[i]-1)*(nums[j]-1)>maxi:
+                    maxi=(nums[i]-1)*(nums[j]-1)
+        return maxi
+
+#!https://leetcode.com/problems/running-sum-of-1d-array/
+class Solution(object):
+    def runningSum(self, nums):
+        res=[]
+        for i in range(len(nums)):
+            res.append(sum(nums[:i+1]))
+        return res
