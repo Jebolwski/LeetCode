@@ -469,3 +469,66 @@ class Solution(object):
         for i in range(len(nums)):
             res.append(sum(nums[:i+1]))
         return res
+    
+#!https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/
+class Solution(object):
+    def maximumTime(self, time):
+        arr=[]
+        for i in range(len(time)):
+            arr.append(time[i])
+        if arr[0]=="?" and arr[1]=="?":
+            arr[0]="2"
+            arr[1]="3"
+        for i in range(len(arr)):
+            if arr[i]=="?":
+                if i==0:
+                    if arr[1]<"4":
+                        arr[i]="2"
+                    else:
+                        arr[i]="1"
+                if i==1:
+                    if arr[0]=="0" or arr[0]=="1":
+                        arr[i]="9"
+                    else:
+                        arr[i]="3"
+                if i==3:
+                    arr[i]="5"
+                if i==4:
+                    arr[i]="9"
+        return "".join(arr)
+    
+#!https://leetcode.com/problems/find-the-highest-altitude/
+class Solution(object):
+    def largestAltitude(self, gain):
+        arr=[]
+        for i in range(len(gain)):
+            arr.append(sum(gain[:i+1]))
+        print(arr)
+        if max(arr)<0:
+            return 0
+        return max(arr)
+    
+#!https://leetcode.com/problems/decode-xored-array/
+class Solution(object):
+    def decode(self, encoded, first):
+        arr=[first]
+        for i in range(len(encoded)):
+            arr.append(arr[-1] ^ encoded[i]) 
+        return (arr)
+    
+#!https://leetcode.com/problems/maximum-units-on-a-truck/
+class Solution(object):
+    def maximumUnits(self, boxTypes, truckSize):
+        boxTypes.sort(key = lambda x: x[1],reverse=True)
+        total=0
+        res=0
+        for i in range(len(boxTypes)):
+            if total==truckSize:
+                break 
+            elif (truckSize - total) > boxTypes[i][0]:
+                total+=boxTypes[i][0]
+                res+=boxTypes[i][0]*boxTypes[i][1]
+            else:
+                res += (truckSize - total) * boxTypes[i][1]
+                total += truckSize - total
+        return res
