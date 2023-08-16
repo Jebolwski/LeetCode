@@ -532,3 +532,43 @@ class Solution(object):
                 res += (truckSize - total) * boxTypes[i][1]
                 total += truckSize - total
         return res
+
+#!https://leetcode.com/problems/count-items-matching-a-rule/
+class Solution(object):
+    def countMatches(self, items, ruleKey, ruleValue):
+        count = 0
+        if ruleKey=="type":
+            for i in items:
+                if i[0]==ruleValue:
+                    count+=1
+        elif ruleKey=="color":
+            for i in items:
+                if i[1]==ruleValue:
+                    count+=1
+        elif ruleKey=="name":
+            for i in items:
+                if i[2]==ruleValue:
+                    count+=1
+        return count
+    
+#!https://leetcode.com/problems/second-largest-digit-in-a-string/
+class Solution(object):
+    def secondHighest(self, s):
+        arr=["1","2","3","4","5","6","7","8","9","0"]
+        res=[]
+        for i in s:
+            if i in arr and int(i) not in res:
+                res.append(int(i))
+        res.sort()
+        if len(res)<=1:
+            return -1
+        return res[-2]
+
+#!https://leetcode.com/problems/remove-digit-from-number-to-maximize-result/  
+class Solution(object):
+    def removeDigit(self, number, digit):
+        arr=[]
+        for i in range(len(number)):
+            if number[i]==digit:
+                arr.append(int(number[:i]+number[i+1:]))
+        return str(max(arr))
