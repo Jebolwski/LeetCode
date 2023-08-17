@@ -572,3 +572,21 @@ class Solution(object):
             if number[i]==digit:
                 arr.append(int(number[:i]+number[i+1:]))
         return str(max(arr))
+
+#!https://leetcode.com/problems/sorting-the-sentence/
+class Solution(object):
+    def sortSentence(self, s):
+        words = s.split(" ")
+        arr=[0]*len(words)
+        for i in words:
+            arr[int(i[-1])-1] = i[:len(i)-1]
+        return " ".join(arr)
+    
+#!https://leetcode.com/problems/minimum-distance-to-the-target-element/
+class Solution(object):
+    def getMinDistance(self, nums, target, start):
+        mini=99999999
+        for i in range(len(nums)):
+            if nums[i]==target and abs(i-start)<mini:
+                mini=abs(i-start)
+        return mini
