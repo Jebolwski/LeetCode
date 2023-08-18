@@ -590,3 +590,34 @@ class Solution(object):
             if nums[i]==target and abs(i-start)<mini:
                 mini=abs(i-start)
         return mini
+    
+#!https://leetcode.com/problems/shuffle-string/
+class Solution(object):
+    def restoreString(self, s, indices):
+        arr=[0]*len(s)
+        for i in range(len(indices)):
+            arr[indices[i]]=s[i]
+        return "".join(arr)
+    
+#!https://leetcode.com/problems/average-value-of-even-numbers-that-are-divisible-by-three/
+class Solution(object):
+    def averageValue(self, nums):
+        count=0
+        total=0
+        for i in nums:
+            if i%3==0 and i%2==0:
+                total+=i
+                count+=1
+        if count==0:
+            return 0
+        return total / count
+    
+#!https://leetcode.com/problems/binary-prefix-divisible-by-5/
+class Solution(object):
+    def prefixesDivBy5(self, nums):
+        arr=[]
+        for i in range(len(nums)):
+            nums[i]=str(nums[i])
+        for i in range(len(nums)):
+            arr.append(int("".join(nums[:i+1]),2)%5==0)
+        return arr
