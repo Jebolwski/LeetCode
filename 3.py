@@ -621,3 +621,49 @@ class Solution(object):
         for i in range(len(nums)):
             arr.append(int("".join(nums[:i+1]),2)%5==0)
         return arr
+
+#!https://leetcode.com/problems/determine-if-string-halves-are-alike/
+class Solution(object):
+    def halvesAreAlike(self, s):
+        s=lower(s)
+        first = s[:len(s)/2]
+        second = s[len(s)/2:]
+        vowels = ['a', 'e', 'i', 'o', 'u']
+        first_1 = 0
+        second_1 = 0
+        for i in first:
+            if i in vowels:
+                first_1+=1
+        for i in second:
+            if i in vowels:
+                second_1+=1
+        return second_1==first_1
+    
+#!https://leetcode.com/problems/check-if-the-sentence-is-pangram/
+class Solution(object):
+    def checkIfPangram(self, sentence):
+        alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        for i in sentence:
+            if i in alphabet:
+                alphabet.remove(i)
+        return len(alphabet)==0
+
+#!https://leetcode.com/problems/can-make-arithmetic-progression-from-sequence/
+class Solution(object):
+    def canMakeArithmeticProgression(self, arr):
+        arr=sorted(arr)
+        k=abs(arr[0]-arr[1])
+        for i in range(len(arr)-1):
+            if abs(arr[i]-arr[i+1])!=k:
+                return False
+        return True
+    
+#!https://leetcode.com/problems/sum-of-all-odd-length-subarrays/
+class Solution(object):
+    def sumOddLengthSubarrays(self, arr):
+        total=0
+        for i in range(len(arr)):
+            for j in range(i+1,len(arr)+1):
+                if len(arr[i:j])%2==1:
+                    total+=sum(arr[i:j])
+        return total
