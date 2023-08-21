@@ -667,3 +667,21 @@ class Solution(object):
                 if len(arr[i:j])%2==1:
                     total+=sum(arr[i:j])
         return total
+
+#!https://leetcode.com/problems/maximum-number-of-balls-in-a-box/
+class Solution(object):
+    def countBalls(self, lowLimit, highLimit):
+        arr=[0]*50
+        for i in range(lowLimit,highLimit+1):
+            arr[sum([int(i) for i in list(str(i))])]+=1
+        return max(arr)
+
+#!https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/
+class Solution(object):
+    def minOperations(self, nums):
+        total=0
+        for i in range(len(nums)-1):
+            if nums[i+1]<=nums[i]:
+                total+=(nums[i]+1)-(nums[i+1])
+                nums[i+1]=nums[i]+1
+        return total
