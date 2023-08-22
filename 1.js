@@ -88,3 +88,50 @@ var once = function (fn) {
 var argumentsLength = function (...args) {
   return args.length;
 };
+
+//!https://leetcode.com/problems/array-wrapper/
+var ArrayWrapper = function (nums) {
+  this.nums = nums;
+};
+
+ArrayWrapper.prototype.valueOf = function () {
+  result = 0;
+  for (let i = 0; i < this.nums.length; i++) {
+    result += this.nums[i];
+  }
+  return result;
+};
+
+ArrayWrapper.prototype.toString = function () {
+  if (this.nums.length == 0) {
+    return "[]";
+  }
+  let result = "[";
+  for (let i = 0; i < this.nums.length; i++) {
+    result += this.nums[i] + ",";
+  }
+  result = result.slice(0, -1);
+  result += "]";
+  return result;
+};
+
+//!https://leetcode.com/problems/create-hello-world-function/
+var createHelloWorld = function () {
+  return function (...args) {
+    return "Hello World";
+  };
+};
+
+//!https://leetcode.com/problems/to-be-or-not-to-be/
+var expect = function (val) {
+  return {
+    toBe: (val2) => {
+      if (val !== val2) throw new Error("Not Equal");
+      else return true;
+    },
+    notToBe: (val2) => {
+      if (val === val2) throw new Error("Equal");
+      else return true;
+    },
+  };
+};
