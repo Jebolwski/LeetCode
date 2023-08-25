@@ -1,3 +1,4 @@
+import collections
 
 #!https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
 class Solution(object):
@@ -685,3 +686,95 @@ class Solution(object):
                 total+=(nums[i]+1)-(nums[i+1])
                 nums[i+1]=nums[i]+1
         return total
+
+#!https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/
+class Solution(object):
+    def countGoodSubstrings(self, s):
+        arr=[]
+        counter=0
+        for i in range(len(s)-2):
+            if len(list(s[i:i+3]))==len(collections.Counter(s[i:i+3]).keys()):
+                counter+=1
+        return counter
+    
+#!https://leetcode.com/problems/count-equal-and-divisible-pairs-in-an-array/
+class Solution(object):
+    def countPairs(self, nums, k):
+        count=0
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i] == nums[j] and (i*j)%k==0:
+                    count+=1
+        return count
+
+#!https://leetcode.com/problems/count-prefixes-of-a-given-string/
+class Solution(object):
+    def countPrefixes(self, words, s):
+        count=0
+        for i in words:
+            if i in s and s.index(i)==0:
+                count+=1
+        return count
+    
+#!https://leetcode.com/problems/counting-words-with-a-given-prefix/
+class Solution(object):
+    def prefixCount(self, words, pref):
+        count=0
+        for i in words:
+            if pref in i and i.index(pref)==0:
+                count+=1
+        return count
+
+#!https://leetcode.com/problems/count-integers-with-even-digit-sum/
+class Solution(object):
+    def countEven(self, num):
+        def sumOfDigits(num):
+            dizi = [int(i) for i in str(num)]
+            return sum(dizi)%2==0
+        count=0
+        for i in range(1,num+1):
+            if sumOfDigits(i):
+                count+=1
+        return count
+    
+#!https://leetcode.com/problems/separate-the-digits-in-an-array/
+class Solution(object):
+    def separateDigits(self, nums):
+        arr=[]
+        for i in nums:
+            dizi = [int(i) for i in str(i)]
+            arr+=dizi
+        return arr
+
+#!https://leetcode.com/problems/alternating-digit-sum/   
+class Solution(object):
+    def alternateDigitSum(self, n):
+        dizi=[int(i) for i in str(n)]
+        flag=False
+        total=0
+        for i in dizi:
+            if flag:
+                total+=-1*i
+                flag=False
+            else:
+                total+=i
+                flag=True
+        return total
+
+#!https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/
+class Solution(object):
+    def finalPrices(self, prices):
+        def findJ(i):
+            for j in range(i+1,len(prices)):
+                if prices[j]<=prices[i]:
+                    return j
+            return -1
+        arr=[]
+        for i in range(len(prices)):
+            j = findJ(i)
+            if j==-1:
+                arr.append(prices[i])
+            else:
+                arr.append(prices[i]-prices[j])
+        return arr
+        
