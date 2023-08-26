@@ -778,3 +778,17 @@ class Solution(object):
                 arr.append(prices[i]-prices[j])
         return arr
         
+#!https://leetcode.com/problems/calculate-money-in-leetcode-bank/
+class Solution(object):
+    def totalMoney(self, n):
+        x=1
+        week=1
+        arr=[]
+        for i in range(n):
+            if i%7==0:
+                x=week
+                week+=1
+            arr.append(x)
+            x+=1
+            print(week,x)
+        return sum(arr)
