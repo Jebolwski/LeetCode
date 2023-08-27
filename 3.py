@@ -792,3 +792,26 @@ class Solution(object):
             x+=1
             print(week,x)
         return sum(arr)
+
+#!https://leetcode.com/problems/redistribute-characters-to-make-all-strings-equal/
+class Solution(object):
+    def makeEqual(self, words):
+        total = ""
+        for i in words:
+            total+=i
+        counter = collections.Counter(total)
+        for i in counter:
+            if counter[i]%len(words)!=0:
+                return False
+        return True
+
+#!https://leetcode.com/problems/count-square-sum-triples/
+class Solution(object):
+    def countTriples(self, n):
+        count=0
+        for i in range(n+1):
+            for j in range(i+1,n+1):
+                for k in range(j+1,n+1):
+                    if (j**2)+(i**2)==k**2:
+                        count+=1
+        return count*2
