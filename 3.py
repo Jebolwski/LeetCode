@@ -815,3 +815,34 @@ class Solution(object):
                     if (j**2)+(i**2)==k**2:
                         count+=1
         return count*2
+
+#!https://leetcode.com/problems/reverse-prefix-of-word/
+class Solution(object):
+    def reversePrefix(self, word, ch):
+        for i in range(len(word)):
+            if word[i]==ch:
+                return word[:i+1][::-1]+word[i+1:]
+        return word
+
+#!https://leetcode.com/problems/convert-1d-array-into-2d-array/ 
+class Solution(object):
+    def construct2DArray(self, original, m, n):
+        if (m*n)!=len(original):
+            return []
+        if m==1:
+            return [original]
+        arr=[]
+        for i in range(0,len(original),n):
+            arr.append(original[i:i+n])
+        return arr
+    
+#!https://leetcode.com/problems/final-value-of-variable-after-performing-operations/
+class Solution(object):
+    def finalValueAfterOperations(self, operations):
+        count=0
+        for i in operations:
+            if "+" in i:
+                count+=1
+            else:
+                count-=1
+        return count
