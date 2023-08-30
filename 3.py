@@ -846,3 +846,33 @@ class Solution(object):
             else:
                 count-=1
         return count
+    
+
+#!https://leetcode.com/problems/number-of-strings-that-appear-as-substrings-in-word/
+class Solution(object):
+    def numOfStrings(self, patterns, word):
+        count=0
+        for i in patterns:
+            if i in word:
+                count+=1
+        return count
+
+#!https://leetcode.com/problems/find-the-middle-index-in-array/ 
+class Solution(object):
+    def findMiddleIndex(self, nums):
+        for i in range(len(nums)):
+            if sum(nums[:i]) == sum(nums[i+1:]):
+                return i
+        return -1
+    
+#!https://leetcode.com/problems/find-greatest-common-divisor-of-array/
+class Solution(object):
+    def findGCD(self, nums):
+        from fractions import gcd
+        nums=sorted(nums)
+        if nums[len(nums)-1]==nums[0]:
+            return nums[0]
+        if nums[len(nums)-1]%nums[0]==0:
+            return nums[0]
+        else:
+            return gcd(nums[0], nums[len(nums)-1])
