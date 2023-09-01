@@ -876,3 +876,43 @@ class Solution(object):
             return nums[0]
         else:
             return gcd(nums[0], nums[len(nums)-1])
+
+#!https://leetcode.com/problems/calculate-amount-paid-in-taxes/
+class Solution(object):
+    def calculateTax(self, brackets, income):
+        if income == 0:
+            return 0.00
+        total=0
+        if len(brackets)==1:
+            return brackets[0][1]*income*0.01
+        for i in range(len(brackets)):
+            if income==0:
+                return total
+            if i == 0:
+                if brackets[i][0]>income:
+                    return income*brackets[i][1]*0.01
+                total+=brackets[i][0]*brackets[i][1]*0.01
+                income-=brackets[i][0]
+            else:
+                if (brackets[i][0]-brackets[i-1][0])<=income:
+                    total+=(brackets[i][0]-brackets[i-1][0])*brackets[i][1]*0.01
+                    income-=brackets[i][0]-brackets[i-1][0]
+                elif (brackets[i][0]-brackets[i-1][0])>income:
+                    total+=income*brackets[i][1]*0.01
+                    income=0
+        return total
+
+#!https://leetcode.com/problems/maximum-ascending-subarray-sum/
+class Solution(object):
+    def maxAscendingSum(self, nums):
+        def ifAscending(arr):
+            for i in range(len(arr)-1):
+                if arr[i+1]<=arr[i]:
+                    return False
+            return True
+        maxi=0
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)+1):
+                if ifAscending(nums[i:j]) and sum(nums[i:j])>maxi:
+                    maxi=sum(nums[i:j])
+        return maxi
