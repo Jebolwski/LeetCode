@@ -916,3 +916,11 @@ class Solution(object):
                 if ifAscending(nums[i:j]) and sum(nums[i:j])>maxi:
                     maxi=sum(nums[i:j])
         return maxi
+
+#!https://leetcode.com/problems/build-array-from-permutation/ 
+class Solution(object):
+    def buildArray(self, nums):
+        arr=[]
+        for i in range(len(nums)):
+            arr.append(nums[nums[i]])
+        return arr
