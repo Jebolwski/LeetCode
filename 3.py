@@ -924,3 +924,39 @@ class Solution(object):
         for i in range(len(nums)):
             arr.append(nums[nums[i]])
         return arr
+    
+#!https://leetcode.com/problems/minimum-subsequence-in-non-increasing-order/
+class Solution(object):
+    def minSubsequence(self, nums):
+        if len(nums)==1:
+            return nums
+        if len(nums)==2 and nums[0]==nums[1]:
+            return nums
+        nums = sorted(nums)[::-1]
+        for i in range(len(nums)):
+            if sum(nums[:i])>sum(nums[i:]):
+                return nums[:i]
+        
+
+#!https://leetcode.com/problems/lucky-numbers-in-a-matrix/
+class Solution(object):
+    def luckyNumbers (self, matrix):
+        col=[]
+        for i in range(len(matrix[0])):
+            inner=[]
+            for j in range(len(matrix)):
+                inner.append(matrix[j][i])
+            col.append(inner)
+        arr1=[]
+        arr2=[]
+        for i in col:
+            arr1.append(max(i))
+        for i in matrix:
+            arr2.append(min(i))
+        res=[]
+        for i in arr1:
+            for j in arr2:
+                if i==j:
+                    res.append(i)
+        return res
+                
