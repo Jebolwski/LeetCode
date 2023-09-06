@@ -959,4 +959,15 @@ class Solution(object):
                 if i==j:
                     res.append(i)
         return res
+    
+#!https://leetcode.com/problems/string-matching-in-an-array/
+class Solution(object):
+    def stringMatching(self, words):
+        arr=[]
+        for i in range(len(words)):
+            for j in words[:i]+words[i+1:]:
+                if words[i] in j and words[i] not in arr:
+                    arr.append(words[i])
+        return arr
+        
                 
