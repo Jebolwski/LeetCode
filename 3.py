@@ -1119,3 +1119,33 @@ class Solution(object):
         for i in arr:
             total ^= i
         return total
+    
+#!https://leetcode.com/problems/combination-sum-iv/
+class Solution(object):
+    def combinationSum4(self, nums, target):
+        dp = {0:1}
+        for i in range(1,target+1):
+            dp[i] = 0
+            for n in nums:
+                dp[i] += dp.get(i-n,0)
+        return dp[target]
+    
+#!https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/
+class Solution(object):
+    def canBeEqual(self, target, arr):
+        if sorted(target)==sorted(arr):
+            return True
+        return False
+        
+#!https://leetcode.com/problems/number-of-good-pairs/
+class Solution(object):
+    def numIdenticalPairs(self, nums):
+        count = 0
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                if nums[i] == nums[j] and i<j:
+                    count += 1
+        return count
+
+
+        
