@@ -1147,5 +1147,50 @@ class Solution(object):
                     count += 1
         return count
 
+#!https://leetcode.com/problems/path-crossing/
+class Solution(object):
+    def isPathCrossing(self, path):
+        arr=[[0,0]]
+        res=[]
+        x=0
+        y=0
+        for i in path:
+            if i=="N":
+                y+=1
+                arr.append([x,y])
+            elif i=="E":
+                x+=1
+                arr.append([x,y])
+            elif i=="W":
+                x-=1
+                arr.append([x,y])
+            else:
+                y-=1
+                arr.append([x,y])
+        for i in arr:
+            if i not in res:
+                res.append(i)
+        if len(res)!=len(arr):
+            return True
+        return False
+
+
+#!https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
+class Solution(object):
+    def nearestValidPoint(self, x, y, points):
+        arr=[]
+        distances=[]
+        for i in points:
+            if i[0]==x or i[1]==y:
+                arr.append([i,points.index(i)])
+        if len(arr)==0:
+            return -1
+        for i in arr:
+            distances.append([abs(x-i[0][0])+abs(y-i[0][1]),i[1]])
+        distances = sorted(distances, key=lambda x: x[0])
+        if len(distances)==1:
+            return distances[0][1]
+        return distances[0][1]
+        
 
         
