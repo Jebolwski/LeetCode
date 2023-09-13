@@ -1191,6 +1191,17 @@ class Solution(object):
         if len(distances)==1:
             return distances[0][1]
         return distances[0][1]
+
+#!https://leetcode.com/problems/maximum-product-difference-between-two-pairs/
+class Solution(object):
+    def maxProductDifference(self, nums):
+      top=max(nums)
+      nums.remove(max(nums))
+      top*=max(nums)
+      bot=min(nums)
+      nums.remove(min(nums))
+      bot*=min(nums)
+      return top-bot
         
 
         
