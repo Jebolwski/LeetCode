@@ -1192,16 +1192,58 @@ class Solution(object):
             return distances[0][1]
         return distances[0][1]
 
-#!https://leetcode.com/problems/maximum-product-difference-between-two-pairs/
+#!https://leetcode.com/problems/maximum-product-difference-between-two-pairs/   
 class Solution(object):
     def maxProductDifference(self, nums):
       top=max(nums)
-      nums.remove(max(nums))
+      nums.remove(max(nums))    
       top*=max(nums)
       bot=min(nums)
       nums.remove(min(nums))
       bot*=min(nums)
       return top-bot
         
+#!https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
+class Solution(object):
+    def checkZeroOnes(self, s):
+      i=0
+      arr=[]
+      while i < len(s)-1:
+        if i < len(s)-1 and s[i]=='0':
+          j=i
+          while j < len(s) and s[j]=='0':
+            j+=1
+          arr.append(s[i:j])
+          i=j
+        if i < len(s)-1 and s[i]=='1':
+          j=i
+          while j < len(s) and s[j]=='1':
+            j+=1
+          arr.append(s[i:j])
+          i=j
+      arr0=[]
+      arr1=[]
+      for x in arr:
+        if '1' in x:
+          arr1.append(x)
+        if '0' in x:
+          arr0.append(x)
+      total=""
+      for i in arr:
+        total+=i
+      if len(total)-len(s)==-1:
+        if s[-1]=='1':
+          arr1.append('1')
+        if s[-1]=='0':
+          arr0.append('0')
+      if '0' not in s and len(s)>1:
+        return True
+      if '1' not in s and len(s)>1:
+        return False
+      if s=="0":
+        return False
+      if s=="1":
+        return True
+      return len(max(arr1))-len(max(arr0))>0
 
         
