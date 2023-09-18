@@ -1,6 +1,8 @@
 import collections
 
-#!https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+#!https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+
+
 class Solution(object):
     def subtractProductAndSum(self, n):
         products = 1
@@ -11,7 +13,9 @@ class Solution(object):
             total += int(i)
         return (products - total)
 
-#!https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+#!https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
+
+
 class Solution(object):
     def getDecimalValue(self, head):
         arr = []
@@ -29,6 +33,8 @@ class Solution(object):
         return int(total, 2)
 
 #!https://leetcode.com/problems/sum-multiples/
+
+
 class Solution(object):
     def sumOfMultiples(self, n):
         total = 0
@@ -38,6 +44,8 @@ class Solution(object):
         return total
 
 #!https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/
+
+
 class Solution(object):
     def isPrefixOfWord(self, sentence, searchWord):
         sentence = sentence.split(" ")
@@ -52,6 +60,8 @@ class Solution(object):
         return index+1
 
 #!https://leetcode.com/problems/maximum-69-number/
+
+
 class Solution(object):
     def maximum69Number(self, num):
         x = 0
@@ -1247,3 +1257,19 @@ class Solution(object):
           else:
             string+=s[i]
         return (string)
+
+#!https://leetcode.com/problems/design-an-ordered-stream/
+class OrderedStream(object):
+
+    def __init__(self, n):
+      self.arr=[[]]*n
+      self.index=0
+        
+
+    def insert(self, idKey, value):
+      self.arr[idKey-1]=value
+      liste=[]
+      while self.index<len(self.arr) and self.arr[self.index]!=[]:
+        liste.append(self.arr[self.index])
+        self.index+=1
+      return liste
