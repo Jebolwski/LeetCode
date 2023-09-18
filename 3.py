@@ -1119,58 +1119,66 @@ class Solution(object):
         for i in arr:
             total ^= i
         return total
-    
+
 #!https://leetcode.com/problems/combination-sum-iv/
+
+
 class Solution(object):
     def combinationSum4(self, nums, target):
-        dp = {0:1}
-        for i in range(1,target+1):
+        dp = {0: 1}
+        for i in range(1, target+1):
             dp[i] = 0
             for n in nums:
-                dp[i] += dp.get(i-n,0)
+                dp[i] += dp.get(i-n, 0)
         return dp[target]
-    
+
 #!https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/
+
+
 class Solution(object):
     def canBeEqual(self, target, arr):
-        if sorted(target)==sorted(arr):
+        if sorted(target) == sorted(arr):
             return True
         return False
-        
+
 #!https://leetcode.com/problems/number-of-good-pairs/
+
+
 class Solution(object):
     def numIdenticalPairs(self, nums):
         count = 0
         for i in range(len(nums)):
-            for j in range(i+1,len(nums)):
-                if nums[i] == nums[j] and i<j:
+            for j in range(i+1, len(nums)):
+                if nums[i] == nums[j] and i < j:
                     count += 1
         return count
 
 #!https://leetcode.com/problems/path-crossing/
+
+
 class Solution(object):
     def isPathCrossing(self, path):
-        arr=[[0,0]]
-        res=[]
-        x=0
-        y=0
+        arr = [[0, 0]]
+        res = []
+        x = 0
+        y = 0
         for i in path:
-            if i=="N":
-                y+=1
-                arr.append([x,y])
-            elif i=="E":
-                x+=1
-                arr.append([x,y])
-            elif i=="W":
-                x-=1
-                arr.append([x,y])
+            if i == "N":
+                y += 1
+                arr.append([x, y])
+            elif i == "E":
+                x += 1
+                arr.append([x, y])
+            elif i == "W":
+                x -= 1
+                arr.append([x, y])
             else:
-                y-=1
-                arr.append([x,y])
+                y -= 1
+                arr.append([x, y])
         for i in arr:
             if i not in res:
                 res.append(i)
-        if len(res)!=len(arr):
+        if len(res) != len(arr):
             return True
         return False
 
@@ -1178,98 +1186,119 @@ class Solution(object):
 #!https://leetcode.com/problems/find-nearest-point-that-has-the-same-x-or-y-coordinate/
 class Solution(object):
     def nearestValidPoint(self, x, y, points):
-        arr=[]
-        distances=[]
+        arr = []
+        distances = []
         for i in points:
-            if i[0]==x or i[1]==y:
-                arr.append([i,points.index(i)])
-        if len(arr)==0:
+            if i[0] == x or i[1] == y:
+                arr.append([i, points.index(i)])
+        if len(arr) == 0:
             return -1
         for i in arr:
-            distances.append([abs(x-i[0][0])+abs(y-i[0][1]),i[1]])
+            distances.append([abs(x-i[0][0])+abs(y-i[0][1]), i[1]])
         distances = sorted(distances, key=lambda x: x[0])
-        if len(distances)==1:
+        if len(distances) == 1:
             return distances[0][1]
         return distances[0][1]
 
-#!https://leetcode.com/problems/maximum-product-difference-between-two-pairs/   
+#!https://leetcode.com/problems/maximum-product-difference-between-two-pairs/
+
+
 class Solution(object):
     def maxProductDifference(self, nums):
-      top=max(nums)
-      nums.remove(max(nums))    
-      top*=max(nums)
-      bot=min(nums)
-      nums.remove(min(nums))
-      bot*=min(nums)
-      return top-bot
-        
+        top = max(nums)
+        nums.remove(max(nums))
+        top *= max(nums)
+        bot = min(nums)
+        nums.remove(min(nums))
+        bot *= min(nums)
+        return top-bot
+
 #!https://leetcode.com/problems/longer-contiguous-segments-of-ones-than-zeros/
+
+
 class Solution(object):
     def checkZeroOnes(self, s):
-      i=0
-      arr=[]
-      while i < len(s)-1:
-        if i < len(s)-1 and s[i]=='0':
-          j=i
-          while j < len(s) and s[j]=='0':
-            j+=1
-          arr.append(s[i:j])
-          i=j
-        if i < len(s)-1 and s[i]=='1':
-          j=i
-          while j < len(s) and s[j]=='1':
-            j+=1
-          arr.append(s[i:j])
-          i=j
-      arr0=[]
-      arr1=[]
-      for x in arr:
-        if '1' in x:
-          arr1.append(x)
-        if '0' in x:
-          arr0.append(x)
-      total=""
-      for i in arr:
-        total+=i
-      if len(total)-len(s)==-1:
-        if s[-1]=='1':
-          arr1.append('1')
-        if s[-1]=='0':
-          arr0.append('0')
-      if '0' not in s and len(s)>1:
-        return True
-      if '1' not in s and len(s)>1:
-        return False
-      if s=="0":
-        return False
-      if s=="1":
-        return True
-      return len(max(arr1))-len(max(arr0))>0
+        i = 0
+        arr = []
+        while i < len(s)-1:
+            if i < len(s)-1 and s[i] == '0':
+                j = i
+                while j < len(s) and s[j] == '0':
+                    j += 1
+                arr.append(s[i:j])
+                i = j
+            if i < len(s)-1 and s[i] == '1':
+                j = i
+                while j < len(s) and s[j] == '1':
+                    j += 1
+                arr.append(s[i:j])
+                i = j
+        arr0 = []
+        arr1 = []
+        for x in arr:
+            if '1' in x:
+                arr1.append(x)
+            if '0' in x:
+                arr0.append(x)
+        total = ""
+        for i in arr:
+            total += i
+        if len(total)-len(s) == -1:
+            if s[-1] == '1':
+                arr1.append('1')
+            if s[-1] == '0':
+                arr0.append('0')
+        if '0' not in s and len(s) > 1:
+            return True
+        if '1' not in s and len(s) > 1:
+            return False
+        if s == "0":
+            return False
+        if s == "1":
+            return True
+        return len(max(arr1))-len(max(arr0)) > 0
 
 #!https://leetcode.com/problems/replace-all-digits-with-characters/
+
+
 class Solution(object):
     def replaceDigits(self, s):
-        alphabet=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-        string=""
+        alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+                    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        string = ""
         for i in range(len(s)):
-          if s[i] not in alphabet:
-            string+=alphabet[alphabet.index(s[i-1])+int(s[i])]
-          else:
-            string+=s[i]
+            if s[i] not in alphabet:
+                string += alphabet[alphabet.index(s[i-1])+int(s[i])]
+            else:
+                string += s[i]
         return (string)
 
 #!https://leetcode.com/problems/design-an-ordered-stream/
+
+
 class OrderedStream(object):
 
     def __init__(self, n):
-      self.arr=[[]]*n
-      self.index=0
-        
+        self.arr = [[]]*n
+        self.index = 0
 
     def insert(self, idKey, value):
-      self.arr[idKey-1]=value
-      liste=[]
-      while self.index<len(self.arr) and self.arr[self.index]!=[]:
-        liste.append(self.arr[self.index])
-        self.index+=1
-      return liste
+        self.arr[idKey-1] = value
+        liste = []
+        while self.index < len(self.arr) and self.arr[self.index] != []:
+            liste.append(self.arr[self.index])
+            self.index += 1
+        return liste
+
+#!https://leetcode.com/problems/count-good-triplets/
+
+
+class Solution(object):
+    def countGoodTriplets(self, arr, a, b, c):
+        count = 0
+        for i in range(len(arr)):
+            for j in range(i+1, len(arr)):
+                for k in range(j+1, len(arr)):
+                    if abs(arr[i]-arr[j]) <= a and abs(arr[j]-arr[k]) <= b and abs(arr[i]-arr[k]) <= c:
+                        count += 1
+        return count
