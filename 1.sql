@@ -30,3 +30,12 @@ E.empId = B.empId WHERE B.bonus < 1000 OR bonus IS NULL
 
 --!https://leetcode.com/problems/find-customer-referee/
 select name from Customer where referee_id<>2 or referee_id is null
+
+--!https://leetcode.com/problems/customer-placing-the-largest-number-of-orders/
+select customer_number from Orders group by customer_number order by COUNT(customer_number) desc limit 1;
+
+--!https://leetcode.com/problems/big-countries/
+select w1.name, w1.population, w1.area from World w1 where w1.area>=3000000 or w1.population>=25000000;
+
+--!https://leetcode.com/problems/classes-more-than-5-students/
+select class from Courses group by class having count(class)>4
