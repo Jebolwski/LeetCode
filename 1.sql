@@ -39,3 +39,14 @@ select w1.name, w1.population, w1.area from World w1 where w1.area>=3000000 or w
 
 --!https://leetcode.com/problems/classes-more-than-5-students/
 select class from Courses group by class having count(class)>4
+
+--!https://leetcode.com/problems/sales-person/
+select name from SalesPerson where sales_id 
+not in (select sales_id from Orders where 
+com_id=(select com_id from Company where name="RED" limit 1))
+
+--!https://leetcode.com/problems/triangle-judgement/
+select x, y, z, if(x+y>z and y+z>x and z+x>y, "Yes", "No") as triangle from Triangle
+
+--!https://leetcode.com/problems/biggest-single-number/
+SELECT MAX(num) AS num FROM (SELECT num FROM MyNumbers GROUP BY num HAVING COUNT(num) = 1) new;
