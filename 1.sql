@@ -50,3 +50,21 @@ select x, y, z, if(x+y>z and y+z>x and z+x>y, "Yes", "No") as triangle from Tria
 
 --!https://leetcode.com/problems/biggest-single-number/
 SELECT MAX(num) AS num FROM (SELECT num FROM MyNumbers GROUP BY num HAVING COUNT(num) = 1) new;
+
+
+--!https://leetcode.com/problems/not-boring-movies/
+select * from Cinema where id%2=1 and description<>"boring" order by rating desc
+
+--!https://leetcode.com/problems/swap-salary/
+UPDATE salary SET sex =
+CASE sex
+    WHEN 'm' THEN 'f'
+    ELSE 'm'
+END;
+
+--!https://leetcode.com/problems/actors-and-directors-who-cooperated-at-least-three-times/
+select actor_id,director_id
+from ActorDirector 
+group by actor_id,director_id
+having count(timestamp)>=3;
+
