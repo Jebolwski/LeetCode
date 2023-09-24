@@ -68,3 +68,19 @@ from ActorDirector
 group by actor_id,director_id
 having count(timestamp)>=3;
 
+--!https://leetcode.com/problems/product-sales-analysis-i/
+select product_name, year, price from Product p1, Sales s1 where s1.product_id=p1.product_id
+
+--!https://leetcode.com/problems/project-employees-i/
+select project_id,ROUND(avg(experience_years), 2) as average_years from Employee e1, Project p1 where p1.employee_id=e1.employee_id group by project_id
+
+--!https://leetcode.com/problems/sales-analysis-iii/
+select product_id,product_name
+from product natural join sales
+group by product_id
+having min(sale_date)>='2019-01-01' and max(sale_date)<='2019-03-31'
+
+--!https://leetcode.com/problems/game-play-analysis-i/
+select player_id,min(event_date) as first_login
+from Activity
+group by player_id
