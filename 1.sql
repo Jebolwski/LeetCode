@@ -126,3 +126,14 @@ LEFT JOIN UnitsSold u
 ON p.product_id = u.product_id AND 
 u.purchase_date BETWEEN p.Start_date and p.end_date
 GROUP BY p.product_id
+
+--!https://leetcode.com/problems/students-and-examinations/
+SELECT s.student_id, s.student_name, sub.subject_name, COUNT(e.student_id) AS attended_exams
+FROM Students s
+CROSS JOIN Subjects sub
+LEFT JOIN Examinations e ON s.student_id = e.student_id AND sub.subject_name = e.subject_name
+GROUP BY s.student_id, s.student_name, sub.subject_name
+ORDER BY s.student_id, sub.subject_name;
+
+--!https://leetcode.com/problems/list-the-products-ordered-in-a-period/
+select product_name, sum(o1.unit) as unit from Products p1 inner join Orders o1 on o1.product_id=p1.product_id where o1.order_date between '2020-02-01' and '2020-02-29' group by p1.product_id having sum(o1.unit)>=100 
