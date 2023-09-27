@@ -137,3 +137,12 @@ ORDER BY s.student_id, sub.subject_name;
 
 --!https://leetcode.com/problems/list-the-products-ordered-in-a-period/
 select product_name, sum(o1.unit) as unit from Products p1 inner join Orders o1 on o1.product_id=p1.product_id where o1.order_date between '2020-02-01' and '2020-02-29' group by p1.product_id having sum(o1.unit)>=100 
+
+--!https://leetcode.com/problems/replace-employee-id-with-the-unique-identifier/
+select eu.unique_id,e.name from Employees e left join EmployeeUNI eu on e.id=eu.id
+
+--!https://leetcode.com/problems/top-travellers/
+select name,coalesce(sum(distance), 0) as travelled_distance from Users u left join Rides r on r.user_id=u.id  group by user_id order by sum(distance) desc, name
+
+--!https://leetcode.com/problems/group-sold-products-by-the-date/
+select sell_date, count( DISTINCT product ) as num_sold, group_concat(distinct product order by product ASC separator ',' ) as products from Activities group by sell_date order by sell_date;
