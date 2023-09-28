@@ -146,3 +146,17 @@ select name,coalesce(sum(distance), 0) as travelled_distance from Users u left j
 
 --!https://leetcode.com/problems/group-sold-products-by-the-date/
 select sell_date, count( DISTINCT product ) as num_sold, group_concat(distinct product order by product ASC separator ',' ) as products from Activities group by sell_date order by sell_date;
+
+--!https://leetcode.com/problems/find-users-with-valid-e-mails/
+select * from Users where mail regexp '^[a-zA-Z][a-zA-Z0-9_.-]*@leetcode[.]com';
+
+--!https://leetcode.com/problems/patients-with-a-condition/
+select * from Patients where conditions like 'DIAB1%' or conditions like '% DIAB1%';
+
+--!https://leetcode.com/problems/customer-who-visited-but-did-not-make-any-transactions/
+SELECT v.customer_id, COUNT(v.visit_id) AS count_no_trans 
+from Visits v 
+LEFT JOIN Transactions t 
+ON v.visit_id = t.visit_id  
+WHERE t.transaction_id IS NULL 
+GROUP BY v.customer_id; 
