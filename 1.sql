@@ -160,3 +160,21 @@ LEFT JOIN Transactions t
 ON v.visit_id = t.visit_id  
 WHERE t.transaction_id IS NULL 
 GROUP BY v.customer_id; 
+
+--!https://leetcode.com/problems/bank-account-summary-ii/
+select u.name as NAME, sum(t.amount) as BALANCE from Users u left join Transactions t on t.account=u.account group by u.name having sum(t.amount)>10000
+
+--!https://leetcode.com/problems/percentage-of-users-attended-a-contest/
+select 
+contest_id, 
+round(count(distinct user_id) * 100 /(select count(user_id) from Users) ,2) as percentage
+from  Register
+group by contest_id
+order by percentage desc,contest_id
+
+--!https://leetcode.com/problems/average-time-of-process-per-machine/
+select a1.machine_id, round(avg(a2.timestamp-a1.timestamp), 3) as processing_time 
+from Activity a1, Activity a2 
+where a1.machine_id=a2.machine_id and a1.process_id=a2.process_id
+and a1.activity_type='start' and a2.activity_type='end'
+group by a1.machine_id

@@ -1302,3 +1302,26 @@ class Solution(object):
                     if abs(arr[i]-arr[j]) <= a and abs(arr[j]-arr[k]) <= b and abs(arr[i]-arr[k]) <= c:
                         count += 1
         return count
+
+#!https://leetcode.com/problems/find-the-duplicate-number/
+
+
+class Solution(object):
+    def findDuplicate(self, nums):
+        collection = collections.Counter(nums)
+        for i in collection:
+            if collection[i] > 1:
+                return i
+
+#!https://leetcode.com/problems/monotonic-array/
+class Solution(object):
+    def isMonotonic(self, nums):
+        flag1=True
+        flag2=True
+        for i in range(len(nums)-1):
+            if not nums[i]<=nums[i+1]:
+                flag1=False
+        for i in range(len(nums)-1):
+            if not nums[i]>=nums[i+1]:
+                flag2=False
+        return flag1 or flag2
