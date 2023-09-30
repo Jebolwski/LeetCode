@@ -177,4 +177,17 @@ select a1.machine_id, round(avg(a2.timestamp-a1.timestamp), 3) as processing_tim
 from Activity a1, Activity a2 
 where a1.machine_id=a2.machine_id and a1.process_id=a2.process_id
 and a1.activity_type='start' and a2.activity_type='end'
-group by a1.machine_id
+group by a1.machine_id;
+
+--!https://leetcode.com/problems/fix-names-in-a-table/
+SELECT user_id,CONCAT(UPPER(SUBSTR(name,1,1)),LOWER(SUBSTR(name,2,length(name)))) AS name
+FROM Users ORDER BY user_id;
+
+--!https://leetcode.com/problems/invalid-tweets/
+select tweet_id from Tweets where char_length(content)>15;
+
+--!https://leetcode.com/problems/daily-leads-and-partners/
+SELECT date_id, make_name, COUNT(DISTINCT lead_id) as unique_leads, COUNT(DISTINCT partner_id) as unique_partners
+FROM DailySales
+GROUP BY date_id, make_name
+ORDER BY date_id, make_name;
