@@ -1325,3 +1325,22 @@ class Solution(object):
             if not nums[i]>=nums[i+1]:
                 flag2=False
         return flag1 or flag2
+
+#!https://leetcode.com/problems/count-complete-tree-nodes/
+class Solution(object):
+    def countNodes(self, root):
+        arr=[]
+        if root!=None:
+            arr.append(-1)
+
+        def helper(node):
+            if not node:
+                return
+            if node.left:
+                arr.append(node.left.val)
+                helper(node.left)
+            if node.right:
+                arr.append(node.right.val)
+                helper(node.right)
+        helper(root)
+        return len(arr)   
