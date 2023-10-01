@@ -191,3 +191,12 @@ SELECT date_id, make_name, COUNT(DISTINCT lead_id) as unique_leads, COUNT(DISTIN
 FROM DailySales
 GROUP BY date_id, make_name
 ORDER BY date_id, make_name;
+
+--!https://leetcode.com/problems/find-followers-count/
+select user_id, count(follower_id) as followers_count from Followers group by user_id order by user_id
+
+--!https://leetcode.com/problems/the-number-of-employees-which-report-to-each-employee/
+select e1.employee_id, e1.name, count(e2.name) as reports_count,round(avg(e2.age)) as average_age from Employees e1, Employees e2 where e1.employee_id=e2.reports_to group by e1.employee_id order by e1.employee_id
+
+--!https://leetcode.com/problems/find-total-time-spent-by-each-employee/
+select event_day as day, emp_id, sum(out_time - in_time) as total_time from Employees group by day,emp_id order by day; 
