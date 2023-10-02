@@ -200,3 +200,31 @@ select e1.employee_id, e1.name, count(e2.name) as reports_count,round(avg(e2.age
 
 --!https://leetcode.com/problems/find-total-time-spent-by-each-employee/
 select event_day as day, emp_id, sum(out_time - in_time) as total_time from Employees group by day,emp_id order by day; 
+
+--!https://leetcode.com/problems/recyclable-and-low-fat-products/
+select product_id from Products where low_fats='Y' and recyclable='Y'
+
+--!https://leetcode.com/problems/rearrange-products-table/
+SELECT product_id,
+       'store1' AS store,
+       store1 AS price
+  FROM Products
+ WHERE store1 IS NOT NULL
+
+ UNION
+
+ SELECT product_id,
+       'store2' AS store,
+       store2 AS price
+  FROM Products
+ WHERE store2 IS NOT NULL
+
+ UNION
+
+ SELECT product_id,
+       'store3' AS store,
+       store3 AS price
+  FROM Products
+ WHERE store3 IS NOT NULL
+
+ ORDER BY product_id, store;

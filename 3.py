@@ -1344,3 +1344,13 @@ class Solution(object):
                 helper(node.right)
         helper(root)
         return len(arr)   
+
+#!https://leetcode.com/problems/reverse-bits/
+class Solution:
+    # @param n, an integer
+    # @return an integer
+    def reverseBits(self, n):
+        s=bin(n)
+        s=s[2:]
+        s=s[::-1] + ("0"*(32-len(s)))
+        return int(s,2)
