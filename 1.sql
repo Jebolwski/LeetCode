@@ -228,3 +228,32 @@ SELECT product_id,
  WHERE store3 IS NOT NULL
 
  ORDER BY product_id, store;
+
+--!https://leetcode.com/problems/calculate-special-bonus/
+select employee_id,salary as bonus from Employees where employee_id%2=1 and name not like 'M%'
+union
+select employee_id,0 as bonus from Employees where employee_id%2=0 or name like 'M%' order by employee_id;
+
+--!https://leetcode.com/problems/the-latest-login-in-2020/
+select user_id, max(time_stamp) 'last_stamp'
+from logins
+where time_stamp like '2020%'
+group by user_id ;
+
+--!https://leetcode.com/problems/employees-with-missing-information/
+SELECT T.employee_id
+FROM  
+  (SELECT * FROM Employees LEFT JOIN Salaries USING(employee_id)
+   UNION 
+   SELECT * FROM Employees RIGHT JOIN Salaries USING(employee_id))
+AS T
+WHERE T.salary IS NULL OR T.name IS NULL
+ORDER BY employee_id;
+
+--!https://leetcode.com/problems/employees-whose-manager-left-the-company/
+select employee_id from Employees e1 where salary < 30000 and e1.manager_id NOT IN (
+    SELECT employee_id FROM Employees
+) order by e1.employee_id;
+
+--!https://leetcode.com/problems/number-of-unique-subjects-taught-by-each-teacher/
+select teacher_id, count(distinct(subject_id)) as cnt from Teacher group by teacher_id
