@@ -256,4 +256,20 @@ select employee_id from Employees e1 where salary < 30000 and e1.manager_id NOT 
 ) order by e1.employee_id;
 
 --!https://leetcode.com/problems/number-of-unique-subjects-taught-by-each-teacher/
-select teacher_id, count(distinct(subject_id)) as cnt from Teacher group by teacher_id
+select teacher_id, count(distinct(subject_id)) as cnt from Teacher group by teacher_id;
+
+--!https://leetcode.com/problems/second-highest-salary/
+select (select distinct salary as SecondHighestSalary from Employee order by salary desc limit 1 offset 1) as SecondHighestSalary;
+
+--!https://leetcode.com/problems/nth-highest-salary/
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+    SET N = N - 1;
+    RETURN (
+        SELECT DISTINCT(salary)
+          FROM Employee
+         ORDER BY salary DESC
+         LIMIT 1
+        OFFSET N
+  );
+END
