@@ -273,3 +273,30 @@ BEGIN
         OFFSET N
   );
 END
+
+--!https://leetcode.com/problems/consecutive-numbers/
+SELECT distinct 
+    i1.num as ConsecutiveNums 
+FROM 
+    logs i1,
+    logs i2,
+    logs i3
+WHERE 
+    i1.id=i2.id+1 AND 
+    i2.id=i3.id+1 AND 
+    i1.num=i2.num AND 
+    i2.num=i3.num
+
+--!https://leetcode.com/problems/department-highest-salary/
+select d.name as Department, e.name as Employee, e.salary as Salary from Employee e left join Department d on e.departmentId=d.id where 
+e.departmentId = d.id AND (e.departmentId, salary) IN 
+(SELECT departmentId, MAX(salary) FROM Employee GROUP BY 
+departmentId)
+
+--!https://leetcode.com/problems/managers-with-at-least-5-direct-reports/
+select m.name
+from employee as e
+inner join employee as m
+on e.managerId=m.id
+group by e.managerId 
+having count(e.id)>=5
