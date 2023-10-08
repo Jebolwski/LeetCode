@@ -300,3 +300,19 @@ inner join employee as m
 on e.managerId=m.id
 group by e.managerId 
 having count(e.id)>=5
+
+--!https://leetcode.com/problems/friend-requests-ii-who-has-the-most-friends/
+select requester_id as id,
+       (select count(*) from RequestAccepted
+            where id=requester_id or id=accepter_id) as num
+from RequestAccepted
+group by requester_id
+order by num desc limit 1
+
+--!https://leetcode.com/problems/tree-node/
+select id, case 
+when p_id is null then 'Root'
+when p_id in (select id from tree) and id in (select p_id from tree) then 'Inner'
+else 'Leaf'
+end as type
+from Tree
