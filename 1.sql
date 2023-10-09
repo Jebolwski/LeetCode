@@ -316,3 +316,15 @@ when p_id in (select id from tree) and id in (select p_id from tree) then 'Inner
 else 'Leaf'
 end as type
 from Tree
+
+--!https://leetcode.com/problems/customers-who-bought-all-products/
+SELECT  customer_id FROM Customer GROUP BY customer_id HAVING COUNT(distinct product_key) = (SELECT COUNT(product_key) FROM Product)
+
+--!https://leetcode.com/problems/product-sales-analysis-iii/
+SELECT product_id, year AS first_year, quantity, price
+FROM Sales
+WHERE (product_id, year) in (
+    SELECT product_id, MIN(year) 
+    FROM Sales
+    GROUP BY product_id
+)
