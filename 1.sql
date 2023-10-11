@@ -339,3 +339,6 @@ WHERE
   IN (
     SELECT player_id, MIN(event_date) AS first_login FROM Activity GROUP BY player_id
   )
+
+--!https://leetcode.com/problems/market-analysis-i/
+select u.user_id as buyer_id, u.join_date, IFNULL(count(o.order_date), 0) as orders_in_2019 from Users u LEFT JOIN Orders o on u.user_id=o.buyer_id and year(o.order_date)=2019 group by u.user_id;
