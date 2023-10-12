@@ -342,3 +342,11 @@ WHERE
 
 --!https://leetcode.com/problems/market-analysis-i/
 select u.user_id as buyer_id, u.join_date, IFNULL(count(o.order_date), 0) as orders_in_2019 from Users u LEFT JOIN Orders o on u.user_id=o.buyer_id and year(o.order_date)=2019 group by u.user_id;
+
+--!https://leetcode.com/problems/immediate-food-delivery-ii/
+select round(avg(order_date = customer_pref_delivery_date)*100, 2) as immediate_percentage 
+from Delivery where (customer_id, order_date) in (
+  select customer_id, min(order_date) 
+  from Delivery
+  group by customer_id
+);
