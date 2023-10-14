@@ -350,3 +350,23 @@ from Delivery where (customer_id, order_date) in (
   from Delivery
   group by customer_id
 );
+
+--!https://leetcode.com/problems/monthly-transactions-i/
+SELECT  
+SUBSTR(trans_date,1,7) as month, 
+country, 
+count(id) as trans_count, 
+SUM(CASE WHEN state = 'approved' then 1 else 0 END) as approved_count,
+SUM(amount) as trans_total_amount, 
+SUM(CASE WHEN state = 'approved' then amount else 0 END) as approved_total_amount
+FROM Transactions
+GROUP BY month, country
+
+--!https://leetcode.com/problems/last-person-to-fit-in-the-bus/
+SELECT 
+    q1.person_name
+FROM Queue q1 JOIN Queue q2 ON q1.turn >= q2.turn
+GROUP BY q1.turn
+HAVING SUM(q2.weight) <= 1000
+ORDER BY SUM(q2.weight) DESC
+LIMIT 1
