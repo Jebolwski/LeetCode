@@ -1354,3 +1354,29 @@ class Solution:
         s=s[2:]
         s=s[::-1] + ("0"*(32-len(s)))
         return int(s,2)
+
+#!https://leetcode.com/problems/sort-vowels-in-a-string/ 
+class Solution(object):
+    def sortVowels(self, s):
+        vowels = ['a','e','i','o','u']
+        madagasko = []
+        vowe = []
+        arr = []
+        string = ""
+        for i in s:
+            if lower(i) in vowels:
+                vowe.append(i)
+                arr.append(0)
+            else: 
+                madagasko.append(i)
+                arr.append(1)
+        madagasko = madagasko[::-1]
+        vowe = sorted(vowe)
+        vowe = vowe[::-1]
+        for i in arr:
+            if i==1:
+                string+=madagasko.pop()
+            else:
+                string+=vowe.pop()
+        return string
+        
