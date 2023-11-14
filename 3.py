@@ -1379,4 +1379,24 @@ class Solution(object):
             else:
                 string+=vowe.pop()
         return string
+
+#!https://leetcode.com/problems/unique-length-3-palindromic-subsequences/
+class Solution(object):
+    def countPalindromicSubsequence(self, s):
+        arr=[]
+        for i in s:
+            if i not in arr:
+                arr.append(i)
+        total=0
+        for i in arr:
+            lst=s.rindex(i)
+            fst=s.index(i)
+            tmp=[]
+            for i in s[fst+1:lst]:
+                if i not in tmp:
+                    tmp.append(i)
+            total+=len(tmp)
+        return (total)
+            
+        
         
