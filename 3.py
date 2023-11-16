@@ -1408,5 +1408,34 @@ class Solution(object):
                 arr[i+1]=arr[i]+1
         return arr[-1]
             
+#!https://leetcode.com/problems/find-unique-binary-string/ 
+class Solution(object):
+    def findDifferentBinaryString(self, nums):
+        arr=[]
+        for num in nums:
+            res=""
+            res1=""
+            res2=""
+            res3=""
+            for i in num:
+                if i=='0':
+                    res+='1'
+                else:
+                    res+='0'
+            for i in num:
+                res1+='1'
+            for i in num:
+                res2+='0'
+            for i in range(len(num)):
+                if i%2==0:
+                    res3+='0'
+                else:
+                    res3+='1'
+            
+            arr+=[res1,res2,res,res3]
+        for i in arr:
+            if i not in nums:
+                return i
+
         
         
