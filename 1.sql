@@ -382,3 +382,15 @@ select * from city
 
 --!https://www.hackerrank.com/challenges/select-by-id/
 select * from city where id=1661
+
+--!https://www.hackerrank.com/challenges/japanese-cities-attributes/
+select * from CITY where COUNTRYCODE='JPN'
+
+--!https://www.hackerrank.com/challenges/japanese-cities-name/
+select name from CITY where COUNTRYCODE='JPN'
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-1/
+select CITY,STATE from STATION
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-3/
+select distinct CITY from STATION where MOD(id,2)=0
