@@ -394,3 +394,21 @@ select CITY,STATE from STATION
 
 --!https://www.hackerrank.com/challenges/weather-observation-station-3/
 select distinct CITY from STATION where MOD(id,2)=0
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-6/
+select distinct city from station where city like "[aeiou]%"
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-7/
+select distinct city from station where city like "%[aeiou]"
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-8/
+select distinct city from station where city like "[aeiou]%[aeiou]"
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-9/
+select distinct city from station where city not like "[aeiou]%"
+
+--!https://www.hackerrank.com/challenges/weather-observation-station-10/
+select distinct city from station where city not like "%[aeiou]"
+
+--!https://www.hackerrank.com/challenges/salary-of-employees/
+select name from Employee where salary>2000 and months<10 order by employee_id
