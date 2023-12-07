@@ -1482,3 +1482,11 @@ class Solution(object):
             print(self.toTime(points[i - 1], points[i]))
             time += self.toTime(points[i - 1], points[i])
         return time
+
+#!https://leetcode.com/problems/largest-odd-number-in-string/
+class Solution(object):
+    def largestOddNumber(self, num):
+        for i in range(len(num)-1,-1,-1):
+            if int(num[i])%2==1:
+                return num[:i+1]
+        return ""
