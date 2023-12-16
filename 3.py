@@ -1490,3 +1490,33 @@ class Solution(object):
             if int(num[i])%2==1:
                 return num[:i+1]
         return ""
+    
+
+#!https://leetcode.com/problems/valid-anagram/
+class Solution(object):
+    def isAnagram(self, s, t):
+        se=collections.Counter(s)
+        te=collections.Counter(t)
+        xe=True
+        re=True
+        for i in se:
+            if i not in te or se[i]!=te[i]:
+                xe=False
+        for i in te:
+            if i not in se or se[i]!=te[i]:
+                re=False
+        return xe and re
+    
+#!https://leetcode.com/problems/destination-city/
+class Solution(object):
+    def destCity(self, paths):
+        inn=[]
+        outt=[]
+        for come,out in paths:
+            if come not in inn:
+                inn.append(come)
+            if out not in outt:
+                outt.append(out)
+        for i in outt:
+            if i not in inn:
+                return i
