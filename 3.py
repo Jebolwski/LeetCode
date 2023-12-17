@@ -1520,3 +1520,23 @@ class Solution(object):
         for i in outt:
             if i not in inn:
                 return i
+            
+#!https://leetcode.com/problems/cheapest-flights-within-k-stops/
+class Solution(object):
+    def findCheapestPrice(self, n, flights, src, dst, k):
+        prices=[float("inf")]*n
+        prices[src]=0
+        for i in range(k+1):
+            tempPrices=[i for i in prices]
+            for s, d, price in flights:
+                if prices[s]==float("inf"):
+                    continue
+                elif prices[s]+price<tempPrices[d]:
+                    tempPrices[d] = prices[s]+price
+            prices=tempPrices
+        return -1 if prices[dst]==float("inf") else prices[dst]
+
+
+
+
+        
