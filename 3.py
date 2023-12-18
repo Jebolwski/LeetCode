@@ -1536,6 +1536,29 @@ class Solution(object):
             prices=tempPrices
         return -1 if prices[dst]==float("inf") else prices[dst]
 
+#!https://leetcode.com/problems/special-positions-in-a-binary-matrix/
+class Solution(object):
+    def numSpecial(self, mat):
+        rows = len(mat)
+        cols = len(mat[0])
+
+        srows = [0] * rows
+        scols = [0] * cols 
+
+        for i in range(rows):
+            for j in range(cols):
+                if mat[i][j]==1:
+                    srows[i] += 1
+                    scols[j] += 1
+        count=0
+
+        for i in range(rows):
+            for j in range(cols):
+                if mat[i][j]==1 and srows[i]==1 and scols[j]==1:
+                    count+=1
+
+        return count
+
 
 
 
