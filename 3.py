@@ -1559,6 +1559,22 @@ class Solution(object):
 
         return count
 
+#!https://leetcode.com/problems/buy-two-chocolates/
+class Solution(object):
+    def buyChoco(self, prices, money):
+        ans = float('inf')
+
+        for i in range(len(prices)):
+            for j in range(len(prices)):
+                if i != j:
+                    total = prices[i] + prices[j]
+                    ans = min(ans, total)
+
+        fin = money - ans
+        if(fin>=0):
+            return fin
+        else:
+            return money
 
 
 
