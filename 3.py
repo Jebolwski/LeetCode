@@ -1576,6 +1576,45 @@ class Solution(object):
         else:
             return money
 
+#!https://leetcode.com/problems/minimum-changes-to-make-alternating-binary-string/
+class Solution(object):
+    def minOperations(self, s):
+        print (s[0])
+        length = len(s)
+        s_1=""
+        s_2=""
+        m=0
+        for i in range(len(s)):
+            if m==0:
+                s_1+="1"
+                m=1
+            else:
+                s_1+="0"
+                m=0
+        m=1
+        for i in range(len(s)):
+            if m==0:
+                s_2+="1"
+                m=1
+            else:
+                s_2+="0"
+                m=0
+        diff_1=0
+        diff_2=0
+        for i in range(len(s)):
+            if s_1[i]!=s[i]:
+                diff_1+=1
+            if s_2[i]!=s[i]:
+                diff_2+=1
+        return min(diff_1,diff_2)
+                
+#!https://leetcode.com/problems/maximum-score-after-splitting-a-string/
+class Solution(object):
+    def maxScore(self, s):
+        arr=[]
+        for i in range(1,len(s)):
+            arr.append(s[:i].count('0')+s[i:].count('1'))
+        return max(arr)
 
 
         
