@@ -1616,5 +1616,15 @@ class Solution(object):
             arr.append(s[:i].count('0')+s[i:].count('1'))
         return max(arr)
 
-
+#!https://leetcode.com/problems/largest-substring-between-two-equal-characters/
+class Solution(object):
+    def maxLengthBetweenEqualCharacters(self, s):
+        arr=[]
+        for i in range(len(s)):
+            if s.rindex(s[i])!=i:
+                arr.append(s.rindex(s[i])-i-1)
+        if len(arr)>0:
+            return max(arr)
+        return -1
+        
         
