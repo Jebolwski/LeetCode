@@ -1647,3 +1647,24 @@ class Solution(object):
             else:
                 childIndex -= 1
         
+#!https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
+class Solution(object):
+    def minOperations(self, nums):
+        dp = collections.Counter(nums)
+        print(dp)
+        count=0
+        total=dp.keys()
+        for i in total:
+            x=dp[i]
+            if x==1:
+                return -1
+            while x>4:
+                x-=3
+                count+=1
+            if x%3==0:
+                count+=x/3
+            elif x%2==0:
+                count+=x/2
+        return count
+
+        
