@@ -1667,4 +1667,16 @@ class Solution(object):
                 count+=x/2
         return count
 
+#!https://leetcode.com/problems/longest-increasing-subsequence/    
+class Solution(object):
+    def lengthOfLIS(self, nums):
+        if not nums:
+            return 0
         
+        n = len(nums)
+        arr = [1] * n
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    arr[i] = max(arr[i], arr[j] + 1)
+        return max(arr)
