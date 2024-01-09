@@ -1706,3 +1706,21 @@ class Solution:
             dp2 = dp1
             dp1 = dp
         return dp1
+
+#!https://leetcode.com/problems/leaf-similar-trees/
+class Solution(object):
+    def leafSimilar(self, root1, root2):
+        arr1=[]
+        arr2=[]
+        def helper(root,arr):
+            if not root:
+                return
+            if root.left:
+                helper(root.left,arr)
+            if not root.left and not root.right:
+                arr.append(root.val)
+            if root.right:
+                helper(root.right,arr)
+        helper(root2,arr1)
+        helper(root1,arr2)
+        return arr1==arr2
