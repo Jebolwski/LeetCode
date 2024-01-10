@@ -1724,3 +1724,16 @@ class Solution(object):
         helper(root2,arr1)
         helper(root1,arr2)
         return arr1==arr2
+
+#!https://leetcode.com/problems/jewels-and-stones/
+class Solution(object):
+    def numJewelsInStones(self, jewels, stones):
+        arr_jewels=[]
+        for i in jewels:
+            if i not in arr_jewels:
+                arr_jewels.append(i)
+        count=0
+        for i in stones:
+            if i in arr_jewels:
+                count+=1
+        return count
