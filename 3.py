@@ -1737,3 +1737,56 @@ class Solution(object):
             if i in arr_jewels:
                 count+=1
         return count
+
+
+#!https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/
+class Solution(object):
+    def maxAncestorDiff(self, root):
+        dp={}
+        
+        def find_node_by_number(num,node,arr):
+            if len(arr)>0:
+                return
+            if not node:
+                return
+            if node.val==num:
+                arr.append(node)
+                return
+            if node.left:
+                find_node_by_number(num,node.left,arr)
+            if node.right:
+                find_node_by_number(num,node.right,arr)
+        
+        def helper(node):
+            if not node:
+                return
+            if node.left:
+                helper(node.left)
+            dp[node.val]=0
+            if node.right:
+                helper(node.right)
+        
+        def helper_arr(arr,node):
+            if not node:
+                return
+            if node.left:
+                helper_arr(arr,node.left)
+            arr.append(node.val)
+            if node.right:
+                helper_arr(arr,node.right)
+
+
+        helper(root)
+        diff=0
+        for i in dp:
+            node = []
+            find_node_by_number(i,root,node)
+            arr=[]
+            helper_arr(arr,node[0])
+            dp[i]=sorted(arr)
+            if abs(i - dp[i][-1])>diff:
+                diff=abs(i - dp[i][-1])
+            if abs(i - dp[i][0])>diff:
+                diff=abs(i - dp[i][0])
+        return diff
+        
