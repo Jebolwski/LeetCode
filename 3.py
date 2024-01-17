@@ -1789,4 +1789,18 @@ class Solution(object):
             if abs(i - dp[i][0])>diff:
                 diff=abs(i - dp[i][0])
         return diff
-        
+
+#!https://leetcode.com/problems/longest-uncommon-subsequence-i/      
+class Solution(object):
+    def findLUSlength(self, a, b):
+        maxi_gomez=-1
+        if a==b:
+            return -1
+        if len(b)>len(a):
+            return len(b)
+        for i in range(len(b)):
+            for j in range(len(a)):
+                if b[:i]!=a[:j]:
+                    if j-i+1>maxi_gomez:
+                        maxi_gomez=j-i+1
+        return maxi_gomez
