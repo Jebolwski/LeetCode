@@ -1828,3 +1828,17 @@ class Solution(object):
         if root is None or subRoot is None:
             return False
         return root.val == subRoot.val and self.isSame(root.left,subRoot.left) and self.isSame(root.right,subRoot.right)
+    
+#!https://leetcode.com/problems/set-mismatch/
+class Solution(object):
+    def findErrorNums(self, nums):
+        dup, missing = -1, -1
+        
+        for i in range(1, len(nums) + 1):
+            count = nums.count(i)
+            if count == 2:
+                dup = i
+            elif count == 0:
+                missing = i
+        
+        return [dup, missing]
