@@ -1842,3 +1842,9 @@ class Solution(object):
                 missing = i
         
         return [dup, missing]
+
+#!https://leetcode.com/problems/valid-boomerang/
+class Solution(object):
+    def isBoomerang(self, x):
+        return (x[0][0] - x[1][0]) * (x[0][1] - x[2][1]) != (x[0][0] - x[2][0]) * (x[0][1] - x[1][1])
+        
