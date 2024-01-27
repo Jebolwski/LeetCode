@@ -1847,4 +1847,30 @@ class Solution(object):
 class Solution(object):
     def isBoomerang(self, x):
         return (x[0][0] - x[1][0]) * (x[0][1] - x[2][1]) != (x[0][0] - x[2][0]) * (x[0][1] - x[1][1])
+    
+#!https://leetcode.com/problems/intersection-of-two-linked-lists/
+class Solution(object):
+    def getIntersectionNode(self, headA, headB):
+        arrayA=[]
+        arrayB=[]
+        while headA:
+            arrayA.append(headA)
+            headA=headA.next
+        while headB:
+            arrayB.append(headB)
+            headB=headB.next
+        if arrayA[-1]!=arrayB[-1]:
+            return
+        elif len(arrayA)==len(arrayB)==1:
+            return arrayA[0]
+        else:
+            B=len(arrayB)-1
+            A=len(arrayA)-1
+            while True:
+                if A==0 and B==0:
+                    return arrayA[0]
+                elif arrayB[B]!=arrayA[A]:
+                    return arrayB[B+1]
+                B-=1
+                A-=1
         
