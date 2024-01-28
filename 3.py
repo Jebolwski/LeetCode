@@ -1874,3 +1874,21 @@ class Solution(object):
                 B-=1
                 A-=1
         
+#!https://leetcode.com/problems/delete-columns-to-make-sorted/
+class Solution(object):
+    def minDeletionSize(self, strs):
+        res=0
+        for x in range(len(strs[0])):
+            word=""
+            for y in range(len(strs)):
+                word+=(strs[y][x])
+            flag=True
+            for i in range(1,len(word)):
+                if ord(word[i])<ord(word[i-1]):
+                    flag=False
+                    break
+            if not flag:
+                res+=1
+        return res
+
+        
