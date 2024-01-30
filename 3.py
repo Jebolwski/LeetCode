@@ -1890,5 +1890,34 @@ class Solution(object):
             if not flag:
                 res+=1
         return res
+    
+#!https://leetcode.com/problems/evaluate-reverse-polish-notation/
+class Solution(object):
+    def evalRPN(self, tokens):
+        stack=[]
+        for i in range(len(tokens)):
+            if tokens[i]=="+":
+                stack.append(int(stack[-2])+int(stack[-1]))
+                stack.pop(len(stack)-3)
+                stack.pop(len(stack)-2)
+            elif tokens[i]=="*":
+                stack.append(int(stack[-2])*int(stack[-1]))
+                stack.pop(len(stack)-3)
+                stack.pop(len(stack)-2)
+            elif tokens[i]=="/":
+                if int(stack[-2])/float(stack[-1])<0:
+                    x=ceil(int(stack[-2])/float(stack[-1]))
+                else:
+                    x=floor(int(stack[-2])/float(stack[-1]))
+                stack.append(int(x))
+                stack.pop(len(stack)-3)
+                stack.pop(len(stack)-2)
+            elif tokens[i]=="-":
+                stack.append(int(stack[-2])-int(stack[-1]))
+                stack.pop(len(stack)-3)
+                stack.pop(len(stack)-2)
+            else:
+                stack.append(tokens[i])
+        return int(stack[0])
 
         
