@@ -1920,4 +1920,20 @@ class Solution(object):
                 stack.append(tokens[i])
         return int(stack[0])
 
+#!https://leetcode.com/problems/average-of-levels-in-binary-tree/
+class Solution(object):
+    def averageOfLevels(self, root):
+        arr=[[]]*2000
+        def func(node,level):
+            arr[level].append(node.val)
+            if node.left:
+                func(node.left,level+1)
+            if node.right:
+                func(node.right,level+1)
+        func(root,0)
+        res=[]
+        for i in range(len(arr)):
+            if len(arr[i])>0:
+                res.append(sum(arr[i])/float(len(arr[i])))
+        return (res)
         
