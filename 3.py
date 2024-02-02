@@ -1936,4 +1936,15 @@ class Solution(object):
             if len(arr[i])>0:
                 res.append(sum(arr[i])/float(len(arr[i])))
         return (res)
+
+#!https://leetcode.com/problems/find-smallest-letter-greater-than-target/
+class Solution(object):
+    def nextGreatestLetter(self, letters, target):
+        sorteda = sorted(letters)
+        arr = [ord(i) for i in sorted(letters)]
+        for i in range(len(arr)):
+            if ord(target)<arr[i]:
+                return sorteda[i]
+        return letters[0]
+        
         
