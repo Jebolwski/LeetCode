@@ -1946,5 +1946,22 @@ class Solution(object):
             if ord(target)<arr[i]:
                 return sorteda[i]
         return letters[0]
+
+class Solution(object):
+    def licenseKeyFormatting(self, s, k):
+        string=""
+        for i in s:
+            if i!="-":
+                string+=upper(i)
+        res=""
+        x=len(string)%k
+        if (len(string)%k!=0):
+            res=string[0:x]+"-"
+            for i in range(x,len(string),k):
+                res+=string[i:i+k]+"-"
+        else:
+            for i in range(0,len(string),k):
+                res+=string[i:i+k]+"-"
+        return res[:-1]
         
         
