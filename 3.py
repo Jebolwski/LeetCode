@@ -1964,4 +1964,19 @@ class Solution(object):
                 res+=string[i:i+k]+"-"
         return res[:-1]
         
-        
+#!https://leetcode.com/problems/longest-continuous-increasing-subsequence/
+class Solution(object):
+    def findLengthOfLCIS(self, nums):
+        x=0
+        arr=[]
+        for i in range(1,len(nums)):
+            if nums[i]>nums[i-1]:
+                x+=1
+            else:
+                arr.append(x)
+                x=0
+            if i==len(nums)-1:
+                arr.append(x)
+        if len(arr)>0:
+            return max(arr)+1
+        return 1
