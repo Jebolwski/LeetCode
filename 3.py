@@ -1980,3 +1980,17 @@ class Solution(object):
         if len(arr)>0:
             return max(arr)+1
         return 1
+
+#!https://leetcode.com/problems/sort-characters-by-frequency/
+class Solution(object):
+    def frequencySort(self, s):
+        dp=collections.Counter(s)
+        arr=[]
+        string=""
+        for i in dp:
+            arr.append([i,dp[i]])
+        arr = sorted(arr, key=lambda x: x[1], reverse=True)
+        for i in arr:
+            string+=i[0]*i[1]
+        return (string)
+        
