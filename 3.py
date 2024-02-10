@@ -1994,3 +1994,17 @@ class Solution(object):
             string+=i[0]*i[1]
         return (string)
         
+#!https://leetcode.com/problems/palindromic-substrings/
+class Solution(object):
+    def countSubstrings(self, s):
+        def isPalindrome(string):
+            if string==string[::-1]:
+                return True
+            return False
+        count=0
+        for i in range(len(s)):
+            for j in range(i+1,len(s)+1):
+                string = s[i:j]
+                if isPalindrome(string):
+                    count+=1
+        return count
