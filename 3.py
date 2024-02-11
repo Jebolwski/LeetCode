@@ -2008,3 +2008,24 @@ class Solution(object):
                 if isPalindrome(string):
                     count+=1
         return count
+
+
+#!https://leetcode.com/problems/two-sum-iv-input-is-a-bst/
+class Solution(object):
+    def findTarget(self, root, k):
+        arr=[]
+        def helper(node):
+            if not node:
+                return
+            if node.left:
+                helper(node.left)
+            arr.append(node.val)
+            if node.right:
+                helper(node.right)
+        helper(root)
+        for i in range(len(arr)):
+            for j in range(i+1,len(arr)):
+                if arr[i]+arr[j]==k:
+                    return True
+        return False
+        
