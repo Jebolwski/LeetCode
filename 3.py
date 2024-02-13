@@ -2028,4 +2028,12 @@ class Solution(object):
                 if arr[i]+arr[j]==k:
                     return True
         return False
+    
+#!https://leetcode.com/problems/find-first-palindromic-string-in-the-array/
+class Solution(object):
+    def firstPalindrome(self, words):
+        for i in words:
+            if i==i[::-1]:
+                return i
+        return ""
         
