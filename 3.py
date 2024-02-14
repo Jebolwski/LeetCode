@@ -2036,4 +2036,24 @@ class Solution(object):
             if i==i[::-1]:
                 return i
         return ""
+
+#!https://leetcode.com/problems/rearrange-array-elements-by-sign/
+class Solution(object):
+    def rearrangeArray(self, nums):
+        negative=[]
+        positive=[]
+        for i in nums:
+            if i>0:
+                positive.append(i)
+            else:
+                negative.append(i)
+        arr=[]
+        negative=negative[::-1]
+        positive=positive[::-1]
+        for i in range(len(negative)+len(positive)):
+            if i%2==1:
+                arr.append(negative.pop())
+            else:
+                arr.append(positive.pop())
+        return arr
         
