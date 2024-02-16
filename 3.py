@@ -2057,3 +2057,17 @@ class Solution(object):
                 arr.append(positive.pop())
         return arr
         
+#!https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/
+class Solution(object):
+    def findLeastNumOfUniqueInts(self, arr, k):
+        dp1 = collections.Counter(arr)
+        sorted_dict = sorted(dp1.items(), key=lambda x:x[1],reverse=False)
+        res=[]
+        for i in sorted_dict:
+            i=list(i)
+            for j in range(i[1]):
+                res.append(i[0])
+        res=res[::-1]
+        for i in range(k):
+            res.pop()
+        return len(collections.Counter(res).keys())
