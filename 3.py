@@ -2071,3 +2071,26 @@ class Solution(object):
         for i in range(k):
             res.pop()
         return len(collections.Counter(res).keys())
+
+
+#!https://leetcode.com/problems/find-bottom-left-tree-value/
+class Solution(object):
+    def findBottomLeftValue(self, root):
+        arr=[]
+        def helper(node,level):
+            if not node:
+                return
+            
+            if node.left:
+                helper(node.left,level+1)
+            if not node.left and not node.right:
+                arr.append([node.val,level])
+            if node.right:
+                helper(node.right,level+1)
+        helper(root,0)
+        arr=sorted(arr, key=lambda x: x[1], reverse=True)
+        if len(arr)>0:
+            return arr[0][0]
+        if root.right:
+            return root.right.val
+        return root.val
