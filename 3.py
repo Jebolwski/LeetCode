@@ -2094,3 +2094,13 @@ class Solution(object):
         if root.right:
             return root.right.val
         return root.val
+    
+#!https://leetcode.com/problems/maximum-odd-binary-number/
+class Solution:
+    def maximumOddBinaryNumber(self, s: str) -> str:
+        count=0
+        for i in s:
+            if i=="1":
+                count+=1
+        return ("1"*(count-1))+("0"*(int(len(s))-count))+"1"
+        
