@@ -2104,3 +2104,16 @@ class Solution:
                 count+=1
         return ("1"*(count-1))+("0"*(int(len(s))-count))+"1"
         
+#!https://leetcode.com/problems/divisor-game
+class Solution(object):
+    def divisorGame(self, n):
+        return n%2==0
+
+#!https://leetcode.com/problems/decompress-run-length-encoded-list/ 
+class Solution(object):
+    def decompressRLElist(self, nums):
+        arr=[]
+        for i in range(0,len(nums),2):
+            for j in range(nums[i]):
+                arr.append(nums[i+1])
+        return arr        
