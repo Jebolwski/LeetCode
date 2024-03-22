@@ -2117,3 +2117,16 @@ class Solution(object):
             for j in range(nums[i]):
                 arr.append(nums[i+1])
         return arr        
+    
+#!https://leetcode.com/problems/count-elements-with-maximum-frequency/
+class Solution(object):
+    def maxFrequencyElements(self, nums):
+        max_count=0
+        for i in nums:
+            if nums.count(i)>max_count:
+                max_count=nums.count(i)
+        x=0  
+        for i in nums:
+            if nums.count(i)==max_count:
+                x+=1
+        return x       
