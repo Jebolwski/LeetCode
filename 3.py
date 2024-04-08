@@ -2130,3 +2130,21 @@ class Solution(object):
             if nums.count(i)==max_count:
                 x+=1
         return x       
+    
+#!https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/
+class Solution(object):
+    def countStudents(self, students, sandwiches):
+        x=0
+        while x<=len(students) or len(sandwiches)>0:
+            if len(sandwiches)==0:
+                return 0
+            if x>len(sandwiches):
+                return len(sandwiches)
+            if students[0]==sandwiches[0]:
+                students=students[1:]
+                sandwiches=sandwiches[1:]
+                x=0
+            else:
+                students=students[1:]+[students[0]]
+                x=x+1
+        return len(sandwiches)
