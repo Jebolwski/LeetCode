@@ -2148,3 +2148,24 @@ class Solution(object):
                 students=students[1:]+[students[0]]
                 x=x+1
         return len(sandwiches)
+
+#!https://leetcode.com/problems/time-needed-to-buy-tickets/
+class Solution(object):
+    def timeRequiredToBuy(self, tickets, k):
+        a=max(tickets)
+        x=0
+        for i in range(a):
+            arr=[]
+            for i in tickets:
+                if i>0:
+                    arr.append(i-1)
+                    if not (len(arr)>k and arr[k]==0):
+                        x=x+1
+                else:
+                    arr.append(i)
+            tickets = [i for i in arr]
+            print(tickets,x)
+            if tickets[k]==0:
+                return x+1
+        return x+1
+        
