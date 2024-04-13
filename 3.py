@@ -2187,3 +2187,17 @@ class Solution(object):
                 continue
             ans += c
         return ans if ans else '0'
+
+#!https://leetcode.com/problems/factorial-trailing-zeroes/
+class Solution(object):
+    def trailingZeroes(self, n):
+        x=1
+        for i in range(1,n+1):
+            x*=i
+        res=0
+        for i in str(x)[::-1]:
+            if i=="0":
+                res+=1
+            else:
+                break
+        return res
