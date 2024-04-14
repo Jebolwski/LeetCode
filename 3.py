@@ -2201,3 +2201,20 @@ class Solution(object):
             else:
                 break
         return res
+
+#!https://leetcode.com/problems/1-bit-and-2-bit-characters/ 
+class Solution(object):
+    def findSecondMinimumValue(self, root):
+        arr=[]
+        def helper(node):
+            if not node:
+                return
+            if node.left:
+                helper(node.left)
+            arr.append(node.val)
+            if node.right:
+                helper(node.right)
+        helper(root)
+        if len(collections.Counter(arr).keys())>1:
+            return sorted(collections.Counter(arr).keys())[1]
+        return -1
