@@ -2218,3 +2218,21 @@ class Solution(object):
         if len(collections.Counter(arr).keys())>1:
             return sorted(collections.Counter(arr).keys())[1]
         return -1
+    
+#!https://leetcode.com/problems/nim-game/solutions/4173613/return-n-4-0-one-line-answer-explanation-o-1/
+class Solution(object):
+    def canWinNim(self, n):
+        return n%4!=0
+
+#!https://leetcode.com/problems/perfect-number/    
+class Solution(object):
+    def checkPerfectNumber(self, n):
+        if n==1:
+            return False
+        sq=int(sqrt(n))
+        s=1
+        for i in range(2,sq+1):
+            if n%i==0:
+                t=n//i
+                s+=t+i
+        return s==n
