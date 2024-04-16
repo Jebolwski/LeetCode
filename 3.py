@@ -2236,3 +2236,11 @@ class Solution(object):
                 t=n//i
                 s+=t+i
         return s==n
+
+#!https://leetcode.com/problems/score-of-a-string/
+class Solution(object):
+    def scoreOfString(self, s):
+        x=0
+        for i in range(len(s)-1):
+            x+=(abs(ord(s[i])-ord(s[i+1])))
+        return x
