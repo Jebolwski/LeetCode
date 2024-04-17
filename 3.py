@@ -2244,3 +2244,10 @@ class Solution(object):
         for i in range(len(s)-1):
             x+=(abs(ord(s[i])-ord(s[i+1])))
         return x
+    
+#!https://leetcode.com/problems/check-if-all-characters-have-equal-number-of-occurrences/
+class Solution(object):
+    def areOccurrencesEqual(self, s):
+        return len(collections.Counter(collections.Counter(s).values()).values())==1
+        
+        
