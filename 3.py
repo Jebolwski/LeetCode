@@ -2249,5 +2249,23 @@ class Solution(object):
 class Solution(object):
     def areOccurrencesEqual(self, s):
         return len(collections.Counter(collections.Counter(s).values()).values())==1
+
+#!https://leetcode.com/problems/convert-the-temperature/
+class Solution(object):
+    def convertTemperature(self, celsius):
+        return [celsius+273.15,celsius * 1.80 + 32.00]
+        
+#!https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/
+class Solution(object):
+    def differenceOfSums(self, n, m):
+        num1=0
+        for i in range(1,n+1):
+            if i%m!=0:
+                num1+=i
+        num2=0
+        for i in range(1,n+1):
+            if i%m==0:
+                num2+=i
+        return num1 - num2
         
         
