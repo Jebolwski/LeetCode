@@ -2267,5 +2267,26 @@ class Solution(object):
             if i%m==0:
                 num2+=i
         return num1 - num2
+
+#!https://leetcode.com/problems/count-the-digits-that-divide-a-number/
+class Solution(object):
+    def countDigits(self, num):
+        count=0
+        for i in str(num):
+            if num%int(i)==0:
+                count+=1
+        return count
+    
+#!https://leetcode.com/problems/add-two-integers/
+class Solution(object):
+    def sum(self, num1, num2):
+        return num1+num2
+    
+#!https://leetcode.com/problems/smallest-even-multiple/
+class Solution(object):
+    def smallestEvenMultiple(self, n):
+        if n%2==0:
+            return n
+        return n*2
         
         
