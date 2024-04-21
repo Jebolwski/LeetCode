@@ -2289,4 +2289,20 @@ class Solution(object):
             return n
         return n*2
         
+#!https://leetcode.com/problems/harshad-number/
+class Solution(object):
+    def sumOfTheDigitsOfHarshadNumber(self, x):
+        c=0
+        for i in str(x):
+            c+=int(i)
+        if x%c==0:
+            return c
+        return -1
+    
+#!https://leetcode.com/problems/a-number-after-a-double-reversal/
+class Solution(object):
+    def isSameAfterReversals(self, num):
+        def reverse(num):
+            return int(str(num)[::-1])
+        return reverse(reverse(num))==num
         
