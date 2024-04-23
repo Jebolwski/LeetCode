@@ -2305,4 +2305,38 @@ class Solution(object):
         def reverse(num):
             return int(str(num)[::-1])
         return reverse(reverse(num))==num
+    
+#!https://leetcode.com/problems/find-if-path-exists-in-graph/
+class Solution(object):
+    def validPath(self, n, edges, source, destination):
+        adj_list = collections.defaultdict(list)
+        for u,v in edges:
+            adj_list[u].append(v)
+            adj_list[v].append(u)
+
+        print(adj_list)
+        seen=set()
+        def dfs(node):
+            if node==destination:
+                return True
+            seen.add(node)
+
+            for v in adj_list[node]:
+                if v not in seen and dfs(v):
+                    return True
+            return False
+        return dfs(source)
         
+#!https://leetcode.com/problems/number-of-common-factors/
+class Solution(object):
+    def commonFactors(self, a, b):
+        x=0
+        for i in range(1,min(a,b)+1):
+            if a%i==0 and b%i==0:
+                x+=1
+        return x
+    
+#!https://leetcode.com/problems/calculate-delayed-arrival-time/
+class Solution(object):
+    def findDelayedArrivalTime(self, a, b):
+        return (a+b)%24
