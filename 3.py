@@ -2340,3 +2340,20 @@ class Solution(object):
 class Solution(object):
     def findDelayedArrivalTime(self, a, b):
         return (a+b)%24
+
+#!https://leetcode.com/problems/count-symmetric-integers/
+class Solution(object):
+    def countSymmetricIntegers(self, low, high):
+        res=0
+        for i in range(low,high+1):
+            length=len(str(i))
+            x=0
+            y=0
+            if length%2==0:
+                for j in str(i)[:length/2]:
+                    x+=int(j)
+                for j in str(i)[length/2:]:
+                    y+=int(j)
+                if x==y:
+                    res+=1
+        return res
