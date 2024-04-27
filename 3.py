@@ -2357,3 +2357,21 @@ class Solution(object):
                 if x==y:
                     res+=1
         return res
+    
+
+#!https://leetcode.com/problems/three-divisors/
+class Solution(object):
+    def isThree(self, n):
+        count=0
+        for i in range(1,n+1):
+            if n%i==0:
+                count+=1
+        return count==3
+    
+#!https://leetcode.com/problems/minimum-cuts-to-divide-a-circle/
+class Solution(object):
+    def numberOfCuts(self, n):
+        if n == 1: 
+            return 0
+        return n//2 if n%2==0 else n
+        
