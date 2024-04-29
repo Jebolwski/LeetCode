@@ -2374,4 +2374,14 @@ class Solution(object):
         if n == 1: 
             return 0
         return n//2 if n%2==0 else n
+
+#!https://leetcode.com/problems/check-if-the-number-is-fascinating/       
+class Solution(object):
+    def isFascinating(self, n):
+        x=str(n)+str(n*2)+str(n*3)
+        count=0
+        for i in range(1,10):
+            if str(i) in x and x.count(str(i))==1:
+                count+=1
+        return count==9
         
