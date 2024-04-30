@@ -2384,4 +2384,17 @@ class Solution(object):
             if str(i) in x and x.count(str(i))==1:
                 count+=1
         return count==9
+    
+#!https://leetcode.com/problems/sort-the-people/
+class Solution(object):
+    def sortPeople(self, names, heights):
+        arr=[]
+        for i in range(len(names)):
+            arr.append([names[i],heights[i]])
+        arr = sorted(arr, key=lambda x: x[1], reverse=True)
+        res=[]
+        for i in arr:
+            res.append(i[0])
+        return res
+        
         
