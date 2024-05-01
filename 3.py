@@ -2397,4 +2397,13 @@ class Solution(object):
             res.append(i[0])
         return res
         
+#!https://leetcode.com/problems/find-words-containing-character/
+class Solution(object):
+    def findWordsContaining(self, words, x):
+        arr=[]
+        for i in range(len(words)):
+            if x in words[i]:
+                arr.append(i)
+        return arr 
+        
         
