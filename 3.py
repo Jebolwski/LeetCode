@@ -2405,5 +2405,13 @@ class Solution(object):
             if x in words[i]:
                 arr.append(i)
         return arr 
+    
+#!https://leetcode.com/problems/minimum-string-length-after-removing-substrings/
+class Solution(object):
+    def minLength(self, s):
+        while "AB" in s or "CD" in s:
+            s=s.replace("AB","")
+            s=s.replace("CD","")
+        return len(s)
         
         
