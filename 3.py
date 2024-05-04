@@ -2413,5 +2413,20 @@ class Solution(object):
             s=s.replace("AB","")
             s=s.replace("CD","")
         return len(s)
-        
-        
+
+#!https://leetcode.com/problems/find-missing-and-repeated-values/  
+class Solution(object):
+    def findMissingAndRepeatedValues(self, grid):
+        x = (pow(len(grid[0]),2))
+        arr=[]
+        for i in grid:
+            for j in i:
+                arr.append(j)
+        res=[]
+        for i in range(1,x+1):
+            if arr.count(i)==2:
+                res.append(i)
+        for i in range(1,x+1):
+            if i not in arr:
+                res.append(i)
+        return (res)
