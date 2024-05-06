@@ -2430,3 +2430,13 @@ class Solution(object):
             if i not in arr:
                 res.append(i)
         return (res)
+
+#!https://leetcode.com/problems/number-of-senior-citizens/
+class Solution(object):
+    def countSeniors(self, details):
+        x=0
+        for i in details:
+            if int(i[11:13])>60:
+                x+=1
+        return x
+        
