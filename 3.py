@@ -2439,4 +2439,11 @@ class Solution(object):
             if int(i[11:13])>60:
                 x+=1
         return x
+
+#!https://leetcode.com/problems/find-the-sum-of-encrypted-integers/       
+class Solution(object):
+    def sumOfEncryptedInt(self, nums):
+        for i in range(len(nums)):
+            nums[i] = int(max(str(nums[i]))*len(str(nums[i])))
+        return (sum(nums))
         
