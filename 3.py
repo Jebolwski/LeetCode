@@ -2446,4 +2446,23 @@ class Solution(object):
         for i in range(len(nums)):
             nums[i] = int(max(str(nums[i]))*len(str(nums[i])))
         return (sum(nums))
+    
+#!https://leetcode.com/problems/delete-node-in-a-linked-list/
+class Solution(object):
+    def deleteNode(self, node):
+        temp=node
+        arr=[]
+        while temp!=None:
+            arr.append(temp.val)
+            temp=temp.next
+        arr=arr[1:]
+        i=0
+        temp=node
+        while temp.next!=None:
+            temp.val=arr[i]
+            if temp.next.next==None:
+                break
+            temp=temp.next
+            i+=1
+        temp.next=None
         
