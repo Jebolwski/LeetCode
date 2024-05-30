@@ -2465,4 +2465,19 @@ class Solution(object):
             temp=temp.next
             i+=1
         temp.next=None
+
+#!https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
+class Solution(object):
+    def specialArray(self, nums):
+        arr=[]
+        for i in range(max(nums)+1):
+            count=0
+            for j in nums:
+                if j>=i:
+                    count+=1
+            if count==i:
+                arr.append(i)
+        if len(arr)>0:
+            return arr[-1]
+        return -1
         
