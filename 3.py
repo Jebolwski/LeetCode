@@ -2480,4 +2480,16 @@ class Solution(object):
         if len(arr)>0:
             return arr[-1]
         return -1
+
+#!https://leetcode.com/problems/single-number-iii/  
+class Solution(object):
+    def singleNumber(self, nums):
+        x=collections.Counter(nums).keys()
+        arr=[]
+        for i in x:
+            if nums.count(i)==1:   
+                arr.append(i)
+            if len(arr)==2:
+                break
+        return arr
         
