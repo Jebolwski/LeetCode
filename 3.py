@@ -2492,4 +2492,25 @@ class Solution(object):
             if len(arr)==2:
                 break
         return arr
+
+#!https://leetcode.com/problems/delete-characters-to-make-fancy-string/
+class Solution(object):
+    def makeFancyString(self, s):
+        r = [s[0]]
+        
+        last_r_ind = 1
+        last_r_value = s[0]
+        
+        for i in range(1, len(s)):
+            if s[i] == last_r_value and last_r_ind < 2:
+                r[-1] *= 2
+                last_r_ind += 1
+
+            if s[i] != last_r_value:
+                r.append(s[i])
+                last_r_ind = 1
+                last_r_value = s[i]
+                
+        ans = ''.join(r)
+        return ans
         
