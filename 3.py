@@ -2513,4 +2513,19 @@ class Solution(object):
                 
         ans = ''.join(r)
         return ans
-        
+
+#!https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/  
+class Solution(object):
+    def largeGroupPositions(self, s):
+        lst=[]
+        c=""
+        for i in range(len(s)):
+            if c and c[-1]!=s[i]:
+                if len(c)>=3:
+                    lst.append([i-len(c),i-1])
+                c=s[i]
+            else:
+                c+=s[i]
+        if len(c)>=3:
+            lst.append([len(s)-len(c),len(s)-1])
+        return lst
