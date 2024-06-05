@@ -2529,3 +2529,11 @@ class Solution(object):
         if len(c)>=3:
             lst.append([len(s)-len(c),len(s)-1])
         return lst
+    
+#!https://leetcode.com/problems/find-common-characters/
+class Solution(object):
+    def commonChars(self, words):
+        min_freq = Counter(words[0])
+        for word in words:
+            min_freq &= Counter(word)
+        return list(min_freq.elements())
