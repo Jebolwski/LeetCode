@@ -2537,3 +2537,22 @@ class Solution(object):
         for word in words:
             min_freq &= Counter(word)
         return list(min_freq.elements())
+
+#!https://leetcode.com/problems/reshape-the-matrix/
+class Solution(object):
+    def matrixReshape(self, mat, r, c):
+        x = len(mat)*len(mat[0])
+        arr=[]
+        for i in mat:
+            for j in i:
+                arr.append(j)
+        if (r*c)!=x:
+            return mat
+        res=[]
+        arr=arr[::-1]
+        for i in range(r):
+            temp=[]
+            for i in range(c):
+                temp.append(arr.pop())
+            res.append(temp)
+        return res
