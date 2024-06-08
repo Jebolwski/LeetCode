@@ -2556,3 +2556,32 @@ class Solution(object):
                 temp.append(arr.pop())
             res.append(temp)
         return res
+
+#!https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/
+class Solution(object):
+    def removeAnagrams(self, words):
+        def isAnagram(one,two):
+            ones = collections.Counter(one)
+            twos = collections.Counter(two)
+            arr_one=[]
+            arr_two=[]
+            for i in ones:
+                arr_one.append([i,ones[i]])
+            for i in twos:
+                arr_two.append([i,twos[i]])
+            arr_one=sorted(arr_one) 
+            arr_two=sorted(arr_two) 
+            if arr_one==arr_two:
+                return True
+            return False
+        indexes=[]
+        for i in range(1,len(words)):
+            if isAnagram(words[i],words[i-1]):
+                indexes.append(i)
+        count=0
+        for i in indexes:
+            words.pop(i-count)
+            count+=1
+        return words
+            
+                
