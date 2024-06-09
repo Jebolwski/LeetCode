@@ -2583,5 +2583,26 @@ class Solution(object):
             words.pop(i-count)
             count+=1
         return words
+
+#!https://leetcode.com/problems/make-the-string-great/
+class Solution(object):
+    def makeGood(self, s):
+        if len(s)==1:
+            return s
+        elif len(s)==2 and lower(s[0])==lower(s[1]) and s[0]!=s[1]:
+            return ""
+        elif len(s)==2 and lower(s[0])!=lower(s[1]) and s[0]!=s[1]:
+            return s
+        res=s
+        for j in range(80):
+            for i in range(len(s)-1):
+                if lower(s[i])==lower(s[i+1]) and s[i]!=s[i+1]:
+                    res=s[:i]+s[i+2:]
+            s=res
+            if s=="":
+                return s
+        return s
+
+        
             
                 
