@@ -2603,6 +2603,21 @@ class Solution(object):
                 return s
         return s
 
+#!https://leetcode.com/problems/subarray-sums-divisible-by-k/   
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        res = 0
+        prefix = 0
+        arr = [0] * k
+        arr[0] = 1
+
+        for num in nums:
+            prefix = (prefix + num % k + k) % k
+            res += arr[prefix]
+            arr[prefix] += 1
+
+        return res
+
         
             
                 
