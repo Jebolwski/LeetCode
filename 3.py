@@ -2667,3 +2667,13 @@ class Solution:
             prefix_count[s] += 1
         
         return ans
+
+#!https://leetcode.com/problems/maximum-number-of-words-found-in-sentences/ 
+class Solution:
+    def mostWordsFound(self, sentences: List[str]) -> int:
+        x=0
+        for i in sentences:
+            if len(i.split(" "))>x:
+                x=len(i.split(" "))
+        return x
+        
