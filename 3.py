@@ -2677,3 +2677,15 @@ class Solution:
                 x=len(i.split(" "))
         return x
         
+#!https://leetcode.com/problems/kth-distinct-string-in-an-array/
+class Solution:
+    def kthDistinct(self, arr: List[str], k: int) -> str:
+        count_dict = Counter(arr)
+        count = 0
+
+        for key, value in count_dict.items():
+            if value == 1:
+                count += 1            
+            if count == k:
+                return  key
+        return ""
