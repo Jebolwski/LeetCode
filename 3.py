@@ -2704,3 +2704,22 @@ class Solution:
             else:
                 arr[i]=arr[int(i/2)]+arr[int(i/2)+1]
         return max(arr)
+
+#!https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/
+class Solution:
+    def minTimeToType(self, word: str) -> int:
+        arr=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        res=0
+        start=min(arr.index(word[0]),26-arr.index(word[0]))
+        res=start+1
+        for i in range(1,len(word)):
+            onceki=arr.index(word[i-1])
+            simdiki=arr.index(word[i])
+            fark1=abs(simdiki-onceki)
+            if simdiki>onceki:
+                fark2=(len(arr)-simdiki)+onceki
+            else:
+                fark2=(len(arr)-onceki)+simdiki
+            x=min(fark1,fark2)
+            res+=1+x
+        return res
