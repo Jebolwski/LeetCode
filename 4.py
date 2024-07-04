@@ -24,3 +24,25 @@ class Solution:
             for j in str(i):
                 y+=int(j)
         return abs(x-y)
+    
+#https://leetcode.com/problems/merge-nodes-in-between-zeros/
+class Solution(object):
+    def mergeNodes(self, head):
+        temp=head
+        arr=[]
+        x=0
+        while temp!=None:
+            x+=temp.val
+            if temp.val==0: 
+                arr.append(x)
+                x=0
+            temp=temp.next
+        arr=arr[1:]
+        arr=arr[::-1]
+        head=ListNode(arr.pop())
+        tmp=head
+        while len(arr)>0:
+            temp=ListNode(arr.pop())
+            tmp.next=temp
+            tmp=tmp.next
+        return head
