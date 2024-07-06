@@ -25,7 +25,7 @@ class Solution:
                 y+=int(j)
         return abs(x-y)
     
-#https://leetcode.com/problems/merge-nodes-in-between-zeros/
+#!https://leetcode.com/problems/merge-nodes-in-between-zeros/
 class Solution(object):
     def mergeNodes(self, head):
         temp=head
@@ -46,3 +46,15 @@ class Solution(object):
             tmp.next=temp
             tmp=tmp.next
         return head
+
+#!https://leetcode.com/problems/pass-the-pillow/
+class Solution(object):
+    def passThePillow(self, n, time):
+        if time<n:
+            return 1+time
+        x = time//(n-1)
+        y = time%(n-1)
+        if x%2==1:
+            return n-y
+        else:
+            return y+1
