@@ -58,3 +58,16 @@ class Solution(object):
             return n-y
         else:
             return y+1
+
+#!https://leetcode.com/problems/water-bottles/
+class Solution(object):
+    def numWaterBottles(self, numBottles, numExchange):
+        total=numBottles
+        while numBottles>=numExchange:
+            mod=numBottles%numExchange
+            numBottles/=numExchange
+            total+=numBottles
+            numBottles+=mod
+        return total
+
+        
