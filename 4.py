@@ -74,3 +74,17 @@ class Solution(object):
 class Solution(object):
     def checkTree(self, root):
         return root.left.val+root.right.val==root.val
+
+#!https://leetcode.com/problems/average-waiting-time/
+class Solution(object):
+    def averageWaitingTime(self, customers):
+        time=customers[0][0]
+        x=0
+        for i in customers:
+            if time<i[0]:
+                time=i[0]
+            time+=i[1]
+            x+=(time-i[0])
+        return x*1.00/len(customers)
+
+        
