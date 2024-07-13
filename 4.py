@@ -121,6 +121,17 @@ class Solution(object):
             arr.append(i)
         arr.append(en_b)
         return sorted(nums)==arr
+
+#!https://leetcode.com/problems/neither-minimum-nor-maximum/
+class Solution(object):
+    def findNonMinOrMax(self, nums):
+        en_b=max(nums)
+        en_k=min(nums)
+        x=0
+        for i in nums:
+            if i<en_b and i>en_k:
+                return i
+        return -1 
         
 
         
