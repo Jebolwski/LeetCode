@@ -111,6 +111,16 @@ class Solution(object):
             return ''.join(sb)
 
         return helper(s)
+
+#!https://leetcode.com/problems/check-if-array-is-good/      
+class Solution(object):
+    def isGood(self, nums):
+        arr=[]
+        en_b=max(nums)
+        for i in range(1,en_b+1):
+            arr.append(i)
+        arr.append(en_b)
+        return sorted(nums)==arr
         
 
         
