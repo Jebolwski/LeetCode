@@ -132,6 +132,26 @@ class Solution(object):
             if i<en_b and i>en_k:
                 return i
         return -1 
+    
+#!https://leetcode.com/problems/find-the-peaks/
+class Solution(object):
+    def findPeaks(self, mountain):
+        arr=[]
+        for i in range(1,len(mountain)-1):
+            if mountain[i]>mountain[i+1] and mountain[i]>mountain[i-1]:
+                arr.append(i)
+        return arr
+    
+#!https://leetcode.com/problems/sum-of-squares-of-special-elements/
+class Solution(object):
+    def sumOfSquares(self, nums):
+        n=len(nums)
+        x=0
+        for i in range(1,len(nums)+1):
+            if n%i==0:
+                x+=nums[i-1]**2
+        return (x)     
+        
         
 
         
