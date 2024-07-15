@@ -152,6 +152,23 @@ class Solution(object):
                 x+=nums[i-1]**2
         return (x)     
         
+#!https://leetcode.com/problems/maximum-strong-pair-xor-i/
+class Solution(object):
+    def maximumStrongPairXor(self, nums):
+        x=0
+        arr=[]
+        for i in range(len(nums)):
+            for j in range(i,len(nums)):
+                if abs(nums[i]-nums[j]) <= min(nums[i],nums[j]):
+                    arr.append([nums[i],nums[j]])
+        res=[0,0]
+        last_biggest=0
+        for i in arr:
+            a,b=i
+            if a^b > last_biggest:
+                last_biggest=a^b
+                res=i
+        return last_biggest
         
 
         
