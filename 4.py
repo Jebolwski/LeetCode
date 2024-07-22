@@ -209,4 +209,20 @@ class Solution:
             return 'a'+('b'*(n-1))
         else:
             return 'a'*n
+
+#!https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
+class Solution(object):
+    def countPrefixSuffixPairs(self, words):
+        x=0
+        for i in range(len(words)):
+            for j in range(i+1,len(words)):
+                if len(words[i])>len(words[j]):
+                    continue
+                else:
+                    bas=words[j][:len(words[i])]
+                    son=words[j][(len(words[j])-len(words[i])):]
+                    if bas==words[i] and son==words[i]:
+                        x+=1
+        return x
+
         
