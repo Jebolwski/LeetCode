@@ -225,4 +225,14 @@ class Solution(object):
                         x+=1
         return x
 
+#!https://leetcode.com/problems/find-a-corresponding-node-of-a-binary-tree-in-a-clone-of-that-tree/
+class Solution(object):
+    def getConcatenation(self, nums):
+        arr=[]
+        for i in range(2):
+            for j in nums:
+                arr.append(j)
+        return arr
+        
+
         
