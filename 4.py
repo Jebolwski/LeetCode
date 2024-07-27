@@ -239,5 +239,13 @@ class Solution(object):
     def minBitFlips(self, start, goal):
         return bin(start ^ goal).count('1')
         
+#!https://leetcode.com/problems/maximum-repeating-substring/
+class Solution(object):
+    def maxRepeating(self, sequence, word):
+        count=0
+        while True:
+            if word*(count+1) not in sequence:
+                return count
+            count+=1
 
         
