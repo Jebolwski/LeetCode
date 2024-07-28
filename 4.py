@@ -248,4 +248,21 @@ class Solution(object):
                 return count
             count+=1
 
+#!https://leetcode.com/problems/minimum-cost-of-buying-candies-with-discount/
+class Solution(object):
+    def minimumCost(self, cost):
+        res=0
+        x=0
+        cost = sorted(cost)
+        while len(cost)>0:
+            if x==2:
+                x=0
+                cost.pop()
+            else:
+                res+=cost.pop()
+                x+=1
+        return res
+
+        
+
         
