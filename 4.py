@@ -210,7 +210,7 @@ class Solution:
         else:
             return 'a'*n
 
-#!https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
+#!https://leetcode.com/problems/count-prefix-and-suffix-pairs-i
 class Solution(object):
     def countPrefixSuffixPairs(self, words):
         x=0
