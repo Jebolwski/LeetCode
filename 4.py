@@ -210,7 +210,7 @@ class Solution:
         else:
             return 'a'*n
 
-#!https://leetcode.com/problems/count-prefix-and-suffix-pairs-i
+#!https://leetcode.com/problems/count-prefix-and-suffix-pairs-i/
 class Solution(object):
     def countPrefixSuffixPairs(self, words):
         x=0
@@ -262,6 +262,18 @@ class Solution(object):
                 res+=cost.pop()
                 x+=1
         return res
+    
+#!https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/
+class Solution:
+    def minSwaps(self, nums: List[int]) -> int:
+        k = nums.count(1)
+        mx = cnt = sum(nums[:k])
+        n = len(nums)
+        for i in range(k, n + k):
+            cnt += nums[i % n]
+            cnt -= nums[(i - k + n) % n]
+            mx = max(mx, cnt)
+        return k - mx
 
         
 
