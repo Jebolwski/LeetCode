@@ -1,4 +1,4 @@
-#!https://leetcode.com/problems/find-the-maximum-achievable-number
+#!https://leetcode.com/problems/find-the-maximum-achievable-number/
 class Solution(object):
     def theMaximumAchievableX(self, num, t):
         return num+t*2
@@ -293,6 +293,11 @@ class Solution:
             total_key_presses += (index // 8 + 1) * count
         
         return total_key_presses
+        
+#!https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/
+class Solution:
+    def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
+        return sum(abs(x-y) for x, y in zip(sorted(seats), sorted(students)))
         
 
         
