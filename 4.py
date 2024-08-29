@@ -315,6 +315,27 @@ class Solution:
             ugly.append(min(ugly[two]*2,ugly[three]*3,ugly[five]*5))
             
         return ugly[-1]  
+    
+#!https://leetcode.com/problems/longest-nice-substring/
+class Solution(object):
+    def longestNiceSubstring(self, s):
+        arr=[]
+        def isNiceSubstring(x):
+            string=""
+            for i in x:
+                if i.lower() in x and i.upper() in x:
+                    string+=i
+            return string==x
+        for i in range(len(s)):
+            for j in range(i+1,len(s)+1):
+                if isNiceSubstring(s[i:j]) and len(s[i:j])>0:
+                    arr.append(s[i:j])
+        arr.sort(key=len, reverse=True)
+        if len(arr)>0:
+            return arr[0]
+        return ""
+        
+        
         
 
         
