@@ -334,6 +334,15 @@ class Solution(object):
         if len(arr)>0:
             return arr[0]
         return ""
+
+#!https://leetcode.com/problems/smallest-index-with-equal-value/   
+class Solution(object):
+    def smallestEqual(self, nums):
+        for i in range(len(nums)):
+            if nums[i]==i%10:
+                return i
+        return -1
+        
         
         
         
