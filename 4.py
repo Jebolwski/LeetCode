@@ -342,6 +342,20 @@ class Solution(object):
             if nums[i]==i%10:
                 return i
         return -1
+
+#!https://leetcode.com/problems/check-distances-between-same-letters/
+class Solution(object):
+    def checkDistances(self, s, distance):
+        arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        res = []
+        for i in range(len(arr)):
+            res.append(0)
+        for i in range(len(arr)):
+            if arr[i] in s:
+                x = abs(s.index(arr[i])-s.rindex(arr[i]))-1
+                if distance[i]!=x:
+                    return False
+        return True
         
         
         
