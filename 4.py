@@ -356,6 +356,26 @@ class Solution(object):
                 if distance[i]!=x:
                     return False
         return True
+    
+#!https://leetcode.com/problems/maximum-number-of-pairs-in-array/
+class Solution(object):
+    def numberOfPairs(self, nums):
+        def areAnyPairsLeft():
+            for i in nums:
+                if nums.count(i)>1:
+                    return True
+            return False
+        x=0
+        while areAnyPairsLeft():
+            for i in nums:
+                if nums.count(i)>1:
+                    nums.remove(i)
+                    nums.remove(i)
+                    x+=1
+                    break
+        return [x,len(nums)]
+
+        
         
         
         
