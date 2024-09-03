@@ -375,8 +375,21 @@ class Solution(object):
                     break
         return [x,len(nums)]
 
-        
-        
+#!https://leetcode.com/problems/minimum-number-game/  
+class Solution(object):
+    def numberGame(self, nums):
+        temp_arr=[]
+        bob=0
+        alice=0
+        while len(nums)>0:
+            bob=min(nums)
+            nums.remove(bob)
+            if len(nums)>0:
+                alice=min(nums)
+                nums.remove(alice)
+            temp_arr.append(alice)
+            temp_arr.append(bob)
+        return temp_arr
         
         
         
