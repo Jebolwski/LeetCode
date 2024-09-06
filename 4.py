@@ -415,4 +415,17 @@ class Solution:
         return max_distance        
   
 
+#!https://leetcode.com/problems/delete-nodes-from-linked-list-present-in-array/
+class Solution(object):
+    def modifiedList(self, nums, head):
+        temp = head
+        while temp!=None and temp.next!=None:
+            while temp.next and temp.next.val in nums:
+                temp.next=temp.next.next
+            temp=temp.next
+        for i in range(2):
+            if head.val in nums:
+                head=head.next
+        return head
+        
         
