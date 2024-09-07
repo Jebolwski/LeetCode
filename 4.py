@@ -427,5 +427,19 @@ class Solution(object):
             if head.val in nums:
                 head=head.next
         return head
-        
+
+#!https://leetcode.com/problems/check-if-numbers-are-ascending-in-a-sentence/    
+class Solution(object):
+    def areNumbersAscending(self, s):
+        arr=s.split(" ")
+        num_arr=[]
+        for i in arr:
+            try:
+                num_arr.append(int(i))
+            except:
+                continue
+        for i in range(len(num_arr)-1):
+            if num_arr[i]>=num_arr[i+1]:
+                return False
+        return True
         
