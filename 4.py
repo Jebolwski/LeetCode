@@ -476,4 +476,18 @@ class Solution(object):
         return res
 
 
+#!https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/
+from fractions import gcd
+class Solution(object):
+    def insertGreatestCommonDivisors(self, head):
+        temp = head
+        while temp.next:
+            node = ListNode(val=gcd(temp.val, temp.next.val),next=temp.next)
+            temp.next=node
+            temp=temp.next.next
+        return head
+        
+        
+
+
         
