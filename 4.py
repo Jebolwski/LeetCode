@@ -487,6 +487,33 @@ class Solution(object):
             temp=temp.next.next
         return head
         
+#!https://leetcode.com/problems/find-the-distance-value-between-two-arrays/
+class Solution(object):
+    def findTheDistanceValue(self, arr1, arr2, d):
+        x=0
+        for i in arr1:
+            flag=True
+            for j in arr2:
+                if abs(i-j)<=d:
+                    flag=False
+            if flag:
+                x+=1
+        return x
+        
+#!https://leetcode.com/problems/check-whether-two-strings-are-almost-equivalent/     
+class Solution:
+    def checkAlmostEquivalent(self, word1: str, word2: str) -> bool:
+        arr=[]
+        for i in word1:
+            if i not in arr:
+                arr.append(i)
+        for i in word2:
+            if i not in arr:
+                arr.append(i)
+        for i in arr:
+            if (abs(word1.count(i) - word2.count(i)))>3:
+                return False
+        return True
         
 
 
