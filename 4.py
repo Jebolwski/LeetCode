@@ -515,6 +515,10 @@ class Solution:
                 return False
         return True
         
+#!https://leetcode.com/problems/percentage-of-letter-in-string/
+class Solution:
+    def percentageLetter(self, s: str, letter: str) -> int:
+        return math.floor(s.count(letter)*100/len(s))
 
 
         
