@@ -527,4 +527,31 @@ class Solution:
             if num.count(str(i))!=int(num[i]):
                 return False
         return True
+
+#!https://leetcode.com/problems/calculate-digit-sum-of-a-string/
+class Solution(object):
+    def digitSum(self, s, k):
+        def create_arr(string):
+            arr=[]
+            for i in range(0,len(string),k):
+                if len(string)-i>k:
+                    arr.append(string[i:i+k])
+                else:
+                    arr.append(string[i:])
+            return arr
+        #recreate new string
+        def recreate_string(arr):
+            string=""
+            for i in arr:
+                total=0
+                for j in i:
+                    total+=int(j)
+                string+=str(total)
+            return string
+        string=s
+        arr=[]
+        while len(string)>k:
+            arr=create_arr(string)
+            string=recreate_string(arr)
+        return string
     
