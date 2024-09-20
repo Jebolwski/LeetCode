@@ -555,3 +555,21 @@ class Solution(object):
             string=recreate_string(arr)
         return string
     
+#!https://leetcode.com/problems/minimum-time-difference/
+class Solution(object):
+    def findMinDifference(self, timePoints):
+        arr=[]
+        for i in range(len(timePoints)):
+            for j in range(i+1,len(timePoints)):
+                if  timePoints[i]==timePoints[j]:
+                    return 0
+                else:
+                    time_arr_1=timePoints[i].split(":")
+                    time_arr_2=timePoints[j].split(":")
+                    mins_1=int(time_arr_1[0])*60+int(time_arr_1[1])
+                    mins_2=int(time_arr_2[0])*60+int(time_arr_2[1])
+                    a=abs(mins_1-mins_2)
+                    if a>720:
+                        arr.append(1440-a)    
+                    arr.append(a)
+        return min(arr)
