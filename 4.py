@@ -585,3 +585,24 @@ class Solution(object):
         for i in arr:
             res.append(int(i))
         return res
+
+#!https://leetcode.com/problems/distribute-candies-among-children-i/
+class Solution(object):
+    def distributeCandies(self, n, limit):
+        x=0
+        for i in range(limit+1):
+            for j in range(limit+1):
+                for k in range(limit+1):
+                    if i+j+k==n:
+                        x+=1
+        return x
+
+#!https://leetcode.com/problems/minimum-recolors-to-get-k-consecutive-black-blocks/
+class Solution(object):
+    def minimumRecolors(self, blocks, k):
+        arr=[]
+        for i in range(len(blocks)-k+1):
+            string=(blocks[i:i+k])
+            arr.append(string.count("W"))
+        return min(arr)
+        
