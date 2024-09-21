@@ -573,3 +573,15 @@ class Solution(object):
                         arr.append(1440-a)    
                     arr.append(a)
         return min(arr)
+
+#!https://leetcode.com/problems/lexicographical-numbers/
+class Solution(object):
+    def lexicalOrder(self, n):
+        arr=[]
+        res=[]
+        for i in range(1,n+1):
+            arr.append(str(i))
+        arr=sorted(arr)
+        for i in arr:
+            res.append(int(i))
+        return res
