@@ -605,4 +605,26 @@ class Solution(object):
             string=(blocks[i:i+k])
             arr.append(string.count("W"))
         return min(arr)
-        
+
+#!https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/  
+class Solution(object):
+    def longestCommonPrefix(self, arr1, arr2):
+        arr=[]
+        for i in arr2:
+            for j in arr1:
+                s_i=str(i)
+                s_j=str(j)
+                if s_i[0]!=s_j[0]:
+                    continue
+                x=0
+                while True and x<=len(s_i):
+                    if s_i[:x]!=s_j[:x]:
+                        break
+                    x+=1
+                
+                x-=1
+                if x!=0:
+                    arr.append(int(s_i[:x]))
+        if len(arr)>0:
+            return len(str(max(arr)))
+        return 0
