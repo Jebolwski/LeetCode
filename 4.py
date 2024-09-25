@@ -628,3 +628,37 @@ class Solution(object):
         if len(arr)>0:
             return len(str(max(arr)))
         return 0
+
+#!https://leetcode.com/problems/matrix-similarity-after-cyclic-shifts/  
+class Solution(object):
+    def areSimilar(self, mat, k):
+        aminake=[]
+        for i in range(len(mat)):
+            temp_arr=[]
+            for j in range(len(mat[0])):
+                temp_arr.append(mat[i][j])
+            aminake.append(temp_arr)
+
+        def shiftLeft(arr):
+            temp = arr[1:]
+            arr[-1]=arr[0]
+            arr[:len(arr)-1]=temp
+            return arr
+
+        def shiftRight(arr):
+            temp = arr[:len(arr)-1]
+            arr[0]=arr[-1]
+            arr[1:]=temp
+            return arr
+
+        for i in range(len(mat)):
+            for x in range(k):
+                if i%2==0:
+                    mat[i] = shiftLeft(mat[i]) 
+                else:
+                    mat[i] = shiftRight(mat[i]) 
+        for i in range(len(mat)):
+            for j in range(len(mat[i])):
+                if mat[i][j]!=aminake[i][j]:
+                    return False
+        return True
