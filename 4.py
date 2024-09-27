@@ -673,3 +673,16 @@ class Solution(object):
                 arr.append(i)
         return arr
         
+#!https://leetcode.com/problems/number-of-even-and-odd-bits/
+class Solution(object):
+    def evenOddBit(self, n):
+        x=bin(n)[2:][::-1]
+        odd=0
+        even=0
+        for i in range(len(x)):
+            if x[i]=='1':
+                if i%2==0:
+                    even+=1
+                else:
+                    odd+=1
+        return [even,odd]
