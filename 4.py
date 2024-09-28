@@ -686,3 +686,11 @@ class Solution(object):
                 else:
                     odd+=1
         return [even,odd]
+    
+#!https://leetcode.com/problems/check-if-string-is-a-prefix-of-array/
+class Solution(object):
+    def isPrefixString(self, s, words):
+        for i in range(1,len(words)+1):
+            if s==("".join(words[:i])):
+                return True
+        return False
