@@ -742,4 +742,12 @@ class CustomStack(object):
             for i in range(len(self.stack)):
                 self.stack[i]+=val
 
-
+#!https://leetcode.com/problems/points-that-intersect-with-cars/
+class Solution(object):
+    def numberOfPoints(self, nums):
+        res=[]
+        for i in nums:
+            for j in range(i[0],i[1]+1):
+                if j not in res:
+                    res.append(j)
+        return len(res)
