@@ -751,3 +751,22 @@ class Solution(object):
                 if j not in res:
                     res.append(j)
         return len(res)
+    
+#!https://leetcode.com/problems/merge-similar-items/
+class Solution(object):
+    def mergeSimilarItems(self, items1, items2):
+        dic={}
+        for i in items1:
+            if i[0] in dic:
+                dic[i[0]]+=i[1]
+            else:
+                dic[i[0]]=i[1]
+        for i in items2:
+            if i[0] in dic:
+                dic[i[0]]+=i[1]
+            else:
+                dic[i[0]]=i[1]
+        arr=[]
+        for i in dic:
+            arr.append([i,dic[i]]) 
+        return sorted(arr)
