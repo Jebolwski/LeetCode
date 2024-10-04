@@ -770,3 +770,19 @@ class Solution(object):
         for i in dic:
             arr.append([i,dic[i]]) 
         return sorted(arr)
+
+#!https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/
+class Solution(object):
+    def dividePlayers(self, skill):
+        skill = sorted(skill)
+        x=sum(skill)/(len(skill)/2)
+        arr=[]
+        for i in range(len(skill)/2):
+            if skill[i]+skill[-1-i]==x:
+                arr.append([skill[i],skill[-1-i]])
+        if len(arr)*2!=len(skill):
+            return -1
+        x=0
+        for i in arr:
+            x+=i[0]*i[1]
+        return x 
