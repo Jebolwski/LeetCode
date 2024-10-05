@@ -1,3 +1,5 @@
+import collections.Counter as Counter
+
 #!https://leetcode.com/problems/find-the-maximum-achievable-number/
 class Solution(object):
     def theMaximumAchievableX(self, num, t):
@@ -786,3 +788,8 @@ class Solution(object):
         for i in arr:
             x+=i[0]*i[1]
         return x 
+    
+#!https://leetcode.com/problems/permutation-in-string/
+class Solution(object):
+    def checkInclusion(self, s1, s2):
+        return any(Counter(s1)==Counter(s2[i:i+len(s1)]) for i in range(len(s2)-len(s1)+1))
