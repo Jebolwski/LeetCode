@@ -793,3 +793,64 @@ class Solution(object):
 class Solution(object):
     def checkInclusion(self, s1, s2):
         return any(Counter(s1)==Counter(s2[i:i+len(s1)]) for i in range(len(s2)-len(s1)+1))
+
+#!https://leetcode.com/problems/sentence-similarity-iii/
+class Solution(object):
+    def areSentencesSimilar(self, sentence1, sentence2):
+        # Split the sentences into words
+        words1 = sentence1.split()
+        words2 = sentence2.split()
+
+        # Ensure words1 is the longer sentence
+        if len(words1) < len(words2):
+            words1, words2 = words2, words1
+        
+        start, end = 0, 0
+        n1, n2 = len(words1), len(words2)
+        
+        # Compare from the start
+        while start < n2 and words1[start] == words2[start]:
+            start += 1
+        
+        # Compare from the end
+        while end < n2 and words1[n1 - end - 1] == words2[n2 - end - 1]:
+            end += 1
+        
+        # Check if the remaining unmatched part is in the middle
+        return start + end >= n2
+
+#!https://leetcode.com/problems/strong-password-checker-ii/
+class Solution(object):
+    def strongPasswordCheckerII(self, password):
+        if len(password)<8:
+            return False
+        alphabet_lower = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        nums=['0','1','2','3','4','5','6','7','8','9']
+        special_char="!@#$%^&*()-+"
+        alphabet_upper = []
+        for i in alphabet_lower:
+            alphabet_upper.append(upper(i))
+        flag_up=False
+        flag_low=False
+        flag_num=False
+        flag_special=False
+        flag_adj=True
+        for i in password:
+            if i in alphabet_upper:
+                flag_up=True
+            if i in alphabet_lower:
+                flag_low=True
+            if i in nums:
+                flag_num=True
+            if i in special_char:
+                flag_special=True
+            if flag_low and flag_up and flag_special and flag_num:
+                break
+        for i in range(len(password)-1):
+            if password[i]==password[i+1]:
+                flag_adj=False
+                break
+        return flag_low and flag_up and flag_special and flag_num and flag_adj
+
+        
+        
