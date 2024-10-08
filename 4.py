@@ -852,5 +852,17 @@ class Solution(object):
                 break
         return flag_low and flag_up and flag_special and flag_num and flag_adj
 
-        
-        
+#!https://leetcode.com/problems/first-letter-to-appear-twice/    
+class Solution(object):
+    def repeatedCharacter(self, s):
+        arr=[]
+        def check_has_two(arr):
+            for i in arr:
+                if arr.count(i)==2:
+                    return i
+            return "-1"
+        for i in s:
+            arr.append(i)
+            x=check_has_two(arr)
+            if x!="-1":
+                return x
