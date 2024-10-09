@@ -866,3 +866,20 @@ class Solution(object):
             x=check_has_two(arr)
             if x!="-1":
                 return x
+
+#!https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
+class Solution(object):
+    def minAddToMakeValid(self, s):
+        def isDone(string):
+            arr=[]
+            left=""
+            for i in string:
+                if i=="(":
+                    arr.append(i)
+                elif i==")" and len(arr)>0:
+                    arr.pop()
+                else:
+                    left+=i
+            return len(arr)+len(left)
+            
+        return isDone(s)
