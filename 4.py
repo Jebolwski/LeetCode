@@ -883,3 +883,19 @@ class Solution(object):
             return len(arr)+len(left)
             
         return isDone(s)
+    
+#!https://leetcode.com/problems/maximum-width-ramp/
+class Solution(object):
+    def maxWidthRamp(self, nums):
+        if nums==sorted(nums):
+            return len(nums)
+        arr=[]
+        for i in range(len(nums)):
+            for j in range(len(nums)-1,i,-1):
+                if nums[i]<=nums[j]:
+                    if len(arr)>0 and (len(nums)-i)<=max(arr):
+                        return max(arr)
+                    arr.append(j-i)
+        if len(arr)>0:
+            return max(arr)
+        return 0
