@@ -899,3 +899,22 @@ class Solution(object):
         if len(arr)>0:
             return max(arr)
         return 0
+    
+#!https://leetcode.com/problems/maximum-value-of-a-string-in-an-array/
+class Solution(object):
+    def maximumValue(self, strs):
+        nums=["0","1","2","3","4","5","6","7","8","9"]
+        res=0
+        for i in strs:
+            count=0
+            for j in i:
+                if j in nums:
+                    count+=1
+            x=0
+            if count<len(i):
+                x=len(i)
+            else:
+                x=int(i)
+            if x>res:
+                res=x
+        return res
