@@ -933,3 +933,13 @@ class Solution:
                 group_count += 1
 
         return group_count
+
+#!https://leetcode.com/problems/row-with-maximum-ones/
+class Solution(object):
+    def rowAndMaximumOnes(self, mat):
+        arr=[]
+        for i in range(len(mat)):
+            arr.append([i,mat[i].count(1)])
+        arr=sorted(arr, key=lambda x: x[1], reverse=True)
+        return arr[0]
+        
