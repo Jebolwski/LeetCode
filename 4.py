@@ -952,3 +952,32 @@ class Solution(object):
                 if (nums[i]+nums[j])<target:
                     x+=1
         return x
+
+#!https://leetcode.com/problems/separate-black-and-white-balls/
+class Solution(object):
+    def minimumSteps(self, s):
+        if "1" not in s:
+            return 0
+        arr = [i for i in s]
+        def check(s):
+            x=0
+            for i in range(len(s)):
+                if s[i]=="1":
+                    x=i
+                    break
+            if "0" in s[x+1:]:
+                return False
+            return True   
+        x=check(s)
+        if x:
+            return 0
+        else:
+            res=0
+            while not check(arr):
+                for i in range(len(arr)-1):
+                    if arr[i]=='1' and arr[i+1]=='0':
+                        tmp=arr[i]
+                        arr[i]=arr[i+1]
+                        arr[i+1]=tmp
+                        res+=1
+            return res
