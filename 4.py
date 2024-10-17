@@ -981,3 +981,24 @@ class Solution(object):
                         arr[i+1]=tmp
                         res+=1
             return res
+
+#!https://leetcode.com/problems/maximum-swap/
+class Solution(object):
+    def maximumSwap(self, num):
+        arr=[i for i in str(num)]
+        flag=False
+        for i in range(len(arr)):
+            bigger=arr[i]
+            index=0
+            for j in range(i+1,len(arr)):
+                if arr[j]>=bigger and arr[j]!=arr[i]:
+                    flag=True
+                    bigger=arr[j]
+                    index=j
+            if flag:
+                temp=arr[index]
+                arr[index]=arr[i]
+                arr[i]=temp
+                break
+        return int("".join(arr))
+            
