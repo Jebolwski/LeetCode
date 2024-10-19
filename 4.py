@@ -1001,4 +1001,27 @@ class Solution(object):
                 arr[i]=temp
                 break
         return int("".join(arr))
+    
+#!https://leetcode.com/problems/find-kth-bit-in-nth-binary-string/
+class Solution(object):
+    def findKthBit(self, n, k):
+        def invert(s):
+            res=""
+            for i in s:
+                if i=="0":
+                    res+="1"
+                else:
+                    res+="0"
+            return res
+        def reverse(s):
+            return s[::-1]
+        
+        res="0"
+        before="0"
+        for i in range(n):
+            res+="1"
+            res+=reverse(invert(before))
+            before=res
+        return res[k-1]
+        
             
