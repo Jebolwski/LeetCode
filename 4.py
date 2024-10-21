@@ -1023,5 +1023,19 @@ class Solution(object):
             res+=reverse(invert(before))
             before=res
         return res[k-1]
+
+#!https://leetcode.com/problems/form-smallest-number-from-two-digit-arrays/    
+class Solution(object):
+    def minNumber(self, nums1, nums2):
+        arr=[]
+        for i in nums1:
+            if i in nums2:
+                arr.append(i)
+        if len(arr)>0:
+            return min(arr)
+        else:
+            if min(nums1)<min(nums2):
+                return int((str(min(nums1)) + str(min(nums2))))
+            return int((str(min(nums2)) + str(min(nums1))))
+
         
-            
