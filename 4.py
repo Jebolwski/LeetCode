@@ -1038,4 +1038,12 @@ class Solution(object):
                 return int((str(min(nums1)) + str(min(nums2))))
             return int((str(min(nums2)) + str(min(nums1))))
 
+#!https://leetcode.com/problems/subarrays-distinct-element-sum-of-squares-i/
+class Solution(object):
+    def sumCounts(self, nums):
+        x=0
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)+1):
+                x+=(len(collections.Counter(nums[i:j]).keys())**2)
+        return x
         
