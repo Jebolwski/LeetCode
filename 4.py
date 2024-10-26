@@ -1046,4 +1046,14 @@ class Solution(object):
             for j in range(i+1,len(nums)+1):
                 x+=(len(collections.Counter(nums[i:j]).keys())**2)
         return x
-        
+
+#!https://leetcode.com/problems/find-the-array-concatenation-value/      
+class Solution(object):
+    def findTheArrayConcVal(self, nums):
+        arr=[]
+        for i in range(len(nums)//2):
+            x=str(nums[i])+str(nums[len(nums)-1-i])
+            arr.append(int(x))
+        if len(nums)%2==1:
+            return sum(arr)+nums[len(nums)/2]
+        return sum(arr)
