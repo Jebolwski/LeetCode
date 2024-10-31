@@ -1075,3 +1075,22 @@ def longestSquareStreak(self, nums: List[int]) -> int:
                 max_length = max(max_length, length)
                 
         return max_length
+
+#!https://leetcode.com/problems/find-the-width-of-columns-of-a-grid/
+class Solution:
+    def findColumnWidth(self, matrix):
+        result = [0] * len(matrix[0])
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                result[j] = max(result[j],len(str(matrix[i][j])))
+        return result
+    
+#!https://leetcode.com/problems/left-and-right-sum-differences/
+class Solution:
+    def leftRightDifference(self, nums):
+        answer=[i for i in nums]
+        for i in range(len(nums)):
+            answer[i]=abs(sum(nums[:i])  -  sum(nums[i+1:]))
+        return (answer)
+
+        
