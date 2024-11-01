@@ -1093,4 +1093,15 @@ class Solution:
             answer[i]=abs(sum(nums[:i])  -  sum(nums[i+1:]))
         return (answer)
 
-        
+#!https://leetcode.com/problems/split-strings-by-separator/
+class Solution(object):
+    def splitWordsBySeparator(self, words, separator):
+        arr=[]
+        for i in words:
+            for j in i.split(separator):
+                arr.append(j)
+        res=[]
+        for i in arr:
+            if i!="":
+                res.append(i)
+        return res
