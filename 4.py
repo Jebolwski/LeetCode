@@ -1117,3 +1117,15 @@ class Solution:
             if sentence[i][-1]!=sentence[i+1][0]:
                 return False
         return sentence[0][0]==sentence[-1][-1]
+    
+#!https://leetcode.com/problems/string-compression-iii/
+class Solution:
+    def compressedString(self, word: str) -> str:
+        x=0
+        string=""
+        for i in range(len(word)):
+            x+=1
+            if i+1==len(word) or word[i]!=word[i+1] or x==9:
+                string=string+(str(x)+word[i])
+                x=0
+        return string
