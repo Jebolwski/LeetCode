@@ -1140,3 +1140,11 @@ class Solution:
                 count += 1
             i += 2
         return count
+
+#!https://leetcode.com/problems/take-gifts-from-the-richest-pile/  
+class Solution:
+    def pickGifts(self, gifts, k):
+        count=0
+        for i in range(k):
+            gifts[gifts.index(max(gifts))] = floor(sqrt(max(gifts)))
+        return sum(gifts)
