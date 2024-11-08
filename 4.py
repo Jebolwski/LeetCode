@@ -1148,3 +1148,17 @@ class Solution:
         for i in range(k):
             gifts[gifts.index(max(gifts))] = floor(sqrt(max(gifts)))
         return sum(gifts)
+
+import collections    
+
+#!https://leetcode.com/problems/count-pairs-of-similar-strings/
+class Solution:
+    def similarPairs(self, words):
+        x=0
+        for i in range(len(words)):
+            for j in range(i+1,len(words)):
+                a=sorted(list(collections.Counter(words[i]).keys()))
+                b=sorted(list(collections.Counter(words[j]).keys()))
+                if a==b:
+                    x+=1
+        return x
