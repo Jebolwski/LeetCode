@@ -1162,3 +1162,8 @@ class Solution:
                 if a==b:
                     x+=1
         return x
+    
+#!https://leetcode.com/problems/find-the-integer-added-to-array-i/
+class Solution:
+    def addedInteger(self, nums1: List[int], nums2: List[int]) -> int:
+        return sorted(nums2)[0]-sorted(nums1)[0]
