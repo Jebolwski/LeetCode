@@ -1167,3 +1167,11 @@ class Solution:
 class Solution:
     def addedInteger(self, nums1: List[int], nums2: List[int]) -> int:
         return sorted(nums2)[0]-sorted(nums1)[0]
+    
+#!https://leetcode.com/problems/check-if-a-string-is-an-acronym-of-words/
+class Solution(object):
+    def isAcronym(self, words, s):
+        sa=""
+        for i in words:
+            sa+=i[0]
+        return sa==s
