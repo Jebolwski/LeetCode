@@ -1175,3 +1175,13 @@ class Solution(object):
         for i in words:
             sa+=i[0]
         return sa==s
+    
+#!https://leetcode.com/problems/number-of-changing-keys/
+class Solution(object):
+    def countKeyChanges(self, s):
+        x=0
+        for i in range(len(s)-1):
+            if lower(s[i])!=lower(s[i+1]):
+                x+=1
+        return x
+        
