@@ -1185,3 +1185,12 @@ class Solution(object):
                 x+=1
         return x
         
+#!https://leetcode.com/problems/maximum-sum-with-exactly-k-elements/
+class Solution(object):
+    def maximizeSum(self, nums, k):
+        nums=sorted(nums)
+        x=0
+        for i in range(k):
+           x+=nums[-1] 
+           nums[-1]=nums[-1]+1
+        return x
