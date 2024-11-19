@@ -1194,3 +1194,17 @@ class Solution(object):
            x+=nums[-1] 
            nums[-1]=nums[-1]+1
         return x
+
+#!https://leetcode.com/problems/find-common-elements-between-two-arrays/
+class Solution(object):
+    def findIntersectionValues(self, nums1, nums2):
+        x1=0
+        x2=0
+        for i in nums2:
+            if i in nums1:
+                x1+=1
+        for i in nums1:
+            if i in nums2:
+                x2+=1
+        return [x2,x1]
+        
