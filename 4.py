@@ -1208,3 +1208,19 @@ class Solution(object):
                 x2+=1
         return [x2,x1]
         
+#!https://leetcode.com/problems/remove-letter-to-equalize-frequency/
+class Solution(object):
+    def equalFrequency(self, word):
+        arr=[]
+        for i in range(len(word)):
+            arr.append(word[:i]+word[i+1:])
+        for i in arr:
+            flag=True
+            x=collections.Counter(i).values()
+            x=(sorted(x))[::-1]
+            for i in range(len(x)-1):
+                if x[i]!=x[i+1]:
+                    flag=False
+            if flag:
+                return True
+        return False
