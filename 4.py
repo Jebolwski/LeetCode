@@ -1224,3 +1224,18 @@ class Solution(object):
             if flag:
                 return True
         return False
+
+#!https://leetcode.com/problems/k-items-with-the-maximum-sum/
+class Solution(object):
+    def kItemsWithMaximumSum(self, numOnes, numZeros, numNegOnes, k):
+        arr=[]
+        for i in range(numOnes):
+            arr.append(1)
+        for i in range(numZeros):
+            arr.append(0)
+        for i in range(numNegOnes):
+            arr.append(-1)
+        x=0
+        for i in range(k):
+            x+=arr[i]
+        return x
