@@ -1239,3 +1239,16 @@ class Solution(object):
         for i in range(k):
             x+=arr[i]
         return x
+
+#!https://leetcode.com/problems/check-if-bitwise-or-has-trailing-zeros/
+class Solution(object):
+    def hasTrailingZeros(self, nums):
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                x=nums[i]|nums[j]
+                x=bin(x)[2:]
+                if x[-1]=="0":
+                    return True
+        return False
+
+        
