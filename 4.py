@@ -1251,4 +1251,17 @@ class Solution(object):
                     return True
         return False
 
-        
+#!https://leetcode.com/problems/distribute-elements-into-two-arrays-i/
+class Solution(object):
+    def resultArray(self, nums):
+        arr1=[nums[0]]
+        arr2=[nums[1]]
+        for i in range(2,len(nums)):
+            if arr1[-1]>arr2[-1]:
+                arr1.append(nums[i])
+            else:
+                arr2.append(nums[i])
+        res=[i for i in arr1]
+        for i in arr2:
+            res.append(i)
+        return res
