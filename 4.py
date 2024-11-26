@@ -1265,3 +1265,17 @@ class Solution(object):
         for i in arr2:
             res.append(i)
         return res
+    
+#!https://leetcode.com/problems/minimum-sum-of-mountain-triplets-i/
+class Solution(object):
+    def minimumSum(self, nums):
+        res=9999
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                for k in range(j+1,len(nums)):
+                    if nums[i]<nums[j] and nums[k]<nums[j]:
+                        if res>(nums[i]+nums[j]+nums[k]):
+                            res=nums[i]+nums[j]+nums[k]
+        if res==9999:
+            return -1
+        return res
