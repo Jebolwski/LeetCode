@@ -1279,3 +1279,35 @@ class Solution(object):
         if res==9999:
             return -1
         return res
+
+#!https://leetcode.com/problems/count-hills-and-valleys-in-an-array/
+class Solution(object):
+    def countHillValley(self, nums):
+        arr=[]
+        for i in range(1,len(nums)):
+            if nums[i]!=nums[i-1]:
+                arr.append(nums[i])
+        if len(arr)==0:
+            return 0
+        if nums[0]!=arr[0]:
+            arr.insert(0, nums[0])
+        x=0
+        for i in range(1,len(arr)-1):
+            if (arr[i]<arr[i+1] and arr[i]<arr[i-1]) or (arr[i]>arr[i+1] and arr[i]>arr[i-1]):
+                x+=1
+        return x
+
+#!https://leetcode.com/problems/evaluate-boolean-binary-tree/
+class Solution(object):
+    def evaluateTree(self, root):
+        if not root:
+            return False
+        elif root.val == 0:
+            return False
+        elif root.val == 1:
+            return True
+        elif root.val == 3:
+            return self.evaluateTree(root.left) and self.evaluateTree(root.right)
+        elif root.val == 2:
+            return self.evaluateTree(root.left) or self.evaluateTree(root.right)
+        
