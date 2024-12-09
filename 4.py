@@ -1311,3 +1311,13 @@ class Solution(object):
         elif root.val == 2:
             return self.evaluateTree(root.left) or self.evaluateTree(root.right)
         
+#!https://leetcode.com/problems/find-maximum-number-of-string-pairs/
+class Solution(object):
+    def maximumNumberOfStringPairs(self, words):
+        x=0
+        for i in range(len(words)-1):
+            for j in range(i+1,len(words)):
+                if words[i]==words[j][::-1]:
+                    x+=1
+        return x 
+        
