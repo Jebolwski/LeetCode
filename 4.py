@@ -1320,4 +1320,23 @@ class Solution(object):
                 if words[i]==words[j][::-1]:
                     x+=1
         return x 
+    
+#!https://leetcode.com/problems/furthest-point-from-origin/
+class Solution(object):
+    def furthestDistanceFromOrigin(self, moves):
+        x=0
+        count=0
+        for i in moves:
+            if i=="L":
+                x+=-1
+            elif i=="R":
+                x+=1
+            else:
+                count+=1
+        if x<0:
+            x-=count
+        else:
+            x+=count
+        return abs(x)
+        
         
