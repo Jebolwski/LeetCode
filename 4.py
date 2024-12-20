@@ -1338,5 +1338,23 @@ class Solution(object):
         else:
             x+=count
         return abs(x)
-        
-        
+    
+#!https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/?envType=daily-question&envId=2024-12-16       
+class Solution:
+    def getFinalState(self, nums, k, multiplier):
+        n = len(nums)
+
+   
+        pq = []
+        for i, num in enumerate(nums):
+            heappush(pq, (num, i))
+
+       
+        while k > 0:
+            k -= 1
+            val, idx = heappop(pq) 
+
+            nums[idx] = val * multiplier
+            heappush(pq, (nums[idx], idx))
+
+        return nums
