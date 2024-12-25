@@ -1339,7 +1339,7 @@ class Solution(object):
             x+=count
         return abs(x)
     
-#!https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/?envType=daily-question&envId=2024-12-16       
+#!https://leetcode.com/problems/final-array-state-after-k-multiplication-operations-i/
 class Solution:
     def getFinalState(self, nums, k, multiplier):
         n = len(nums)
@@ -1358,3 +1358,24 @@ class Solution:
             heappush(pq, (nums[idx], idx))
 
         return nums
+    
+#!https://leetcode.com/problems/slowest-key/
+class Solution:
+    def slowestKey(self, releaseTimes: List[int], keysPressed: str) -> str:
+        
+        dicts = collections.defaultdict(list)
+        maxLen = releaseTimes[0]
+        
+        dicts[maxLen].append(keysPressed[0])
+        
+        for i in range(1, len(releaseTimes)):
+            length = releaseTimes[i] - releaseTimes[i - 1]
+            
+            if length >= maxLen:
+                dicts[length].append(keysPressed[i])
+                maxLen = length
+                
+        
+        dicts[maxLen].sort()
+        
+        return dicts[maxLen][len(dicts[maxLen]) - 1]
