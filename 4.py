@@ -1424,3 +1424,26 @@ class Solution:
         result.extend(nums2[j:])
 
         return result
+
+#!https://leetcode.com/problems/valid-word/
+class Solution(object):
+    def isValid(self, word):
+        alphabet=['b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
+        if len(word)<3:
+            return False
+        vowels=['a', 'e', 'i', 'o', 'u']
+        digits=['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        x=0
+        for i in vowels:
+            x+=lower(word).count(lower(i))
+        if x==0 or x==len(word):
+            return False
+        y=0
+        for i in alphabet:
+            y+=lower(word).count(lower(i))
+        if y==0 or y==len(word):
+            return False
+        for i in word:
+            if lower(i) not in alphabet and lower(i) not in vowels and i not in digits:
+                return False
+        return True
