@@ -1485,3 +1485,22 @@ class Solution:
                 seen[n] = True
 
         return sum(i for i, present in enumerate(seen[1:], start=1) if present)
+
+#!https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+class Solution(object):
+    def oddCells(self, m, n, indices):
+        mat=[[0 for _  in range(n)] for _ in range(m)]
+        for i in range(len(indices)):
+            a=indices[i][0]
+            b=indices[i][1]
+            for j in range(n):
+                mat[a][j]+=1
+            for k in range(m):
+                mat[k][b]+=1
+        c=0        
+        for i in range(m):
+            for j in range(n):
+                if mat[i][j]%2:
+                    c+=1
+        return c    
+        
