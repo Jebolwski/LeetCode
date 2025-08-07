@@ -1522,3 +1522,32 @@ class Solution(object):
                 sum_width = temp
         ans[1] = sum_width
         return ans 
+
+#!https://leetcode.com/problems/number-of-arithmetic-triplets/
+class Solution(object):
+    def arithmeticTriplets(self, nums, diff):
+        x=0
+        for i in range(len(nums)):
+            for j in range(i+1,len(nums)):
+                for k in range(j+1,len(nums)):
+                    arr=[nums[i],nums[j],nums[k]]
+                    arr=sorted(arr)
+                    if (nums[j]-nums[i])==diff and (nums[k]-nums[j])==diff:
+                        x+=1
+        return x
+
+#!https://leetcode.com/problems/most-frequent-number-following-key-in-an-array/   
+class Solution(object):
+    def mostFrequent(self, nums, key):
+        count = {}
+        
+        for i in range(len(nums) - 1):
+            if nums[i] == key:
+                if nums[i + 1] in count:
+                    count[nums[i + 1]] += 1
+                else:
+                    count[nums[i + 1]] = 1
+        
+        result = max(count, key=count.get)
+        
+        return result
