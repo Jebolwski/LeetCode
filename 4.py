@@ -1551,3 +1551,18 @@ class Solution(object):
         result = max(count, key=count.get)
         
         return result
+
+#!https://leetcode.com/problems/longest-subsequence-with-limited-sum/
+class Solution(object):
+    def answerQueries(self, nums, queries):
+        nums.sort()
+        arr = []
+        for query in queries:
+            count, sm = 0, 0
+            for i in range(len(nums)):
+                print(query,i)
+                if sm + nums[i] <= query:
+                    sm += nums[i]
+                    count += 1
+            arr.append(count)
+        return arr
