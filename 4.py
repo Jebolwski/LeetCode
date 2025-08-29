@@ -1566,3 +1566,24 @@ class Solution(object):
                     count += 1
             arr.append(count)
         return arr
+
+from math import *
+
+#!https://leetcode.com/problems/maximum-area-of-longest-diagonal-rectangle/
+class Solution(object):
+    def areaOfMaxDiagonal(self, dimensions):
+        arr=[]
+        for i in dimensions:
+            arr.append(round(sqrt(i[0]*i[0]+i[1]*i[1]),2))
+        x=0
+        index=0
+        area=0
+        for i in range(len(arr)):
+            if arr[i]>x:
+                x=arr[i]
+                index=i
+            elif arr[i]==x and dimensions[i][0]*dimensions[i][1]>area:
+                area=dimensions[i][0]*dimensions[i][1]
+                x=arr[i]
+                index=i
+        return dimensions[index][0]*dimensions[index][1]
