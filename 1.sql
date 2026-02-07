@@ -443,3 +443,19 @@ where borrowing_records.return_date is null
 group by borrowing_records.book_id 
 having count(borrowing_records.book_id)=library_books.total_copies
 order by current_borrowers desc, library_books.title asc;
+
+--!https://leetcode.com/problems/find-users-with-high-token-usage/
+select user_id, count(prompt) as prompt_count, round(avg(tokens),2) as avg_tokens from prompts 
+group by user_id 
+having prompt_count>2 and 
+count(DISTINCT(tokens))>2
+order by avg_tokens desc, user_id asc;
+
+--!https://leetcode.com/problems/exchange-seats/
+select  
+Case
+    when id%2=1 and id!=(select max(id) from Seat) then id+1
+    when id%2=0 then id-1
+    else id
+end as id, student
+from Seat order by id asc;
