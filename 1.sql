@@ -428,3 +428,18 @@ AND (lat, lon) IN (
     GROUP BY lat, lon
     HAVING COUNT(*) = 1
 )
+
+--!https://leetcode.com/problems/find-books-with-no-available-copies/
+select 
+    library_books.book_id, 
+    library_books.title, 
+    library_books.author, 
+    library_books.genre, 
+    library_books.publication_year, 
+    library_books.total_copies as current_borrowers 
+from library_books 
+inner join borrowing_records on library_books.book_id=borrowing_records.book_id 
+where borrowing_records.return_date is null 
+group by borrowing_records.book_id 
+having count(borrowing_records.book_id)=library_books.total_copies
+order by current_borrowers desc, library_books.title asc;
