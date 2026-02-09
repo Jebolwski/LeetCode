@@ -500,3 +500,9 @@ select sample_id, dna_sequence, species,
 (select count(*) from Samples s1 where dna_sequence like "%ATAT%" and s1.sample_id=s2.sample_id) as has_atat,
 (select count(*) from Samples s1 where dna_sequence like "%GGG%" and s1.sample_id=s2.sample_id) as has_ggg   
 from Samples s2
+
+--!https://leetcode.com/problems/analyze-subscription-conversion/
+select user_id, 
+(select round(avg(activity_duration),2) from UserActivity u2 where u1.user_id=u2.user_id and activity_type="free_trial") as trial_avg_duration,
+(select round(avg(activity_duration),2) from UserActivity u3 where u1.user_id=u3.user_id and activity_type="paid") as paid_avg_duration
+from UserActivity u1 where activity_type="paid" group by user_id 
