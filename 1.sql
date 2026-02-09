@@ -492,3 +492,11 @@ SELECT
     COUNT(*) AS accounts_count
 FROM Accounts
 WHERE income > 50000
+
+--!https://leetcode.com/problems/dna-pattern-recognition/
+select sample_id, dna_sequence, species,
+(select count(*) from Samples s1 where dna_sequence like "ATG%" and s1.sample_id=s2.sample_id) as has_start,
+(select count(*) from Samples s1 where (dna_sequence like "%TAA" or dna_sequence like "%TAG" or dna_sequence like "%TGA") and s1.sample_id=s2.sample_id) as has_stop,
+(select count(*) from Samples s1 where dna_sequence like "%ATAT%" and s1.sample_id=s2.sample_id) as has_atat,
+(select count(*) from Samples s1 where dna_sequence like "%GGG%" and s1.sample_id=s2.sample_id) as has_ggg   
+from Samples s2
