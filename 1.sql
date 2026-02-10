@@ -506,3 +506,19 @@ select user_id,
 (select round(avg(activity_duration),2) from UserActivity u2 where u1.user_id=u2.user_id and activity_type="free_trial") as trial_avg_duration,
 (select round(avg(activity_duration),2) from UserActivity u3 where u1.user_id=u3.user_id and activity_type="paid") as paid_avg_duration
 from UserActivity u1 where activity_type="paid" group by user_id 
+
+--!https://leetcode.com/problems/odd-and-even-transactions/
+select transaction_date,
+IFNULL((select sum(amount) from transactions t2 where t1.transaction_date=t2.transaction_date and t2.amount%2=1),0) as odd_sum,
+IFNULL((select sum(amount) from transactions t3 where t1.transaction_date=t3.transaction_date and t3.amount%2=0),0) as even_sum
+from transactions t1 group by transaction_date order by transaction_date asc
+
+--!https://leetcode.com/problems/find-loyal-customers/
+SELECT customer_id
+FROM customer_transactions 
+GROUP BY customer_id
+HAVING 
+    SUM(CASE WHEN transaction_type = 'purchase' THEN 1 ELSE 0 END) > 2
+    AND SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END)*1.0 / 
+        SUM(CASE WHEN transaction_type like '%u%' THEN 1 ELSE 0 END)*1.0 < 0.2
+    AND DATEDIFF(MAX(transaction_date), MIN(transaction_date)) > 29
