@@ -522,3 +522,8 @@ HAVING
     AND SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END)*1.0 / 
         SUM(CASE WHEN transaction_type like '%u%' THEN 1 ELSE 0 END)*1.0 < 0.2
     AND DATEDIFF(MAX(transaction_date), MIN(transaction_date)) > 29
+
+--!https://leetcode.com/problems/rank-scores/
+select score, 
+dense_rank() over (order by score desc) as 'rank'
+from Scores order by score desc
