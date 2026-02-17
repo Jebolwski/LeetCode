@@ -552,3 +552,16 @@ WHERE
      AND e2.salary > e.salary) < 3
 ORDER BY 
     Department, Salary DESC;
+
+--!https://leetcode.com/problems/trips-and-users/
+SELECT 
+    t.request_at AS Day,
+    ROUND(
+        SUM(t.status != 'completed') / COUNT(*),
+        2
+    ) AS "Cancellation Rate"
+FROM Trips t
+JOIN Users c ON t.client_id = c.users_id AND c.banned = 'No'
+JOIN Users d ON t.driver_id = d.users_id AND d.banned = 'No'
+WHERE t.request_at BETWEEN '2013-10-01' AND '2013-10-03'
+GROUP BY t.request_at;
