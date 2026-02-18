@@ -565,3 +565,35 @@ JOIN Users c ON t.client_id = c.users_id AND c.banned = 'No'
 JOIN Users d ON t.driver_id = d.users_id AND d.banned = 'No'
 WHERE t.request_at BETWEEN '2013-10-01' AND '2013-10-03'
 GROUP BY t.request_at;
+
+
+--!https://leetcode.com/problems/find-covid-recovery-patients/
+SELECT 
+    p.patient_id,
+    p.patient_name,
+    p.age,
+    DATEDIFF(first_negative.first_negative_date, first_positive.first_positive_date) AS recovery_time
+FROM patients p
+
+INNER JOIN (
+    SELECT patient_id, MIN(test_date) AS first_positive_date
+    FROM covid_tests
+    WHERE result = 'Positive'
+    GROUP BY patient_id
+) AS first_positive ON first_positive.patient_id = p.patient_id
+
+INNER JOIN (
+    SELECT c.patient_id, MIN(c.test_date) AS first_negative_date
+    FROM covid_tests c
+    INNER JOIN (
+        SELECT patient_id, MIN(test_date) AS first_positive_date
+        FROM covid_tests
+        WHERE result = 'Positive'
+        GROUP BY patient_id
+    ) fp ON fp.patient_id = c.patient_id
+        AND c.test_date > fp.first_positive_date
+    WHERE c.result = 'Negative'
+    GROUP BY c.patient_id
+) AS first_negative ON first_negative.patient_id = p.patient_id
+
+ORDER BY recovery_time ASC, p.patient_name ASC;
