@@ -628,3 +628,25 @@ total_hours as (select *, sum(duration_hours) as total_hours from first GROUP BY
 
 select employee_id,employee_name,department,count(employee_id) as meeting_heavy_weeks from total_hours group by employee_name having count(employee_id)>1 order by meeting_heavy_weeks desc, employee_name asc
 
+
+--!https://leetcode.com/problems/human-traffic-of-stadium/
+WITH filtered AS (
+    SELECT 
+        id,
+        visit_date,
+        people,
+        id - ROW_NUMBER() OVER (ORDER BY id) AS grp
+    FROM Stadium
+    WHERE people >= 100
+),
+grouped AS (
+    SELECT 
+        id,
+        visit_date,
+        people,
+        COUNT(*) OVER (PARTITION BY grp) AS consecutive_count
+    FROM filtered
+)
+
+
+select id,visit_date,people from grouped where consecutive_count>2 order by visit_date asc
