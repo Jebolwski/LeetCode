@@ -597,3 +597,34 @@ INNER JOIN (
 ) AS first_negative ON first_negative.patient_id = p.patient_id
 
 ORDER BY recovery_time ASC, p.patient_name ASC;
+
+
+--!https://leetcode.com/problems/find-consistently-improving-employees/
+with performance as (select review_id,p.employee_id,e.name,p.review_date,p.rating from performance_reviews p inner join employees e on p.employee_id=e.employee_id),
+
+ratings AS (
+    SELECT *,
+        ROW_NUMBER() OVER (PARTITION BY employee_id ORDER BY review_date DESC) AS rn
+    FROM performance
+),last_table as
+(SELECT 
+    employee_id,
+    name,
+    MAX(CASE WHEN rn = 3 THEN rating END) AS low_rn,
+    MAX(CASE WHEN rn = 2 THEN rating END) AS mid_rn,
+    MAX(CASE WHEN rn = 1 THEN rating END) AS max_rn
+FROM ratings
+WHERE rn <= 3
+GROUP BY employee_id, name)
+
+
+select employee_id,name,(max_rn-low_rn) as improvement_score from last_table
+where max_rn>mid_rn and mid_rn>low_rn order by improvement_score desc, name asc;
+
+
+--!https://leetcode.com/problems/find-overbooked-employees/
+with first as (select e.employee_id,employee_name,department,meeting_date,meeting_type,duration_hours from meetings m inner join employees e on m.employee_id=e.employee_id),
+total_hours as (select *, sum(duration_hours) as total_hours from first GROUP BY employee_id, WEEKOFYEAR(meeting_date), YEAR(meeting_date) having total_hours>20)
+
+select employee_id,employee_name,department,count(employee_id) as meeting_heavy_weeks from total_hours group by employee_name having count(employee_id)>1 order by meeting_heavy_weeks desc, employee_name asc
+
