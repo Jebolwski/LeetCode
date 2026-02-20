@@ -648,5 +648,27 @@ grouped AS (
     FROM filtered
 )
 
-
 select id,visit_date,people from grouped where consecutive_count>2 order by visit_date asc
+
+
+
+--!https://leetcode.com/problems/product-price-at-a-given-date/
+with max_table as (SELECT product_id, MAX(change_date) AS max_date
+    FROM Products
+    WHERE change_date < '2019-08-17'
+    GROUP BY product_id),
+final_table as (select p.product_id,new_price as price from products p inner join max_table m on p.product_id=m.product_id where p.change_date=m.max_date)
+
+select * from final_table
+union all
+select distinct(product_id), 10 as price from Products where product_id not in (select product_id from final_table)
+
+
+--!https://leetcode.com/problems/movie-rating/
+with name_added as (select movie_id,m.user_id,name,rating,created_at from MovieRating m inner join Users u on u.user_id=m.user_id),
+movie_added as (select m.movie_id,title,user_id,name,rating,created_at from name_added n inner join Movies m on m.movie_id=n.movie_id)
+
+(select name as results from movie_added group by name order by count(name) desc, name limit 1)
+union all
+(select title as results from movie_added where created_at like '2020-02-%' group by movie_id order by avg(rating) desc, title asc limit 1) 
+
