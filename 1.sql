@@ -672,3 +672,44 @@ movie_added as (select m.movie_id,title,user_id,name,rating,created_at from name
 union all
 (select title as results from movie_added where created_at like '2020-02-%' group by movie_id order by avg(rating) desc, title asc limit 1) 
 
+
+--!https://leetcode.com/problems/restaurant-growth/
+WITH daily AS (
+    SELECT visited_on, SUM(amount) AS daily_amount
+    FROM Customer
+    GROUP BY visited_on
+),
+windowed AS (
+    SELECT 
+        visited_on,
+        SUM(daily_amount) OVER (
+            ORDER BY visited_on 
+            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+        ) AS amount,
+        ROUND(AVG(daily_amount) OVER (
+            ORDER BY visited_on 
+            ROWS BETWEEN 6 PRECEDING AND CURRENT ROW
+        ), 2) AS average_amount
+    FROM daily
+)
+
+SELECT *
+FROM windowed
+WHERE visited_on >= (SELECT MIN(visited_on) + INTERVAL 6 DAY FROM Customer)
+ORDER BY visited_on;
+
+--!https://leetcode.com/problems/find-students-who-improved/
+WITH scores_ranked AS (
+    SELECT 
+        student_id,
+        subject,
+        score,
+        exam_date,
+        FIRST_VALUE(score) OVER (PARTITION BY student_id, subject ORDER BY exam_date ASC) AS first_score,
+        FIRST_VALUE(score) OVER (PARTITION BY student_id, subject ORDER BY exam_date DESC) AS latest_score,
+        COUNT(*) OVER (PARTITION BY student_id, subject) AS exam_count
+    FROM Scores
+)
+
+select distinct(student_id),subject,first_score,latest_score from scores_ranked where exam_count>1 and first_score<latest_score
+
