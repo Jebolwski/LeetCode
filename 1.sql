@@ -713,3 +713,29 @@ WITH scores_ranked AS (
 
 select distinct(student_id),subject,first_score,latest_score from scores_ranked where exam_count>1 and first_score<latest_score
 
+
+--!https://leetcode.com/problems/primary-department-for-each-employee/
+select employee_id, department_id from Employee where primary_flag='Y' group by employee_id
+union all
+select employee_id, department_id from Employee group by employee_id having count(department_id)=1
+
+
+--!https://leetcode.com/problems/find-books-with-polarized-opinions/
+with name_table as (SELECT
+        session_id, b.book_id, title, author, genre,
+        pages, reader_name, pages_read, session_rating
+    FROM reading_sessions r
+    INNER JOIN books b ON b.book_id = r.book_id)
+
+SELECT
+    book_id, title, author, genre, pages,
+    (max(session_rating)-min(session_rating)) as rating_spread,
+    round((SUM(session_rating <= 2)+SUM(session_rating >= 4))/count(session_rating),2) as polarization_score
+FROM name_table
+GROUP BY book_id, title, author, genre, pages
+HAVING
+    SUM(session_rating <= 2) > 0
+    AND SUM(session_rating >= 4) > 0
+    AND Count(author)>=5
+    AND polarization_score>=0.6
+order by polarization_score desc, title desc
