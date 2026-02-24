@@ -739,3 +739,24 @@ HAVING
     AND Count(author)>=5
     AND polarization_score>=0.6
 order by polarization_score desc, title desc
+
+
+
+--!https://leetcode.com/problems/find-golden-hour-customers/
+WITH table_1 AS (
+    SELECT *,
+           COUNT(*) OVER (PARTITION BY customer_id) AS order_count
+    FROM restaurant_orders
+), table_2 as (SELECT *,hour(order_timestamp) as time_hour FROM table_1 where order_count>2),
+table_3 as 
+(SELECT *,
+           round(COUNT(CASE WHEN order_rating IS NULL THEN 1 END) OVER (PARTITION BY customer_id) * 100.0 
+           / COUNT(*) OVER (PARTITION BY customer_id),2) AS null_percentage
+    FROM table_2),
+table_4 as (select customer_id,order_count as total_orders,
+(select count(*) from table_3 t_i where t_i.customer_id=t_o.customer_id and ((time_hour>=11 and time_hour<=14) or (time_hour>=18 and time_hour<=21)))*100/
+(count(*)) as peak_hour_percentage,round(avg(order_rating),2) as average_rating
+from table_3 t_o where null_percentage<50.0 group by customer_id having peak_hour_percentage>=60.0 and average_rating>=4.0)
+
+
+select * from table_4 order by average_rating desc, customer_id desc
