@@ -760,3 +760,42 @@ from table_3 t_o where null_percentage<50.0 group by customer_id having peak_hou
 
 
 select * from table_4 order by average_rating desc, customer_id desc
+
+
+--!https://leetcode.com/problems/find-emotionally-consistent-users/
+WITH reaction_counts AS (
+    SELECT 
+        user_id,
+        reaction,
+        COUNT(*) AS reaction_count
+    FROM reactions
+    GROUP BY user_id, reaction
+),
+user_totals AS (
+    SELECT
+        user_id,
+        SUM(reaction_count) AS total_reactions
+    FROM reaction_counts
+    GROUP BY user_id
+),
+ranked AS (
+    SELECT
+        rc.user_id,
+        rc.reaction,
+        rc.reaction_count,
+        ut.total_reactions,
+        ROUND(rc.reaction_count / ut.total_reactions, 2) AS reaction_ratio,
+        ROW_NUMBER() OVER (PARTITION BY rc.user_id ORDER BY rc.reaction_count DESC) AS rn
+    FROM reaction_counts rc
+    JOIN user_totals ut ON rc.user_id = ut.user_id
+)
+
+SELECT 
+    user_id,
+    reaction AS dominant_reaction,
+    reaction_ratio
+FROM ranked
+WHERE rn = 1                      
+  AND total_reactions >= 5      
+  AND reaction_ratio >= 0.60  
+ORDER BY reaction_ratio DESC, user_id ASC;
